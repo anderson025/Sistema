@@ -167,5 +167,8 @@
   <ItemGroup>
     <None Include="Resources\add-user-male.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Entidades\Enums\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

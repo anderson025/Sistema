@@ -49,7 +49,7 @@ namespace Sistema
             catch (Exception)
             {
 
-                MessageBox.Show("Erro"); ;
+                MessageBox.Show("Erro");
             }
         }
 
