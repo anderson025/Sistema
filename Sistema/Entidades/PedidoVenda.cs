@@ -28,7 +28,10 @@ namespace Sistema.Entidades
 
         public void AdicionarItem(PedidoItens item)
         {
+           
             Items.Add(item);
+
+            
         }
 
         public void RemoverItem(PedidoItens item)
@@ -46,5 +49,7 @@ namespace Sistema.Entidades
             }
             return TotalPedido;
         }
+
+        
     }
 }

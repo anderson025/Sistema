@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
 
 namespace Sistema.Entidades
 {
-    public class Produto
+     class Produto
     {
         public int CodInterno { get; set; }
         public string Descricao { get; set; }
@@ -16,6 +13,20 @@ namespace Sistema.Entidades
         public double PrecoVenda { get; set; }
         public double PrecoCompra { get; set; }
         public double PrecoCusto { get; set; }
+
+        public Produto()
+        {
+
+        }
+
+        public Produto(int codInterno, string descricao, string codBarra, double precoVenda)
+        {
+            CodInterno = codInterno;
+            Descricao = descricao;
+            CodBarra = codBarra;
+            PrecoVenda = precoVenda;
+            
+        }
 
         public void InserirProduto()
         {
@@ -27,7 +38,7 @@ namespace Sistema.Entidades
                 c.AbrirConexao();
                 MySqlCommand INSERT = new MySqlCommand("INSERT INTO produto (codbarra, descricao, precovenda, precocompra, precocusto) " +
                                                         "VALUES(@Codbarra, @Descricao, @Precovenda,@Precocompra,@Precocusto)", c.conexao);
-                INSERT.Parameters.AddWithValue("@Codbarra",CodBarra);
+                INSERT.Parameters.AddWithValue("@Codbarra", CodBarra);
                 INSERT.Parameters.AddWithValue("@Descricao", Descricao.ToUpper());
                 INSERT.Parameters.AddWithValue("@Precovenda", PrecoVenda);
                 INSERT.Parameters.AddWithValue("@Precocompra", PrecoCompra);
@@ -37,7 +48,7 @@ namespace Sistema.Entidades
                 MessageBox.Show("Cadastrado com Sucesso", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 c.FecharConexao();
 
-               
+
 
             }
             catch (Exception ex)
@@ -60,7 +71,7 @@ namespace Sistema.Entidades
                 UPDATE.Parameters.AddWithValue("@Descricao", Descricao.ToUpper());
                 UPDATE.Parameters.AddWithValue("@Precovenda", PrecoVenda);
                 UPDATE.Parameters.AddWithValue("@Precocompra", PrecoCompra);
-                UPDATE.Parameters.AddWithValue("@Precocusto",PrecoCusto);
+                UPDATE.Parameters.AddWithValue("@Precocusto", PrecoCusto);
                 UPDATE.Parameters.AddWithValue("@Id", CodInterno);
 
                 c.AbrirConexao();
@@ -69,7 +80,7 @@ namespace Sistema.Entidades
                 MessageBox.Show("Alterador com Sucesso", "Alteração", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 c.FecharConexao();
 
-                
+
 
             }
             catch (Exception ex)
@@ -92,7 +103,7 @@ namespace Sistema.Entidades
                 MessageBox.Show("Excluído com Sucesso!", "Exclusão", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 c.FecharConexao();
 
-                
+
             }
             catch (Exception)
             {
@@ -100,5 +111,11 @@ namespace Sistema.Entidades
                 MessageBox.Show("Erro ao excluir usuário!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
             }
         }
+
+        //public override string ToString()
+        //{
+        //    return CodBarra;
+        //}
+
     }
 }

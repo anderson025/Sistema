@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Sistema.Entidades
+﻿namespace Sistema.Entidades
 {
-    class PedidoItens
+     class PedidoItens 
     {
         public int Quantidade { get; set; }
         public double Preco { get; set; }
         public Produto Produto { get; set; }
+
 
         public PedidoItens()
         {
@@ -27,5 +22,7 @@ namespace Sistema.Entidades
         {
             return Preco * Quantidade;
         }
+
+
     }
 }
