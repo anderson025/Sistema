@@ -112,10 +112,7 @@ namespace Sistema.Entidades
             }
         }
 
-        //public override string ToString()
-        //{
-        //    return CodBarra;
-        //}
+        
 
     }
 }

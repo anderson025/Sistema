@@ -2,6 +2,7 @@
 using Sistema.Entidades;
 using System;
 using System.Data;
+using System.Reflection;
 using System.Windows.Forms;
 
 namespace Sistema
@@ -121,7 +122,7 @@ namespace Sistema
             Produto prod = new Produto(int.Parse(txtCodProduto.Text), txtDescricao.Text, txtCodBarras.Text, double.Parse(txtPreco.Text));
 
             PedidoVenda pedido = new PedidoVenda();
-            PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text),double.Parse(txtPreco.Text),prod);
+            PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text),double.Parse(txtPreco.Text), prod);
 
 
             
@@ -129,8 +130,49 @@ namespace Sistema
             pedido.AdicionarItem(itens);
 
             dataGridView2.DataSource = pedido.Items;
+            dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
 
+        }
+
+        private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if ((dataGridView2.Rows[e.RowIndex].DataBoundItem != null) && (dataGridView2.Columns[e.ColumnIndex].DataPropertyName.Contains(".")))
+            {
+                e.Value = BindProperty(dataGridView2.Rows[e.RowIndex].DataBoundItem, dataGridView2.Columns[e.ColumnIndex].DataPropertyName);
+            }
+
+        }
+
+        private string BindProperty(object property, string propertyName)
+        {
+            string retValue = "";
+            if (propertyName.Contains("."))
+            {
+                PropertyInfo[] arrayProperties;
+                string leftPropertyName;
+                leftPropertyName = propertyName.Substring(0, propertyName.IndexOf("."));
+                arrayProperties = property.GetType().GetProperties();
+                foreach (PropertyInfo propertyInfo in arrayProperties)
+                {
+                    if (propertyInfo.Name == leftPropertyName)
+                    {
+                        retValue = BindProperty(
+                          propertyInfo.GetValue(property, null),
+                          propertyName.Substring(propertyName.IndexOf(".") + 1));
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                Type propertyType;
+                PropertyInfo propertyInfo;
+                propertyType = property.GetType();
+                propertyInfo = propertyType.GetProperty(propertyName);
+                retValue = propertyInfo.GetValue(property, null).ToString();
+            }
+            return retValue;
         }
     }
 }
