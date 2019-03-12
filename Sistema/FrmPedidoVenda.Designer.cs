@@ -54,7 +54,7 @@
             this.lblQuantidade = new System.Windows.Forms.Label();
             this.txtQuantidade = new System.Windows.Forms.TextBox();
             this.lblDescricao = new System.Windows.Forms.Label();
-            this.txtDescricao = new System.Windows.Forms.TextBox();
+            this.txtDescricaoProd = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCodBarras = new System.Windows.Forms.TextBox();
             this.lblCodigo = new System.Windows.Forms.Label();
@@ -260,7 +260,7 @@
             this.groupBox2.Controls.Add(this.lblQuantidade);
             this.groupBox2.Controls.Add(this.txtQuantidade);
             this.groupBox2.Controls.Add(this.lblDescricao);
-            this.groupBox2.Controls.Add(this.txtDescricao);
+            this.groupBox2.Controls.Add(this.txtDescricaoProd);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.txtCodBarras);
             this.groupBox2.Controls.Add(this.lblCodigo);
@@ -332,12 +332,12 @@
             this.lblDescricao.TabIndex = 12;
             this.lblDescricao.Text = "Descricão:";
             // 
-            // txtDescricao
+            // txtDescricaoProd
             // 
-            this.txtDescricao.Location = new System.Drawing.Point(332, 56);
-            this.txtDescricao.Name = "txtDescricao";
-            this.txtDescricao.Size = new System.Drawing.Size(416, 22);
-            this.txtDescricao.TabIndex = 11;
+            this.txtDescricaoProd.Location = new System.Drawing.Point(332, 56);
+            this.txtDescricaoProd.Name = "txtDescricaoProd";
+            this.txtDescricaoProd.Size = new System.Drawing.Size(416, 22);
+            this.txtDescricaoProd.TabIndex = 11;
             // 
             // label2
             // 
@@ -471,7 +471,7 @@
         private System.Windows.Forms.Label lblQuantidade;
         private System.Windows.Forms.TextBox txtQuantidade;
         private System.Windows.Forms.Label lblDescricao;
-        private System.Windows.Forms.TextBox txtDescricao;
+        private System.Windows.Forms.TextBox txtDescricaoProd;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtCodBarras;
         private System.Windows.Forms.Label lblCodigo;

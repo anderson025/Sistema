@@ -18,11 +18,21 @@ namespace Sistema
         {
             TsbGravar.Enabled = false;
             TsbCancelar.Enabled = false;
+            //Bloqueia os campos cliente e vendedor
             txtCodCliente.Enabled = false;
             txtNomeCliente.Enabled = false;
             txtCodVendedor.Enabled = false;
             txtNomeVendedor.Enabled = false;
             cboCondPagto.Enabled = false;
+
+            //Bloqueia campos dos itens
+
+            txtCodProduto.Enabled = false;
+            txtCodBarras.Enabled = false;
+            txtDescricaoProd.Enabled = false;
+            txtQuantidade.Enabled = false;
+            txtPreco.Enabled = false;
+            
 
 
 
@@ -70,11 +80,19 @@ namespace Sistema
             TsbCancelar.Enabled = true;
             TsbExcluir.Enabled = false;
 
+            //Desblqueia campos referente a clientes e vendedor
             txtCodCliente.Enabled = true;
             txtNomeCliente.Enabled = true;
             txtCodVendedor.Enabled = true;
             txtNomeVendedor.Enabled = true;
             cboCondPagto.Enabled = true;
+
+            //Desbloqueia campos referente a Itens
+            txtCodProduto.Enabled = true;
+            txtCodBarras.Enabled = true;
+            txtDescricaoProd.Enabled = true;
+            txtQuantidade.Enabled = true;
+            txtPreco.Enabled = true;
 
 
         }
@@ -88,7 +106,7 @@ namespace Sistema
         {
             DateTime dt = DateTime.Now;
             Cliente cliente = new Cliente();
-            cliente.Nome = txtDescricao.Text;
+            cliente.Nome = txtDescricaoProd.Text;
             cliente.CodCliente = int.Parse(txtCodCliente.Text);
 
             PedidoVenda pedido = new PedidoVenda();
@@ -112,6 +130,12 @@ namespace Sistema
             txtCodVendedor.Enabled = false;
             txtNomeVendedor.Enabled = false;
             cboCondPagto.Enabled = false;
+
+            txtCodProduto.Enabled = false;
+            txtCodBarras.Enabled = false;
+            txtDescricaoProd.Enabled = false;
+            txtQuantidade.Enabled = false;
+            txtPreco.Enabled = false;
         }
 
         private void TsbEditar_Click(object sender, EventArgs e)
@@ -126,12 +150,21 @@ namespace Sistema
             txtNomeCliente.Enabled = true;
             txtCodVendedor.Enabled = true;
             txtNomeVendedor.Enabled = true;
+
+            cboCondPagto.Enabled = true;
+
+            txtCodProduto.Enabled = true;
+            txtCodBarras.Enabled = true;
+            txtDescricaoProd.Enabled = true;
+            txtQuantidade.Enabled = true;
+            txtPreco.Enabled = true;
+
         }
 
         private void btnIncluir_Click(object sender, EventArgs e)
         {
 
-            Produto prod = new Produto(int.Parse(txtCodProduto.Text), txtDescricao.Text, txtCodBarras.Text, double.Parse(txtPreco.Text));
+            Produto prod = new Produto(int.Parse(txtCodProduto.Text), txtDescricaoProd.Text, txtCodBarras.Text, double.Parse(txtPreco.Text));
 
             PedidoVenda pedido = new PedidoVenda();
             PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
