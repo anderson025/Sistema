@@ -37,7 +37,7 @@
             this.txtNomeVendedor = new System.Windows.Forms.TextBox();
             this.txtNomeCliente = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboCondPagto = new System.Windows.Forms.ComboBox();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.TsbNovo = new System.Windows.Forms.ToolStripButton();
             this.TsbEditar = new System.Windows.Forms.ToolStripButton();
@@ -87,6 +87,7 @@
             this.txtCodCliente.Name = "txtCodCliente";
             this.txtCodCliente.Size = new System.Drawing.Size(65, 22);
             this.txtCodCliente.TabIndex = 1;
+            this.txtCodCliente.Validated += new System.EventHandler(this.txtCodCliente_Validated);
             // 
             // txtCodVendedor
             // 
@@ -109,7 +110,7 @@
             this.GpbIdentificacao.Controls.Add(this.txtNomeVendedor);
             this.GpbIdentificacao.Controls.Add(this.txtNomeCliente);
             this.GpbIdentificacao.Controls.Add(this.label1);
-            this.GpbIdentificacao.Controls.Add(this.comboBox1);
+            this.GpbIdentificacao.Controls.Add(this.cboCondPagto);
             this.GpbIdentificacao.Controls.Add(this.txtCodCliente);
             this.GpbIdentificacao.Controls.Add(this.txtCodVendedor);
             this.GpbIdentificacao.Controls.Add(this.lblCliente);
@@ -144,13 +145,13 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Cond. Pagamento:";
             // 
-            // comboBox1
+            // cboCondPagto
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(12, 103);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(195, 24);
-            this.comboBox1.TabIndex = 4;
+            this.cboCondPagto.FormattingEnabled = true;
+            this.cboCondPagto.Location = new System.Drawing.Point(12, 103);
+            this.cboCondPagto.Name = "cboCondPagto";
+            this.cboCondPagto.Size = new System.Drawing.Size(195, 24);
+            this.cboCondPagto.TabIndex = 4;
             // 
             // toolStrip1
             // 
@@ -451,7 +452,7 @@
         private System.Windows.Forms.Label lblVendedor;
         private System.Windows.Forms.GroupBox GpbIdentificacao;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboCondPagto;
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.TextBox txtNomeCliente;
         private System.Windows.Forms.TextBox txtNomeVendedor;

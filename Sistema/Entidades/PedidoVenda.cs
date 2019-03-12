@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 using Sistema.Entidades.Enums;
 
 namespace Sistema.Entidades
@@ -28,9 +30,7 @@ namespace Sistema.Entidades
 
         public void AdicionarItem(PedidoItens item)
         {
-           
-            Items.Add(item);
-
+            Items.Add(item);  
             
         }
 
@@ -50,6 +50,37 @@ namespace Sistema.Entidades
             return TotalPedido;
         }
 
+
+        public void InserirPedido()
+        {
+            try
+            {
+                Conexao c = new Conexao();
+
+                c.AbrirConexao();
+                //MySqlCommand INSERT = new MySqlCommand("INSERT INTO produto (codbarra, descricao, precovenda, precocompra, precocusto) " +
+                //                                        "VALUES(@Codbarra, @Descricao, @Precovenda,@Precocompra,@Precocusto)", c.conexao);
+                //INSERT.Parameters.AddWithValue("@Codbarra", CodBarra);
+                //INSERT.Parameters.AddWithValue("@Descricao", Descricao.ToUpper());
+                //INSERT.Parameters.AddWithValue("@Precovenda", PrecoVenda);
+                //INSERT.Parameters.AddWithValue("@Precocompra", PrecoCompra);
+                //INSERT.Parameters.AddWithValue("@Precocusto", PrecoCusto);
+                //INSERT.ExecuteNonQuery();
+
+                //MessageBox.Show("Cadastrado com Sucesso", "Cadastro", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //c.FecharConexao();
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("MySQL Não conectado!", "Erro na Conexão", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Console.WriteLine("Erro", ex);
+
+            }
+        }
         
     }
 }

@@ -4,7 +4,7 @@
     {
         public int Quantidade { get; set; }
         public double Preco { get; set; }
-        public Produto Produto { get; set; }
+        public Produto Produto { private get; set; }
 
 
         public PedidoItens()

@@ -22,6 +22,7 @@ namespace Sistema
             txtNomeCliente.Enabled = false;
             txtCodVendedor.Enabled = false;
             txtNomeVendedor.Enabled = false;
+            cboCondPagto.Enabled = false;
 
 
 
@@ -73,7 +74,7 @@ namespace Sistema
             txtNomeCliente.Enabled = true;
             txtCodVendedor.Enabled = true;
             txtNomeVendedor.Enabled = true;
-
+            cboCondPagto.Enabled = true;
 
 
         }
@@ -85,7 +86,17 @@ namespace Sistema
 
         private void TsbGravar_Click(object sender, EventArgs e)
         {
+            DateTime dt = DateTime.Now;
+            Cliente cliente = new Cliente();
+            cliente.Nome = txtDescricao.Text;
+            cliente.CodCliente = int.Parse(txtCodCliente.Text);
 
+            PedidoVenda pedido = new PedidoVenda();
+
+            if (true)
+            {
+
+            }
         }
 
         private void TsbCancelar_Click(object sender, EventArgs e)
@@ -100,6 +111,7 @@ namespace Sistema
             txtNomeCliente.Enabled = false;
             txtCodVendedor.Enabled = false;
             txtNomeVendedor.Enabled = false;
+            cboCondPagto.Enabled = false;
         }
 
         private void TsbEditar_Click(object sender, EventArgs e)
@@ -122,10 +134,10 @@ namespace Sistema
             Produto prod = new Produto(int.Parse(txtCodProduto.Text), txtDescricao.Text, txtCodBarras.Text, double.Parse(txtPreco.Text));
 
             PedidoVenda pedido = new PedidoVenda();
-            PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text),double.Parse(txtPreco.Text), prod);
+            PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
 
 
-            
+
 
             pedido.AdicionarItem(itens);
 
@@ -173,6 +185,16 @@ namespace Sistema
                 retValue = propertyInfo.GetValue(property, null).ToString();
             }
             return retValue;
+        }
+
+        private void txtCodCliente_Validated(object sender, EventArgs e)
+        {
+            if (txtCodCliente.Text == String.Empty)
+            {
+                MessageBox.Show("Informe o código do cliente!","Aviso!",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                txtCodCliente.Focus();
+            }
+            
         }
     }
 }
