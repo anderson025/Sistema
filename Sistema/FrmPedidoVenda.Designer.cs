@@ -34,6 +34,10 @@
             this.txtCodVendedor = new System.Windows.Forms.TextBox();
             this.lblVendedor = new System.Windows.Forms.Label();
             this.GpbIdentificacao = new System.Windows.Forms.GroupBox();
+            this.lblStatusPedido = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblEmissao = new System.Windows.Forms.Label();
+            this.txtDataPedido = new System.Windows.Forms.TextBox();
             this.txtNomeVendedor = new System.Windows.Forms.TextBox();
             this.txtNomeCliente = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,7 +69,6 @@
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtDataPedido = new System.Windows.Forms.TextBox();
             this.GpbIdentificacao.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -99,6 +102,7 @@
             this.txtCodVendedor.Size = new System.Drawing.Size(65, 22);
             this.txtCodVendedor.TabIndex = 3;
             this.txtCodVendedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodVendedor_KeyDown);
+            this.txtCodVendedor.Validated += new System.EventHandler(this.txtCodVendedor_Validated);
             // 
             // lblVendedor
             // 
@@ -111,6 +115,9 @@
             // 
             // GpbIdentificacao
             // 
+            this.GpbIdentificacao.Controls.Add(this.lblStatusPedido);
+            this.GpbIdentificacao.Controls.Add(this.lblStatus);
+            this.GpbIdentificacao.Controls.Add(this.lblEmissao);
             this.GpbIdentificacao.Controls.Add(this.txtDataPedido);
             this.GpbIdentificacao.Controls.Add(this.txtNomeVendedor);
             this.GpbIdentificacao.Controls.Add(this.txtNomeCliente);
@@ -126,6 +133,40 @@
             this.GpbIdentificacao.TabIndex = 4;
             this.GpbIdentificacao.TabStop = false;
             this.GpbIdentificacao.Text = "Identificação";
+            // 
+            // lblStatusPedido
+            // 
+            this.lblStatusPedido.AutoSize = true;
+            this.lblStatusPedido.Location = new System.Drawing.Point(438, 103);
+            this.lblStatusPedido.Name = "lblStatusPedido";
+            this.lblStatusPedido.Size = new System.Drawing.Size(92, 17);
+            this.lblStatusPedido.TabIndex = 11;
+            this.lblStatusPedido.Text = "StatusPedido";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(380, 103);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(52, 17);
+            this.lblStatus.TabIndex = 10;
+            this.lblStatus.Text = "Status:";
+            // 
+            // lblEmissao
+            // 
+            this.lblEmissao.AutoSize = true;
+            this.lblEmissao.Location = new System.Drawing.Point(213, 83);
+            this.lblEmissao.Name = "lblEmissao";
+            this.lblEmissao.Size = new System.Drawing.Size(65, 17);
+            this.lblEmissao.TabIndex = 9;
+            this.lblEmissao.Text = "Emissão:";
+            // 
+            // txtDataPedido
+            // 
+            this.txtDataPedido.Location = new System.Drawing.Point(216, 103);
+            this.txtDataPedido.Name = "txtDataPedido";
+            this.txtDataPedido.Size = new System.Drawing.Size(123, 22);
+            this.txtDataPedido.TabIndex = 8;
             // 
             // txtNomeVendedor
             // 
@@ -157,6 +198,7 @@
             this.cboCondPagto.Name = "cboCondPagto";
             this.cboCondPagto.Size = new System.Drawing.Size(195, 24);
             this.cboCondPagto.TabIndex = 4;
+            this.cboCondPagto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCondPagto_KeyDown);
             // 
             // toolStrip1
             // 
@@ -311,6 +353,7 @@
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Size = new System.Drawing.Size(100, 22);
             this.txtPreco.TabIndex = 15;
+            this.txtPreco.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPreco_KeyDown);
             // 
             // lblQuantidade
             // 
@@ -327,6 +370,7 @@
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(100, 22);
             this.txtQuantidade.TabIndex = 13;
+            this.txtQuantidade.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtQuantidade_KeyDown);
             // 
             // lblDescricao
             // 
@@ -343,6 +387,7 @@
             this.txtDescricaoProd.Name = "txtDescricaoProd";
             this.txtDescricaoProd.Size = new System.Drawing.Size(416, 22);
             this.txtDescricaoProd.TabIndex = 11;
+            this.txtDescricaoProd.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescricaoProd_KeyDown);
             // 
             // label2
             // 
@@ -359,6 +404,7 @@
             this.txtCodBarras.Name = "txtCodBarras";
             this.txtCodBarras.Size = new System.Drawing.Size(205, 22);
             this.txtCodBarras.TabIndex = 9;
+            this.txtCodBarras.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodBarras_KeyDown);
             // 
             // lblCodigo
             // 
@@ -375,6 +421,8 @@
             this.txtCodProduto.Name = "txtCodProduto";
             this.txtCodProduto.Size = new System.Drawing.Size(100, 22);
             this.txtCodProduto.TabIndex = 0;
+            this.txtCodProduto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodProduto_KeyDown);
+            this.txtCodProduto.Validated += new System.EventHandler(this.txtCodProduto_Validated);
             // 
             // dataGridView2
             // 
@@ -421,13 +469,6 @@
             this.Preco.DataPropertyName = "Preco";
             this.Preco.HeaderText = "Preco";
             this.Preco.Name = "Preco";
-            // 
-            // txtDataPedido
-            // 
-            this.txtDataPedido.Location = new System.Drawing.Point(261, 103);
-            this.txtDataPedido.Name = "txtDataPedido";
-            this.txtDataPedido.Size = new System.Drawing.Size(123, 22);
-            this.txtDataPedido.TabIndex = 8;
             // 
             // FrmPedidoVenda
             // 
@@ -495,5 +536,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn Preco;
         private System.Windows.Forms.TextBox txtDataPedido;
+        private System.Windows.Forms.Label lblEmissao;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblStatusPedido;
     }
 }

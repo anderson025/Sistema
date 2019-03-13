@@ -24,6 +24,7 @@ namespace Sistema
             txtCodVendedor.Enabled = false;
             txtNomeVendedor.Enabled = false;
             cboCondPagto.Enabled = false;
+            txtDataPedido.Enabled = false;
 
             //Bloqueia campos dos itens
 
@@ -44,8 +45,9 @@ namespace Sistema
             //bloqueia a edição da celula no datagrid
             dataGridView1.ReadOnly = true;
             CarregaGrid();
+            CarregaCombo();
 
-           
+
 
         }
         public void CarregaGrid()
@@ -98,6 +100,10 @@ namespace Sistema
 
             txtCodCliente.Focus();
 
+            //Pega a data da Emissão do Pedido
+            DateTime data = DateTime.Now;
+            txtDataPedido.Text = data.ToString("dd/MM/yyyy");
+
 
 
         }
@@ -141,6 +147,28 @@ namespace Sistema
             txtDescricaoProd.Enabled = false;
             txtQuantidade.Enabled = false;
             txtPreco.Enabled = false;
+
+            LimparDados();
+            LimparProdutos();
+
+        }
+
+        private void LimparDados()
+        {
+            txtCodCliente.Text = String.Empty;
+            txtNomeCliente.Text = String.Empty;
+            txtCodVendedor.Text = String.Empty;
+            txtNomeVendedor.Text = String.Empty;
+            cboCondPagto.Text = String.Empty;
+        }
+
+        private void LimparProdutos()
+        {
+            txtCodProduto.Text = String.Empty;
+            txtCodBarras.Text = String.Empty;
+            txtDescricaoProd.Text = String.Empty;
+            txtQuantidade.Text = String.Empty;
+            txtPreco.Text = String.Empty;
         }
 
         private void TsbEditar_Click(object sender, EventArgs e)
@@ -180,6 +208,8 @@ namespace Sistema
 
 
             pedido.AdicionarItem(itens);
+            LimparProdutos();
+            txtCodProduto.Focus();
 
             dataGridView2.DataSource = pedido.Items;
             dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
@@ -257,15 +287,21 @@ namespace Sistema
                     c.AbrirConexao();
                     MySqlDataReader leitura = SELECT.ExecuteReader();
 
-                    while (leitura.Read())
+                    if (leitura.Read())
                     {
                         txtNomeCliente.Text = leitura["Nome"].ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cliente não localizado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtCodCliente.Text = String.Empty;
+                        txtCodCliente.Focus();
                     }
                     c.FecharConexao();
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Erro ao localizar o Cliente!","Aviso!",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Erro ao localizar o Cliente!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
 
@@ -289,5 +325,156 @@ namespace Sistema
         {
             EnterDoMouse(sender, e);
         }
+
+        private void txtCodVendedor_Validated(object sender, EventArgs e)
+        {
+            if (txtCodVendedor.Text == String.Empty)
+            {
+                MessageBox.Show("Informe o código do Vendedor!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtCodVendedor.Focus();
+            }
+            else
+            {
+                //Vendedor vendedor = new Vendedor(int.Parse(txtCodVendedor.Text), txtNomeVendedor.Text);
+
+
+                Conexao c = new Conexao();
+
+                MySqlCommand SELECT = c.conexao.CreateCommand();
+                SELECT.CommandType = CommandType.Text;
+                SELECT.CommandText = "SELECT * FROM vendedor WHERE id =@id";
+                SELECT.Parameters.AddWithValue("@id", txtCodVendedor.Text);
+
+
+                try
+                {
+                    c.AbrirConexao();
+                    MySqlDataReader leitura = SELECT.ExecuteReader();
+
+                    if (leitura.Read())
+                    {
+                        txtNomeVendedor.Text = leitura["nomeVendedor"].ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Vendedor não localizado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtCodVendedor.Text = String.Empty;
+                        txtCodVendedor.Focus();
+                    }
+                    c.FecharConexao();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Erro ao localizar o Vendedor!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private void txtCodProduto_Validated(object sender, EventArgs e)
+        {
+            if (txtCodProduto.Text == String.Empty)
+            {
+                MessageBox.Show("Informe o código do Produto!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtCodVendedor.Focus();
+            }
+            else
+            {
+                //Produto produto = new Produto(int.Parse(txtCodProduto.Text), txtDescricaoProd.Text, txtCodBarras.Text, double.Parse(txtPreco.Text));
+
+
+                Conexao c = new Conexao();
+
+                MySqlCommand SELECT = c.conexao.CreateCommand();
+                SELECT.CommandType = CommandType.Text;
+                SELECT.CommandText = "SELECT * FROM Produto WHERE id =@id";
+                SELECT.Parameters.AddWithValue("@id", txtCodProduto.Text);
+
+
+                try
+                {
+                    c.AbrirConexao();
+                    MySqlDataReader leitura = SELECT.ExecuteReader();
+
+                    if (leitura.Read())
+                    {
+                        txtCodBarras.Text = leitura["codbarra"].ToString();
+                        txtDescricaoProd.Text = leitura["descricao"].ToString();
+                        txtPreco.Text = leitura["precovenda"].ToString();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Produto não localizado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtCodProduto.Text = String.Empty;
+                        txtCodProduto.Focus();
+                    }
+                    c.FecharConexao();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Erro ao localizar o Produto!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        public void CarregaCombo()
+        {
+            Conexao c = new Conexao();
+
+
+            MySqlCommand SELECT = c.conexao.CreateCommand();
+            SELECT.CommandType = CommandType.Text;
+            SELECT.CommandText = "SELECT * FROM condpagto";
+
+            try
+            {
+                c.AbrirConexao();
+                MySqlDataReader leitura = SELECT.ExecuteReader();
+
+
+                DataTable dt = new DataTable();
+                dt.Load(leitura);
+                cboCondPagto.DisplayMember = "descricao";
+                cboCondPagto.DataSource = dt;
+                c.FecharConexao();
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Erro");
+            }
+        }
+
+        private void cboCondPagto_KeyDown(object sender, KeyEventArgs e)
+        {
+            //EnterDoMouse(sender, e);
+            txtCodProduto.Focus();
+        }
+
+        private void txtCodProduto_KeyDown(object sender, KeyEventArgs e)
+        {
+            EnterDoMouse(sender, e);
+        }
+
+        private void txtCodBarras_KeyDown(object sender, KeyEventArgs e)
+        {
+            EnterDoMouse(sender, e);
+        }
+
+        private void txtDescricaoProd_KeyDown(object sender, KeyEventArgs e)
+        {
+            EnterDoMouse(sender, e);
+        }
+
+        private void txtQuantidade_KeyDown(object sender, KeyEventArgs e)
+        {
+            EnterDoMouse(sender, e);
+        }
+
+        private void txtPreco_KeyDown(object sender, KeyEventArgs e)
+        {
+            EnterDoMouse(sender, e);
+        }
     }
+
 }

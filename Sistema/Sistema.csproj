@@ -64,6 +64,7 @@
     <Compile Include="Entidades\Enums\StatusPedido.cs" />
     <Compile Include="Entidades\PedidoItens.cs" />
     <Compile Include="Entidades\PedidoVenda.cs" />
+    <Compile Include="Entidades\Vendedor.cs" />
     <Compile Include="FrmCadProduto.cs">
       <SubType>Form</SubType>
     </Compile>
