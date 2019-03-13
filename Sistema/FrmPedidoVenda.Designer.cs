@@ -139,9 +139,9 @@
             this.lblStatusPedido.AutoSize = true;
             this.lblStatusPedido.Location = new System.Drawing.Point(438, 103);
             this.lblStatusPedido.Name = "lblStatusPedido";
-            this.lblStatusPedido.Size = new System.Drawing.Size(92, 17);
+            this.lblStatusPedido.Size = new System.Drawing.Size(99, 17);
             this.lblStatusPedido.TabIndex = 11;
-            this.lblStatusPedido.Text = "StatusPedido";
+            this.lblStatusPedido.Text = "StatusPedidos";
             // 
             // lblStatus
             // 
