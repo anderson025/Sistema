@@ -32,7 +32,7 @@ namespace Sistema
             txtDescricaoProd.Enabled = false;
             txtQuantidade.Enabled = false;
             txtPreco.Enabled = false;
-            
+
 
 
 
@@ -44,6 +44,8 @@ namespace Sistema
             //bloqueia a edição da celula no datagrid
             dataGridView1.ReadOnly = true;
             CarregaGrid();
+
+           
 
         }
         public void CarregaGrid()
@@ -82,9 +84,9 @@ namespace Sistema
 
             //Desblqueia campos referente a clientes e vendedor
             txtCodCliente.Enabled = true;
-            txtNomeCliente.Enabled = true;
+            //txtNomeCliente.Enabled = true;
             txtCodVendedor.Enabled = true;
-            txtNomeVendedor.Enabled = true;
+            //txtNomeVendedor.Enabled = true;
             cboCondPagto.Enabled = true;
 
             //Desbloqueia campos referente a Itens
@@ -93,6 +95,9 @@ namespace Sistema
             txtDescricaoProd.Enabled = true;
             txtQuantidade.Enabled = true;
             txtPreco.Enabled = true;
+
+            txtCodCliente.Focus();
+
 
 
         }
@@ -147,9 +152,9 @@ namespace Sistema
             TsbExcluir.Enabled = false;
 
             txtCodCliente.Enabled = true;
-            txtNomeCliente.Enabled = true;
+            //txtNomeCliente.Enabled = true;
             txtCodVendedor.Enabled = true;
-            txtNomeVendedor.Enabled = true;
+            //txtNomeVendedor.Enabled = true;
 
             cboCondPagto.Enabled = true;
 
@@ -158,6 +163,8 @@ namespace Sistema
             txtDescricaoProd.Enabled = true;
             txtQuantidade.Enabled = true;
             txtPreco.Enabled = true;
+
+            txtCodCliente.Focus();
 
         }
 
@@ -224,10 +231,63 @@ namespace Sistema
         {
             if (txtCodCliente.Text == String.Empty)
             {
-                MessageBox.Show("Informe o código do cliente!","Aviso!",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Informe o código do cliente!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtCodCliente.Focus();
             }
-            
+            else
+            {
+                Cliente cliente = new Cliente
+                {
+                    CodCliente = int.Parse(txtCodCliente.Text),
+                    Nome = txtNomeCliente.Text
+
+
+                };
+
+                Conexao c = new Conexao();
+
+                MySqlCommand SELECT = c.conexao.CreateCommand();
+                SELECT.CommandType = CommandType.Text;
+                SELECT.CommandText = "SELECT * FROM clientes WHERE id =@id";
+                SELECT.Parameters.AddWithValue("@id", txtCodCliente.Text);
+
+
+                try
+                {
+                    c.AbrirConexao();
+                    MySqlDataReader leitura = SELECT.ExecuteReader();
+
+                    while (leitura.Read())
+                    {
+                        txtNomeCliente.Text = leitura["Nome"].ToString();
+                    }
+                    c.FecharConexao();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Erro ao localizar o Cliente!","Aviso!",MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+
+        }
+
+        private void txtCodCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            EnterDoMouse(sender, e);
+        }
+
+        public void EnterDoMouse(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                SendKeys.Send("{TAB}");
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void txtCodVendedor_KeyDown(object sender, KeyEventArgs e)
+        {
+            EnterDoMouse(sender, e);
         }
     }
 }

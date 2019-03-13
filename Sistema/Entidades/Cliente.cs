@@ -25,5 +25,7 @@ namespace Sistema.Entidades
             DataNascimento = dataNascimento;
             CPF_CNPJ = cPF_CNPJ;
         }
+
+        
     }
 }

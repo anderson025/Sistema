@@ -65,6 +65,7 @@
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtDataPedido = new System.Windows.Forms.TextBox();
             this.GpbIdentificacao.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -87,6 +88,8 @@
             this.txtCodCliente.Name = "txtCodCliente";
             this.txtCodCliente.Size = new System.Drawing.Size(65, 22);
             this.txtCodCliente.TabIndex = 1;
+            this.txtCodCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.txtCodCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodCliente_KeyDown);
             this.txtCodCliente.Validated += new System.EventHandler(this.txtCodCliente_Validated);
             // 
             // txtCodVendedor
@@ -95,6 +98,7 @@
             this.txtCodVendedor.Name = "txtCodVendedor";
             this.txtCodVendedor.Size = new System.Drawing.Size(65, 22);
             this.txtCodVendedor.TabIndex = 3;
+            this.txtCodVendedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodVendedor_KeyDown);
             // 
             // lblVendedor
             // 
@@ -107,6 +111,7 @@
             // 
             // GpbIdentificacao
             // 
+            this.GpbIdentificacao.Controls.Add(this.txtDataPedido);
             this.GpbIdentificacao.Controls.Add(this.txtNomeVendedor);
             this.GpbIdentificacao.Controls.Add(this.txtNomeCliente);
             this.GpbIdentificacao.Controls.Add(this.label1);
@@ -417,6 +422,13 @@
             this.Preco.HeaderText = "Preco";
             this.Preco.Name = "Preco";
             // 
+            // txtDataPedido
+            // 
+            this.txtDataPedido.Location = new System.Drawing.Point(261, 103);
+            this.txtDataPedido.Name = "txtDataPedido";
+            this.txtDataPedido.Size = new System.Drawing.Size(123, 22);
+            this.txtDataPedido.TabIndex = 8;
+            // 
             // FrmPedidoVenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -482,5 +494,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn Preco;
+        private System.Windows.Forms.TextBox txtDataPedido;
     }
 }
