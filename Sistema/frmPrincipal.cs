@@ -53,5 +53,11 @@ namespace Sistema
             }
             
         }
+
+        private void pedidoDeVendaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmPedidoVenda venda = new FrmPedidoVenda();
+            venda.Show();
+        }
     }
 }

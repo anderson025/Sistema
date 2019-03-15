@@ -45,11 +45,17 @@ namespace Sistema
             //bloqueia a edição da celula no datagrid
             dataGridView1.ReadOnly = true;
             CarregaGrid();
+
+
+
             CarregaCombo();
 
 
 
         }
+
+
+
         public void CarregaGrid()
         {
             Conexao c = new Conexao();
@@ -67,6 +73,9 @@ namespace Sistema
 
                 leitura.Fill(dt);
                 dataGridView1.DataSource = dt;
+
+                FormataGrid();
+
                 c.FecharConexao();
             }
             catch (Exception)
@@ -206,7 +215,7 @@ namespace Sistema
 
 
 
-
+            FormataGrid();
             pedido.AdicionarItem(itens);
             LimparProdutos();
             txtCodProduto.Focus();
@@ -435,6 +444,9 @@ namespace Sistema
                 dt.Load(leitura);
                 cboCondPagto.DisplayMember = "descricao";
                 cboCondPagto.DataSource = dt;
+
+
+
                 c.FecharConexao();
 
             }
@@ -443,6 +455,31 @@ namespace Sistema
 
                 MessageBox.Show("Erro");
             }
+        }
+
+        private void FormataGrid()
+        {
+
+
+            //removendo o indicador do Datagrid do lado esquerdo da tela.
+            dataGridView1.RowHeadersVisible = false;
+
+            //Fundo do datagrid cinza claro
+            dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+
+            //Configura o grid para preencher a tela toda
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            //removendo o indicador do Datagrid do lado esquerdo da tela.
+            dataGridView2.RowHeadersVisible = false;
+
+            //Fundo do datagrid cinza claro
+            dataGridView2.BackgroundColor = System.Drawing.SystemColors.Control;
+
+            //Configura o grid para preencher a tela toda
+            dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+
         }
 
         private void cboCondPagto_KeyDown(object sender, KeyEventArgs e)

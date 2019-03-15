@@ -39,11 +39,12 @@
             this.financeiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.TsbCadUsuario = new System.Windows.Forms.ToolStripButton();
+            this.TsbCadCliente = new System.Windows.Forms.ToolStripButton();
+            this.TsbCadFornecedor = new System.Windows.Forms.ToolStripButton();
             this.TsbCadProduto = new System.Windows.Forms.ToolStripButton();
             this.TsbSair = new System.Windows.Forms.ToolStripButton();
-            this.TsbCadFornecedor = new System.Windows.Forms.ToolStripButton();
-            this.TsbCadCliente = new System.Windows.Forms.ToolStripButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pedidoDeVendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -74,7 +75,7 @@
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(109, 26);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
@@ -90,19 +91,21 @@
             // usuariosToolStripMenuItem
             // 
             this.usuariosToolStripMenuItem.Name = "usuariosToolStripMenuItem";
-            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.usuariosToolStripMenuItem.Size = new System.Drawing.Size(143, 26);
             this.usuariosToolStripMenuItem.Text = "Usuarios";
             this.usuariosToolStripMenuItem.Click += new System.EventHandler(this.usuariosToolStripMenuItem_Click);
             // 
             // produtosToolStripMenuItem
             // 
             this.produtosToolStripMenuItem.Name = "produtosToolStripMenuItem";
-            this.produtosToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.produtosToolStripMenuItem.Size = new System.Drawing.Size(143, 26);
             this.produtosToolStripMenuItem.Text = "Produtos";
             this.produtosToolStripMenuItem.Click += new System.EventHandler(this.produtosToolStripMenuItem_Click);
             // 
             // vendasToolStripMenuItem
             // 
+            this.vendasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pedidoDeVendaToolStripMenuItem});
             this.vendasToolStripMenuItem.Name = "vendasToolStripMenuItem";
             this.vendasToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
             this.vendasToolStripMenuItem.Text = "Vendas";
@@ -140,6 +143,28 @@
             this.TsbCadUsuario.Text = "Cadastro de Usuários";
             this.TsbCadUsuario.Click += new System.EventHandler(this.TsbCadUsuario_Click);
             // 
+            // TsbCadCliente
+            // 
+            this.TsbCadCliente.AutoSize = false;
+            this.TsbCadCliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TsbCadCliente.Image = ((System.Drawing.Image)(resources.GetObject("TsbCadCliente.Image")));
+            this.TsbCadCliente.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TsbCadCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbCadCliente.Name = "TsbCadCliente";
+            this.TsbCadCliente.Size = new System.Drawing.Size(70, 70);
+            this.TsbCadCliente.Text = "Cadastro de Cliente";
+            // 
+            // TsbCadFornecedor
+            // 
+            this.TsbCadFornecedor.AutoSize = false;
+            this.TsbCadFornecedor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TsbCadFornecedor.Image = ((System.Drawing.Image)(resources.GetObject("TsbCadFornecedor.Image")));
+            this.TsbCadFornecedor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TsbCadFornecedor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbCadFornecedor.Name = "TsbCadFornecedor";
+            this.TsbCadFornecedor.Size = new System.Drawing.Size(70, 70);
+            this.TsbCadFornecedor.Text = "Cadastro de Fornecedor";
+            // 
             // TsbCadProduto
             // 
             this.TsbCadProduto.AutoSize = false;
@@ -164,28 +189,6 @@
             this.TsbSair.Text = "Sair";
             this.TsbSair.Click += new System.EventHandler(this.TsbSair_Click);
             // 
-            // TsbCadFornecedor
-            // 
-            this.TsbCadFornecedor.AutoSize = false;
-            this.TsbCadFornecedor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TsbCadFornecedor.Image = ((System.Drawing.Image)(resources.GetObject("TsbCadFornecedor.Image")));
-            this.TsbCadFornecedor.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.TsbCadFornecedor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TsbCadFornecedor.Name = "TsbCadFornecedor";
-            this.TsbCadFornecedor.Size = new System.Drawing.Size(70, 70);
-            this.TsbCadFornecedor.Text = "Cadastro de Fornecedor";
-            // 
-            // TsbCadCliente
-            // 
-            this.TsbCadCliente.AutoSize = false;
-            this.TsbCadCliente.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.TsbCadCliente.Image = ((System.Drawing.Image)(resources.GetObject("TsbCadCliente.Image")));
-            this.TsbCadCliente.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.TsbCadCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.TsbCadCliente.Name = "TsbCadCliente";
-            this.TsbCadCliente.Size = new System.Drawing.Size(70, 70);
-            this.TsbCadCliente.Text = "Cadastro de Cliente";
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(122)))), ((int)(((byte)(122)))), ((int)(((byte)(122)))));
@@ -195,6 +198,13 @@
             this.pictureBox1.Size = new System.Drawing.Size(1261, 455);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            // 
+            // pedidoDeVendaToolStripMenuItem
+            // 
+            this.pedidoDeVendaToolStripMenuItem.Name = "pedidoDeVendaToolStripMenuItem";
+            this.pedidoDeVendaToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.pedidoDeVendaToolStripMenuItem.Text = "Pedido de Venda";
+            this.pedidoDeVendaToolStripMenuItem.Click += new System.EventHandler(this.pedidoDeVendaToolStripMenuItem_Click);
             // 
             // frmPrincipal
             // 
@@ -236,5 +246,6 @@
         private System.Windows.Forms.ToolStripButton TsbCadFornecedor;
         private System.Windows.Forms.ToolStripButton TsbCadCliente;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.ToolStripMenuItem pedidoDeVendaToolStripMenuItem;
     }
 }
