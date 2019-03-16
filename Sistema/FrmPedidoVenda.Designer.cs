@@ -34,6 +34,10 @@
             this.txtCodVendedor = new System.Windows.Forms.TextBox();
             this.lblVendedor = new System.Windows.Forms.Label();
             this.GpbIdentificacao = new System.Windows.Forms.GroupBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblNumPedido = new System.Windows.Forms.Label();
+            this.txtNumPedido = new System.Windows.Forms.TextBox();
             this.lblStatusPedido = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblEmissao = new System.Windows.Forms.Label();
@@ -79,17 +83,17 @@
             // lblCliente
             // 
             this.lblCliente.AutoSize = true;
-            this.lblCliente.Location = new System.Drawing.Point(9, 27);
+            this.lblCliente.Location = new System.Drawing.Point(9, 75);
             this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(51, 17);
+            this.lblCliente.Size = new System.Drawing.Size(88, 17);
             this.lblCliente.TabIndex = 0;
-            this.lblCliente.Text = "Cliente";
+            this.lblCliente.Text = "Cod. Cliente:";
             // 
             // txtCodCliente
             // 
-            this.txtCodCliente.Location = new System.Drawing.Point(12, 47);
+            this.txtCodCliente.Location = new System.Drawing.Point(12, 95);
             this.txtCodCliente.Name = "txtCodCliente";
-            this.txtCodCliente.Size = new System.Drawing.Size(65, 22);
+            this.txtCodCliente.Size = new System.Drawing.Size(85, 22);
             this.txtCodCliente.TabIndex = 1;
             this.txtCodCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtCodCliente.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodCliente_KeyDown);
@@ -97,9 +101,9 @@
             // 
             // txtCodVendedor
             // 
-            this.txtCodVendedor.Location = new System.Drawing.Point(383, 46);
+            this.txtCodVendedor.Location = new System.Drawing.Point(381, 95);
             this.txtCodVendedor.Name = "txtCodVendedor";
-            this.txtCodVendedor.Size = new System.Drawing.Size(65, 22);
+            this.txtCodVendedor.Size = new System.Drawing.Size(75, 22);
             this.txtCodVendedor.TabIndex = 3;
             this.txtCodVendedor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCodVendedor_KeyDown);
             this.txtCodVendedor.Validated += new System.EventHandler(this.txtCodVendedor_Validated);
@@ -107,14 +111,18 @@
             // lblVendedor
             // 
             this.lblVendedor.AutoSize = true;
-            this.lblVendedor.Location = new System.Drawing.Point(380, 27);
+            this.lblVendedor.Location = new System.Drawing.Point(378, 75);
             this.lblVendedor.Name = "lblVendedor";
-            this.lblVendedor.Size = new System.Drawing.Size(74, 17);
+            this.lblVendedor.Size = new System.Drawing.Size(78, 17);
             this.lblVendedor.TabIndex = 2;
-            this.lblVendedor.Text = "Vendedor:";
+            this.lblVendedor.Text = "Cod. Vend:";
             // 
             // GpbIdentificacao
             // 
+            this.GpbIdentificacao.Controls.Add(this.label4);
+            this.GpbIdentificacao.Controls.Add(this.label3);
+            this.GpbIdentificacao.Controls.Add(this.lblNumPedido);
+            this.GpbIdentificacao.Controls.Add(this.txtNumPedido);
             this.GpbIdentificacao.Controls.Add(this.lblStatusPedido);
             this.GpbIdentificacao.Controls.Add(this.lblStatus);
             this.GpbIdentificacao.Controls.Add(this.lblEmissao);
@@ -129,15 +137,50 @@
             this.GpbIdentificacao.Controls.Add(this.lblVendedor);
             this.GpbIdentificacao.Location = new System.Drawing.Point(12, 259);
             this.GpbIdentificacao.Name = "GpbIdentificacao";
-            this.GpbIdentificacao.Size = new System.Drawing.Size(776, 157);
+            this.GpbIdentificacao.Size = new System.Drawing.Size(776, 181);
             this.GpbIdentificacao.TabIndex = 4;
             this.GpbIdentificacao.TabStop = false;
             this.GpbIdentificacao.Text = "Identificação";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(462, 75);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(85, 17);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Desc. Vend:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(103, 75);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(91, 17);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Desc. Cliente";
+            // 
+            // lblNumPedido
+            // 
+            this.lblNumPedido.AutoSize = true;
+            this.lblNumPedido.Location = new System.Drawing.Point(9, 24);
+            this.lblNumPedido.Name = "lblNumPedido";
+            this.lblNumPedido.Size = new System.Drawing.Size(79, 17);
+            this.lblNumPedido.TabIndex = 13;
+            this.lblNumPedido.Text = "Nr. Pedido:";
+            // 
+            // txtNumPedido
+            // 
+            this.txtNumPedido.Location = new System.Drawing.Point(12, 44);
+            this.txtNumPedido.Name = "txtNumPedido";
+            this.txtNumPedido.Size = new System.Drawing.Size(85, 22);
+            this.txtNumPedido.TabIndex = 12;
+            this.txtNumPedido.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // lblStatusPedido
             // 
             this.lblStatusPedido.AutoSize = true;
-            this.lblStatusPedido.Location = new System.Drawing.Point(438, 103);
+            this.lblStatusPedido.Location = new System.Drawing.Point(322, 24);
             this.lblStatusPedido.Name = "lblStatusPedido";
             this.lblStatusPedido.Size = new System.Drawing.Size(99, 17);
             this.lblStatusPedido.TabIndex = 11;
@@ -146,7 +189,7 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(380, 103);
+            this.lblStatus.Location = new System.Drawing.Point(264, 24);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(52, 17);
             this.lblStatus.TabIndex = 10;
@@ -155,7 +198,7 @@
             // lblEmissao
             // 
             this.lblEmissao.AutoSize = true;
-            this.lblEmissao.Location = new System.Drawing.Point(213, 83);
+            this.lblEmissao.Location = new System.Drawing.Point(103, 24);
             this.lblEmissao.Name = "lblEmissao";
             this.lblEmissao.Size = new System.Drawing.Size(65, 17);
             this.lblEmissao.TabIndex = 9;
@@ -163,29 +206,29 @@
             // 
             // txtDataPedido
             // 
-            this.txtDataPedido.Location = new System.Drawing.Point(216, 103);
+            this.txtDataPedido.Location = new System.Drawing.Point(106, 44);
             this.txtDataPedido.Name = "txtDataPedido";
-            this.txtDataPedido.Size = new System.Drawing.Size(123, 22);
+            this.txtDataPedido.Size = new System.Drawing.Size(88, 22);
             this.txtDataPedido.TabIndex = 8;
             // 
             // txtNomeVendedor
             // 
-            this.txtNomeVendedor.Location = new System.Drawing.Point(454, 47);
+            this.txtNomeVendedor.Location = new System.Drawing.Point(465, 95);
             this.txtNomeVendedor.Name = "txtNomeVendedor";
-            this.txtNomeVendedor.Size = new System.Drawing.Size(291, 22);
+            this.txtNomeVendedor.Size = new System.Drawing.Size(272, 22);
             this.txtNomeVendedor.TabIndex = 7;
             // 
             // txtNomeCliente
             // 
-            this.txtNomeCliente.Location = new System.Drawing.Point(83, 47);
+            this.txtNomeCliente.Location = new System.Drawing.Point(103, 95);
             this.txtNomeCliente.Name = "txtNomeCliente";
-            this.txtNomeCliente.Size = new System.Drawing.Size(291, 22);
+            this.txtNomeCliente.Size = new System.Drawing.Size(272, 22);
             this.txtNomeCliente.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 83);
+            this.label1.Location = new System.Drawing.Point(9, 122);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(125, 17);
             this.label1.TabIndex = 5;
@@ -194,7 +237,7 @@
             // cboCondPagto
             // 
             this.cboCondPagto.FormattingEnabled = true;
-            this.cboCondPagto.Location = new System.Drawing.Point(12, 103);
+            this.cboCondPagto.Location = new System.Drawing.Point(12, 142);
             this.cboCondPagto.Name = "cboCondPagto";
             this.cboCondPagto.Size = new System.Drawing.Size(195, 24);
             this.cboCondPagto.TabIndex = 4;
@@ -298,6 +341,8 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(776, 150);
             this.dataGridView1.TabIndex = 6;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+           
             // 
             // groupBox2
             // 
@@ -313,25 +358,26 @@
             this.groupBox2.Controls.Add(this.txtCodBarras);
             this.groupBox2.Controls.Add(this.lblCodigo);
             this.groupBox2.Controls.Add(this.txtCodProduto);
-            this.groupBox2.Location = new System.Drawing.Point(12, 422);
+            this.groupBox2.Location = new System.Drawing.Point(12, 446);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(776, 149);
+            this.groupBox2.Size = new System.Drawing.Size(776, 125);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Itens";
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(332, 100);
+            this.btnExcluir.Location = new System.Drawing.Point(332, 82);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 31);
             this.btnExcluir.TabIndex = 18;
             this.btnExcluir.Text = "Excluir";
             this.btnExcluir.UseVisualStyleBackColor = true;
+            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
             // 
             // btnIncluir
             // 
-            this.btnIncluir.Location = new System.Drawing.Point(251, 100);
+            this.btnIncluir.Location = new System.Drawing.Point(251, 82);
             this.btnIncluir.Name = "btnIncluir";
             this.btnIncluir.Size = new System.Drawing.Size(75, 31);
             this.btnIncluir.TabIndex = 17;
@@ -342,7 +388,7 @@
             // lblPreco
             // 
             this.lblPreco.AutoSize = true;
-            this.lblPreco.Location = new System.Drawing.Point(118, 81);
+            this.lblPreco.Location = new System.Drawing.Point(118, 71);
             this.lblPreco.Name = "lblPreco";
             this.lblPreco.Size = new System.Drawing.Size(49, 17);
             this.lblPreco.TabIndex = 16;
@@ -350,7 +396,7 @@
             // 
             // txtPreco
             // 
-            this.txtPreco.Location = new System.Drawing.Point(121, 101);
+            this.txtPreco.Location = new System.Drawing.Point(121, 91);
             this.txtPreco.Name = "txtPreco";
             this.txtPreco.Size = new System.Drawing.Size(100, 22);
             this.txtPreco.TabIndex = 15;
@@ -359,7 +405,7 @@
             // lblQuantidade
             // 
             this.lblQuantidade.AutoSize = true;
-            this.lblQuantidade.Location = new System.Drawing.Point(9, 81);
+            this.lblQuantidade.Location = new System.Drawing.Point(9, 71);
             this.lblQuantidade.Name = "lblQuantidade";
             this.lblQuantidade.Size = new System.Drawing.Size(86, 17);
             this.lblQuantidade.TabIndex = 14;
@@ -367,7 +413,7 @@
             // 
             // txtQuantidade
             // 
-            this.txtQuantidade.Location = new System.Drawing.Point(12, 101);
+            this.txtQuantidade.Location = new System.Drawing.Point(12, 91);
             this.txtQuantidade.Name = "txtQuantidade";
             this.txtQuantidade.Size = new System.Drawing.Size(100, 22);
             this.txtQuantidade.TabIndex = 13;
@@ -376,7 +422,7 @@
             // lblDescricao
             // 
             this.lblDescricao.AutoSize = true;
-            this.lblDescricao.Location = new System.Drawing.Point(338, 34);
+            this.lblDescricao.Location = new System.Drawing.Point(338, 24);
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(75, 17);
             this.lblDescricao.TabIndex = 12;
@@ -384,7 +430,7 @@
             // 
             // txtDescricaoProd
             // 
-            this.txtDescricaoProd.Location = new System.Drawing.Point(332, 56);
+            this.txtDescricaoProd.Location = new System.Drawing.Point(332, 46);
             this.txtDescricaoProd.Name = "txtDescricaoProd";
             this.txtDescricaoProd.Size = new System.Drawing.Size(416, 22);
             this.txtDescricaoProd.TabIndex = 11;
@@ -393,7 +439,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(118, 34);
+            this.label2.Location = new System.Drawing.Point(118, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 17);
             this.label2.TabIndex = 10;
@@ -401,7 +447,7 @@
             // 
             // txtCodBarras
             // 
-            this.txtCodBarras.Location = new System.Drawing.Point(121, 56);
+            this.txtCodBarras.Location = new System.Drawing.Point(121, 46);
             this.txtCodBarras.Name = "txtCodBarras";
             this.txtCodBarras.Size = new System.Drawing.Size(205, 22);
             this.txtCodBarras.TabIndex = 9;
@@ -410,7 +456,7 @@
             // lblCodigo
             // 
             this.lblCodigo.AutoSize = true;
-            this.lblCodigo.Location = new System.Drawing.Point(9, 36);
+            this.lblCodigo.Location = new System.Drawing.Point(9, 26);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(56, 17);
             this.lblCodigo.TabIndex = 8;
@@ -418,7 +464,7 @@
             // 
             // txtCodProduto
             // 
-            this.txtCodProduto.Location = new System.Drawing.Point(12, 56);
+            this.txtCodProduto.Location = new System.Drawing.Point(12, 46);
             this.txtCodProduto.Name = "txtCodProduto";
             this.txtCodProduto.Size = new System.Drawing.Size(100, 22);
             this.txtCodProduto.TabIndex = 0;
@@ -437,6 +483,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(14, 585);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView2.Size = new System.Drawing.Size(776, 150);
             this.dataGridView2.TabIndex = 8;
             this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView2_CellFormatting);
@@ -540,5 +587,9 @@
         private System.Windows.Forms.Label lblEmissao;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label lblStatusPedido;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblNumPedido;
+        private System.Windows.Forms.TextBox txtNumPedido;
     }
 }

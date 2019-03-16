@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using Sistema.Entidades;
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Reflection;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace Sistema
         {
             TsbGravar.Enabled = false;
             TsbCancelar.Enabled = false;
+
             //Bloqueia os campos cliente e vendedor
             txtCodCliente.Enabled = false;
             txtNomeCliente.Enabled = false;
@@ -25,6 +27,7 @@ namespace Sistema
             txtNomeVendedor.Enabled = false;
             cboCondPagto.Enabled = false;
             txtDataPedido.Enabled = false;
+            txtNumPedido.Enabled = false;
 
             //Bloqueia campos dos itens
 
@@ -33,20 +36,20 @@ namespace Sistema
             txtDescricaoProd.Enabled = false;
             txtQuantidade.Enabled = false;
             txtPreco.Enabled = false;
-
-
-
-
-            //Carrega os campos do datagrid nos textbox
-            //txtCodCliente.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
-            //txtNomeCliente.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
+            btnIncluir.Enabled = false;
+            btnExcluir.Enabled = false;
 
 
             //bloqueia a edição da celula no datagrid
             dataGridView1.ReadOnly = true;
             CarregaGrid();
 
+            //Carrega os campos do datagrid nos textbox
+            txtNumPedido.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
+            txtCodCliente.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
 
+            txtNomeCliente.Text = dataGridView1.Rows[0].Cells[2].Value.ToString();
+            txtDataPedido.Text = dataGridView1.Rows[0].Cells[3].Value.ToString();
 
             CarregaCombo();
 
@@ -63,7 +66,7 @@ namespace Sistema
 
             MySqlCommand SELECT = c.conexao.CreateCommand();
             SELECT.CommandType = CommandType.Text;
-            SELECT.CommandText = "SELECT p.id as Pedido, c.nome as Cliente, p.dataemissao , p.status, p.totalpedido FROM pedidovenda p INNER JOIN clientes c ON p.id_cliente = c.id";
+            SELECT.CommandText = "SELECT p.id as Pedido, c.id as Codigo, c.nome as Cliente, p.dataemissao as Emissao , p.Status, p.totalpedido as Total FROM pedidovenda p INNER JOIN clientes c ON p.id_cliente = c.id";
 
             try
             {
@@ -95,9 +98,7 @@ namespace Sistema
 
             //Desblqueia campos referente a clientes e vendedor
             txtCodCliente.Enabled = true;
-            //txtNomeCliente.Enabled = true;
             txtCodVendedor.Enabled = true;
-            //txtNomeVendedor.Enabled = true;
             cboCondPagto.Enabled = true;
 
             //Desbloqueia campos referente a Itens
@@ -106,7 +107,10 @@ namespace Sistema
             txtDescricaoProd.Enabled = true;
             txtQuantidade.Enabled = true;
             txtPreco.Enabled = true;
+            btnIncluir.Enabled = true;
+            btnExcluir.Enabled = true;
 
+            LimparDados();
             txtCodCliente.Focus();
 
             //Pega a data da Emissão do Pedido
@@ -156,6 +160,8 @@ namespace Sistema
             txtDescricaoProd.Enabled = false;
             txtQuantidade.Enabled = false;
             txtPreco.Enabled = false;
+            btnIncluir.Enabled = false;
+            btnExcluir.Enabled = false;
 
             LimparDados();
             LimparProdutos();
@@ -169,6 +175,8 @@ namespace Sistema
             txtCodVendedor.Text = String.Empty;
             txtNomeVendedor.Text = String.Empty;
             cboCondPagto.Text = String.Empty;
+            txtNumPedido.Text = String.Empty;
+            txtDataPedido.Text = String.Empty;
         }
 
         private void LimparProdutos()
@@ -214,6 +222,9 @@ namespace Sistema
             PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
 
 
+            //var bindingList = new BindingList<PedidoItens>(itens);
+            //var source = new BindingSource(bindingList, null);
+            //dgvProdutosErp.DataSource = source;
 
             FormataGrid();
             pedido.AdicionarItem(itens);
@@ -226,13 +237,13 @@ namespace Sistema
 
         }
 
+
         private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if ((dataGridView2.Rows[e.RowIndex].DataBoundItem != null) && (dataGridView2.Columns[e.ColumnIndex].DataPropertyName.Contains(".")))
             {
                 e.Value = BindProperty(dataGridView2.Rows[e.RowIndex].DataBoundItem, dataGridView2.Columns[e.ColumnIndex].DataPropertyName);
             }
-
         }
 
         private string BindProperty(object property, string propertyName)
@@ -459,8 +470,7 @@ namespace Sistema
 
         private void FormataGrid()
         {
-
-
+            /*********Grid Dados******/
             //removendo o indicador do Datagrid do lado esquerdo da tela.
             dataGridView1.RowHeadersVisible = false;
 
@@ -470,6 +480,10 @@ namespace Sistema
             //Configura o grid para preencher a tela toda
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
+            //Remover a ultima linha do Datagrid
+            dataGridView1.AllowUserToAddRows = false;
+
+            /*********Grid Itens******/
             //removendo o indicador do Datagrid do lado esquerdo da tela.
             dataGridView2.RowHeadersVisible = false;
 
@@ -478,6 +492,9 @@ namespace Sistema
 
             //Configura o grid para preencher a tela toda
             dataGridView2.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            //Remover a ultima linha do Datagrid2
+            dataGridView2.AllowUserToAddRows = false;
 
 
         }
@@ -511,6 +528,29 @@ namespace Sistema
         private void txtPreco_KeyDown(object sender, KeyEventArgs e)
         {
             EnterDoMouse(sender, e);
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+
+            foreach (DataGridViewRow row in dataGridView2.Rows)
+            {
+                dataGridView2.Rows.RemoveAt(row.Index);
+            }
+
+
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (!dataGridView1.Rows[e.RowIndex].IsNewRow)
+            {
+                txtNumPedido.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
+                txtCodCliente.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+                txtNomeCliente.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+                txtDataPedido.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            }
         }
     }
 

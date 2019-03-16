@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,11 @@ namespace Sistema.Entidades
 {
     class PedidoVenda
     {
+        public int CodPedido { get; set; }
         public DateTime Data { get; set; }
         public StatusPedido Status { get; set; }
         public Cliente Cliente { get; set; }
+        public BindingList<PedidoItens> bindingList {get;set;} = new BindingList<PedidoItens>();
         public List<PedidoItens> Items { get; set; } = new List<PedidoItens>();
         public double TotalPedido { get; set; }
 
