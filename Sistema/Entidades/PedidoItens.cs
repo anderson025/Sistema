@@ -4,6 +4,7 @@
     {
         public int Quantidade { get; set; }
         public double Preco { get; set; }
+        public double Subtotal { get; set; }
         public Produto Produto { get; set; }
 
 

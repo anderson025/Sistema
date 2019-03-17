@@ -56,6 +56,8 @@
             this.TsbSair = new System.Windows.Forms.ToolStripButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtSubTotal = new System.Windows.Forms.TextBox();
             this.btnExcluir = new System.Windows.Forms.Button();
             this.btnIncluir = new System.Windows.Forms.Button();
             this.lblPreco = new System.Windows.Forms.Label();
@@ -75,12 +77,11 @@
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.produtoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pedidoVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtTotalPedido = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.GpbIdentificacao.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -355,8 +356,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.txtTotalPedido);
             this.groupBox2.Controls.Add(this.btnExcluir);
             this.groupBox2.Controls.Add(this.btnIncluir);
             this.groupBox2.Controls.Add(this.lblPreco);
@@ -376,9 +375,26 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Itens";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(546, 741);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 17);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "Total Pedido:";
+            // 
+            // txtSubTotal
+            // 
+            this.txtSubTotal.BackColor = System.Drawing.SystemColors.Window;
+            this.txtSubTotal.Location = new System.Drawing.Point(644, 738);
+            this.txtSubTotal.Name = "txtSubTotal";
+            this.txtSubTotal.Size = new System.Drawing.Size(147, 22);
+            this.txtSubTotal.TabIndex = 19;
+            // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(669, 82);
+            this.btnExcluir.Location = new System.Drawing.Point(322, 82);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 31);
             this.btnExcluir.TabIndex = 18;
@@ -388,7 +404,7 @@
             // 
             // btnIncluir
             // 
-            this.btnIncluir.Location = new System.Drawing.Point(588, 82);
+            this.btnIncluir.Location = new System.Drawing.Point(241, 82);
             this.btnIncluir.Name = "btnIncluir";
             this.btnIncluir.Size = new System.Drawing.Size(75, 31);
             this.btnIncluir.TabIndex = 17;
@@ -494,7 +510,8 @@
             this.Preco,
             this.quantidadeDataGridViewTextBoxColumn,
             this.precoDataGridViewTextBoxColumn,
-            this.produtoDataGridViewTextBoxColumn});
+            this.produtoDataGridViewTextBoxColumn,
+            this.Total});
             this.dataGridView2.DataSource = this.itemsBindingSource;
             this.dataGridView2.Location = new System.Drawing.Point(14, 585);
             this.dataGridView2.Name = "dataGridView2";
@@ -539,6 +556,12 @@
             this.Preco.HeaderText = "Preco";
             this.Preco.Name = "Preco";
             // 
+            // Total
+            // 
+            this.Total.DataPropertyName = "SubTotal";
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            // 
             // quantidadeDataGridViewTextBoxColumn
             // 
             this.quantidadeDataGridViewTextBoxColumn.DataPropertyName = "Quantidade";
@@ -564,27 +587,13 @@
             // 
             this.pedidoVendaBindingSource.DataSource = typeof(Sistema.Entidades.PedidoVenda);
             // 
-            // txtTotalPedido
-            // 
-            this.txtTotalPedido.Location = new System.Drawing.Point(332, 91);
-            this.txtTotalPedido.Name = "txtTotalPedido";
-            this.txtTotalPedido.Size = new System.Drawing.Size(147, 22);
-            this.txtTotalPedido.TabIndex = 19;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(329, 71);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 17);
-            this.label5.TabIndex = 20;
-            this.label5.Text = "Total Pedido:";
-            // 
             // FrmPedidoVenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 747);
+            this.ClientSize = new System.Drawing.Size(802, 772);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.txtSubTotal);
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.dataGridView1);
@@ -603,7 +612,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
-            //((System.ComponentModel.ISupportInitialize)(this.pedidoVendaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pedidoVendaBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -652,6 +661,8 @@
         private System.Windows.Forms.TextBox txtNumPedido;
         private System.Windows.Forms.BindingSource pedidoVendaBindingSource;
         private System.Windows.Forms.BindingSource itemsBindingSource;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtSubTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodBarras;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
@@ -660,7 +671,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn produtoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtTotalPedido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
     }
 }

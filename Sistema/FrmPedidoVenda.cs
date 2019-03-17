@@ -2,6 +2,7 @@
 using Sistema.Entidades;
 using System;
 using System.Data;
+using System.Globalization;
 using System.Reflection;
 using System.Windows.Forms;
 
@@ -12,8 +13,9 @@ namespace Sistema
         //private string controle;
         //private bool carregagrid;
         //Produto prod = new Produto();
-        //PedidoVenda pedido = new PedidoVenda();
+        PedidoVenda pedido = new PedidoVenda();
         //PedidoItens itens = new PedidoItens();
+        private double valor;
 
         public FrmPedidoVenda()
         {
@@ -141,51 +143,49 @@ namespace Sistema
             cliente.Nome = txtDescricaoProd.Text;
             cliente.CodCliente = int.Parse(txtCodCliente.Text);
 
+            pedido.CodPedido = int.Parse(txtNumPedido.Text);
+            pedido.Data = dt;
+            pedido.Cliente = cliente;
+            pedido.TotalPedido = double.Parse(txtSubTotal.Text);
 
 
-            //pedido.CodPedido = int.Parse(txtNumPedido.Text);
-            //pedido.Data = dt;
-            //pedido.Cliente = cliente;
-            //pedido.TotalPedido = double.Parse(txtTotalPedido.Text);
-            
+            try
+            {
+                Conexao c = new Conexao();
 
-            //try
-            //{
-            //    Conexao c = new Conexao();
+                c.AbrirConexao();
+                MySqlCommand INSERT = new MySqlCommand("INSERT INTO pedidovenda ( dataemissao, totalpedido, id_cliente, id_vendedor) " +
+                                                        "VALUES(@Dataemissao, @Totalpedido, @Id_cliente, @Id_vendedor)", c.conexao);
+                INSERT.Parameters.AddWithValue("@Dataemissao", pedido.Data);
+                INSERT.Parameters.AddWithValue("@Totalpedido", pedido.TotalPedido);
+                INSERT.Parameters.AddWithValue("@Id_cliente", pedido.Cliente.CodCliente);
+                INSERT.Parameters.AddWithValue("@Id_vendedor", pedido.Vendedor.CodVendedor);
 
-            //    c.AbrirConexao();
-            //    MySqlCommand INSERT = new MySqlCommand("INSERT INTO clientes ( dataemissao, totalpedido, id_cliente, id_vendedor) " +
-            //                                            "VALUES(@Dataemissao, @Totalpedido, @Id_cliente, @Id_vendedor)", c.conexao);
-            //    INSERT.Parameters.AddWithValue("@Dataemissao", pedido.Data);
-            //    INSERT.Parameters.AddWithValue("@Totalpedido",pedido.TotalPedido);
-            //    INSERT.Parameters.AddWithValue("@Id_cliente", pedido.Cliente.CodCliente);
-            //    INSERT.Parameters.AddWithValue("@Id_vendedor", pedido.Vendedor.CodVendedor);
-                
-            //    INSERT.ExecuteNonQuery();
+                INSERT.ExecuteNonQuery();
 
-            //    MySqlCommand INSERTPROD = new MySqlCommand("INSERT INTO pedidoItens ( id_pedidovenda, id_produto, descricaoprod, quatidade, preco) " +
-            //                                           "VALUES(@Id_pedidovenda, @Id_produto, @Descricaoprod, @Quantidade, @Preco)", c.conexao);
-            //    INSERTPROD.Parameters.AddWithValue("@Id_pedidovenda", pedido.CodPedido);
-            //    INSERTPROD.Parameters.AddWithValue("@Id_produto", itens.Produto.CodInterno);
-            //    INSERTPROD.Parameters.AddWithValue("@Descricaoprod", itens.Produto.Descricao);
-            //    INSERTPROD.Parameters.AddWithValue("@Quantidade", itens.Quantidade);
-            //    INSERTPROD.Parameters.AddWithValue("@Preco",itens.Preco);
+                //MySqlCommand INSERTPROD = new MySqlCommand("INSERT INTO pedidoItens ( id_pedidovenda, id_produto, descricaoprod, quatidade, preco) " +
+                //                                       "VALUES(@Id_pedidovenda, @Id_produto, @Descricaoprod, @Quantidade, @Preco)", c.conexao);
+                //INSERTPROD.Parameters.AddWithValue("@Id_pedidovenda", pedido.CodPedido);
+                //INSERTPROD.Parameters.AddWithValue("@Id_produto", itens.Produto.CodInterno);
+                //INSERTPROD.Parameters.AddWithValue("@Descricaoprod", itens.Produto.Descricao);
+                //INSERTPROD.Parameters.AddWithValue("@Quantidade", itens.Quantidade);
+                //INSERTPROD.Parameters.AddWithValue("@Preco", itens.Preco);
 
-            //    INSERTPROD.ExecuteNonQuery();
+                //INSERTPROD.ExecuteNonQuery();
 
-            //    MessageBox.Show("Pedido criado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //    c.FecharConexao();
+                MessageBox.Show("Pedido criado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                c.FecharConexao();
 
 
 
-            //}
-            //catch (Exception ex)
-            //{
+            }
+            catch (Exception ex)
+            {
 
-            //    MessageBox.Show("MySQL Não conectado!", "Erro na Conexão", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            //    Console.WriteLine("Erro", ex);
+                MessageBox.Show("MySQL Não conectado!", "Erro na Conexão", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Console.WriteLine("Erro", ex);
 
-            //}
+            }
 
 
 
@@ -265,20 +265,16 @@ namespace Sistema
 
         private void btnIncluir_Click(object sender, EventArgs e)
         {
-            Produto prod = new Produto(int.Parse(txtCodProduto.Text), txtDescricaoProd.Text, txtCodBarras.Text, double.Parse(txtPreco.Text));
-
-            //prod.CodInterno = int.Parse(txtCodProduto.Text);
-            //prod.Descricao = txtDescricaoProd.Text;
-            //prod.CodBarra = txtCodBarras.Text;
-            //prod.PrecoVenda = double.Parse(txtPreco.Text);
-
+            Produto prod = new Produto(int.Parse(txtCodProduto.Text), txtDescricaoProd.Text, txtCodBarras.Text, double.Parse(txtPreco.Text, CultureInfo.InvariantCulture));
+            //PedidoVenda pedido = new PedidoVenda();
             PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
-            //itens.Quantidade = int.Parse(txtQuantidade.Text);
-            //itens.Preco = double.Parse(txtPreco.Text);
-            //itens.Produto = prod;
 
-            //pedido.TotalPedido = itens.SubTotal();
+            itens.Subtotal = itens.SubTotal();
+            
+            valor += itens.SubTotal();
+            //pedido.TotalPedido = pedido.TotalPedido + valor;
 
+            txtSubTotal.Text = valor.ToString("F2", CultureInfo.InvariantCulture);
 
             itemsBindingSource.Add(itens);
 
@@ -286,12 +282,11 @@ namespace Sistema
             LimparProdutos();
             txtCodProduto.Focus();
 
-
             //dataGridView2.DataSource = pedido.bindingSource1;
             dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
-
         }
+
 
 
         private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
