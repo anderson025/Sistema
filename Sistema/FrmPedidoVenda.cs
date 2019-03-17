@@ -75,8 +75,6 @@ namespace Sistema
 
             CarregaCombo();
 
-
-
         }
 
 
@@ -88,7 +86,7 @@ namespace Sistema
 
             MySqlCommand SELECT = c.conexao.CreateCommand();
             SELECT.CommandType = CommandType.Text;
-            SELECT.CommandText = "SELECT p.id AS Pedido, c.id AS Codigo, c.nome AS Cliente, p.dataemissao AS Emissao, p.Status, p.totalpedido AS Total, p.id_vendedor , v.nomeVendedor FROM pedidovenda p INNER JOIN clientes c ON p.id_cliente = c.id INNER JOIN vendedor v ON v.id = p.id_vendedor; ";
+            SELECT.CommandText = "SELECT p.id AS Pedido, c.id AS Codigo, c.nome AS Cliente, p.dataemissao AS Emissao, p.Status, p.totalpedido AS Total, p.id_vendedor , v.nomeVendedor FROM pedidovenda p INNER JOIN clientes c ON p.id_cliente = c.id INNER JOIN vendedor v ON v.id = p.id_vendedor ORDER BY p.id ASC;";
 
 
             try
@@ -160,6 +158,8 @@ namespace Sistema
             pedido.TotalPedido = double.Parse(txtSubTotal.Text);
 
             Vendedor vendedor = new Vendedor(int.Parse(txtCodVendedor.Text), txtNomeVendedor.Text);
+            Produto prod = new Produto();
+            PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
 
             Conexao c = new Conexao();
             try
@@ -176,20 +176,22 @@ namespace Sistema
 
                 INSERT.ExecuteNonQuery();
 
-                //MySqlCommand INSERTPROD = new MySqlCommand("INSERT INTO pedidoItens ( id_pedidovenda, id_produto, descricaoprod, quatidade, preco) " +
-                //                                       "VALUES(@Id_pedidovenda, @Id_produto, @Descricaoprod, @Quantidade, @Preco)", c.conexao);
-                //INSERTPROD.Parameters.AddWithValue("@Id_pedidovenda", pedido.CodPedido);
-                //INSERTPROD.Parameters.AddWithValue("@Id_produto", itens.Produto.CodInterno);
-                //INSERTPROD.Parameters.AddWithValue("@Descricaoprod", itens.Produto.Descricao);
-                //INSERTPROD.Parameters.AddWithValue("@Quantidade", itens.Quantidade);
-                //INSERTPROD.Parameters.AddWithValue("@Preco", itens.Preco);
+                MySqlCommand INSERTPROD = new MySqlCommand("INSERT INTO pedidoItens ( id_pedidovenda, id_produto, descricaoprod, quatidade, preco) " +
+                                                       "VALUES(@Id_pedidovenda, @Id_produto, @Descricaoprod, @Quantidade, @Preco)", c.conexao);
+                INSERTPROD.Parameters.AddWithValue("@Id_pedidovenda", pedido.CodPedido);
+                INSERTPROD.Parameters.AddWithValue("@Id_produto", itens.Produto.CodInterno);
+                INSERTPROD.Parameters.AddWithValue("@Descricaoprod", itens.Produto.Descricao);
+                INSERTPROD.Parameters.AddWithValue("@Quantidade", itens.Quantidade);
+                INSERTPROD.Parameters.AddWithValue("@Preco", itens.Preco);
 
-                //INSERTPROD.ExecuteNonQuery();
+                INSERTPROD.ExecuteNonQuery();
 
                 MessageBox.Show("Pedido criado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                
+                TsbCancelar_Click(TsbCancelar, new EventArgs());
 
+                CarregaGrid();
+                
 
             }
             catch (Exception ex)
