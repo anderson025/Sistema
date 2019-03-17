@@ -69,8 +69,6 @@
             this.lblCodigo = new System.Windows.Forms.Label();
             this.txtCodProduto = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pedidoVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodBarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +77,10 @@
             this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.produtoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pedidoVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtSubTotal = new System.Windows.Forms.TextBox();
+            this.lblSubTotal = new System.Windows.Forms.Label();
             this.GpbIdentificacao.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -353,6 +355,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.lblSubTotal);
+            this.groupBox2.Controls.Add(this.txtSubTotal);
             this.groupBox2.Controls.Add(this.btnExcluir);
             this.groupBox2.Controls.Add(this.btnIncluir);
             this.groupBox2.Controls.Add(this.lblPreco);
@@ -374,7 +378,7 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(332, 82);
+            this.btnExcluir.Location = new System.Drawing.Point(670, 82);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 31);
             this.btnExcluir.TabIndex = 18;
@@ -384,7 +388,7 @@
             // 
             // btnIncluir
             // 
-            this.btnIncluir.Location = new System.Drawing.Point(251, 82);
+            this.btnIncluir.Location = new System.Drawing.Point(589, 82);
             this.btnIncluir.Name = "btnIncluir";
             this.btnIncluir.Size = new System.Drawing.Size(75, 31);
             this.btnIncluir.TabIndex = 17;
@@ -500,15 +504,6 @@
             this.dataGridView2.TabIndex = 8;
             this.dataGridView2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView2_CellFormatting);
             // 
-            // itemsBindingSource
-            // 
-            this.itemsBindingSource.DataMember = "Items";
-            this.itemsBindingSource.DataSource = this.pedidoVendaBindingSource;
-            // 
-            // pedidoVendaBindingSource
-            // 
-            this.pedidoVendaBindingSource.DataSource = typeof(Sistema.Entidades.PedidoVenda);
-            // 
             // Codigo
             // 
             this.Codigo.DataPropertyName = "Produto.CodInterno";
@@ -559,6 +554,31 @@
             this.produtoDataGridViewTextBoxColumn.HeaderText = "Produto";
             this.produtoDataGridViewTextBoxColumn.Name = "produtoDataGridViewTextBoxColumn";
             this.produtoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // itemsBindingSource
+            // 
+            this.itemsBindingSource.DataMember = "Items";
+            this.itemsBindingSource.DataSource = this.pedidoVendaBindingSource;
+            // 
+            // pedidoVendaBindingSource
+            // 
+            this.pedidoVendaBindingSource.DataSource = typeof(Sistema.Entidades.PedidoVenda);
+            // 
+            // txtSubTotal
+            // 
+            this.txtSubTotal.Location = new System.Drawing.Point(332, 91);
+            this.txtSubTotal.Name = "txtSubTotal";
+            this.txtSubTotal.Size = new System.Drawing.Size(100, 22);
+            this.txtSubTotal.TabIndex = 19;
+            // 
+            // lblSubTotal
+            // 
+            this.lblSubTotal.AutoSize = true;
+            this.lblSubTotal.Location = new System.Drawing.Point(329, 71);
+            this.lblSubTotal.Name = "lblSubTotal";
+            this.lblSubTotal.Size = new System.Drawing.Size(44, 17);
+            this.lblSubTotal.TabIndex = 20;
+            this.lblSubTotal.Text = "Total:";
             // 
             // FrmPedidoVenda
             // 
@@ -640,5 +660,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn produtoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lblSubTotal;
+        private System.Windows.Forms.TextBox txtSubTotal;
     }
 }

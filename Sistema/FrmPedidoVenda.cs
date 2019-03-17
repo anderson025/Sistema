@@ -9,6 +9,7 @@ namespace Sistema
 {
     public partial class FrmPedidoVenda : Form
     {
+        PedidoVenda pedido = new PedidoVenda();
         public FrmPedidoVenda()
         {
             InitializeComponent();
@@ -135,12 +136,52 @@ namespace Sistema
             cliente.Nome = txtDescricaoProd.Text;
             cliente.CodCliente = int.Parse(txtCodCliente.Text);
 
-            PedidoVenda pedido = new PedidoVenda();
 
-            if (true)
+
+            pedido.CodPedido = int.Parse(txtNumPedido.Text);
+            pedido.Data = dt;
+            pedido.Cliente = cliente;
+            //pedido.TotalPedido = double.Parse(txtTotalPedido.Text);
+
+
+            try
             {
+                //Conexao c = new Conexao();
+
+                //c.AbrirConexao();
+                //MySqlCommand INSERT = new MySqlCommand("INSERT INTO clientes ( dataemissao, totalpedido, id_cliente, id_vendedor) " +
+                //                                        "VALUES(@Dataemissao, @Totalpedido, @Id_cliente, @Id_vendedor)", c.conexao);
+                //INSERT.Parameters.AddWithValue("@Dataemissao", pedido.Data);
+                //INSERT.Parameters.AddWithValue("@Totalpedido", pedido.TotalPedido);
+                //INSERT.Parameters.AddWithValue("@Id_cliente", pedido.Cliente.CodCliente);
+                //INSERT.Parameters.AddWithValue("@Id_vendedor", pedido.Vendedor.CodVendedor);
+
+                //INSERT.ExecuteNonQuery();
+
+                //MySqlCommand INSERTPROD = new MySqlCommand("INSERT INTO pedidoItens ( id_pedidovenda, id_produto, descricaoprod, quatidade, preco) " +
+                //                                       "VALUES(@Id_pedidovenda, @Id_produto, @Descricaoprod, @Quantidade, @Preco)", c.conexao);
+                //INSERTPROD.Parameters.AddWithValue("@Id_pedidovenda", pedido.CodPedido);
+                //INSERTPROD.Parameters.AddWithValue("@Id_produto", itens.Produto.CodInterno);
+                //INSERTPROD.Parameters.AddWithValue("@Descricaoprod", itens.Produto.Descricao);
+                //INSERTPROD.Parameters.AddWithValue("@Quantidade", itens.Quantidade);
+                //INSERTPROD.Parameters.AddWithValue("@Preco", itens.Preco);
+
+                //INSERTPROD.ExecuteNonQuery();
+
+                //MessageBox.Show("Pedido criado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //c.FecharConexao();
+
+
 
             }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("MySQL Não conectado!", "Erro na Conexão", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                Console.WriteLine("Erro", ex);
+
+            }
+
         }
 
         private void TsbCancelar_Click(object sender, EventArgs e)
@@ -219,13 +260,16 @@ namespace Sistema
         {
 
             Produto prod = new Produto(int.Parse(txtCodProduto.Text), txtDescricaoProd.Text, txtCodBarras.Text, double.Parse(txtPreco.Text));
+            
 
-            PedidoVenda pedido = new PedidoVenda();
             PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
 
+            txtSubTotal.Text = itens.SubTotal().ToString();
 
             itemsBindingSource.Add(itens);
 
+
+           
             //pedido.AdicionarItem(itens);
             LimparProdutos();
             txtCodProduto.Focus();
@@ -236,6 +280,7 @@ namespace Sistema
 
 
         }
+
 
 
         private void dataGridView2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
