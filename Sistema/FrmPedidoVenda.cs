@@ -1,7 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using Sistema.Entidades;
 using System;
-using System.ComponentModel;
 using System.Data;
 using System.Reflection;
 using System.Windows.Forms;
@@ -42,6 +41,11 @@ namespace Sistema
 
             //bloqueia a edição da celula no datagrid
             dataGridView1.ReadOnly = true;
+
+            //Formatar o Grid
+            FormataGrid();
+
+            //Carregar o Grid de identificação do pedido
             CarregaGrid();
 
             //Carrega os campos do datagrid nos textbox
@@ -76,8 +80,6 @@ namespace Sistema
 
                 leitura.Fill(dt);
                 dataGridView1.DataSource = dt;
-
-                FormataGrid();
 
                 c.FecharConexao();
             }
@@ -221,17 +223,13 @@ namespace Sistema
             PedidoVenda pedido = new PedidoVenda();
             PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
 
+            
 
-            //var bindingList = new BindingList<PedidoItens>(itens);
-            //var source = new BindingSource(bindingList, null);
-            //dgvProdutosErp.DataSource = source;
-
-            FormataGrid();
             pedido.AdicionarItem(itens);
             LimparProdutos();
             txtCodProduto.Focus();
 
-            dataGridView2.DataSource = pedido.Items;
+            dataGridView2.DataSource = pedido.bindingSource1;
             dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
 
@@ -395,7 +393,7 @@ namespace Sistema
             if (txtCodProduto.Text == String.Empty)
             {
                 MessageBox.Show("Informe o código do Produto!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                txtCodVendedor.Focus();
+                txtCodProduto.Focus();
             }
             else
             {
@@ -420,12 +418,13 @@ namespace Sistema
                         txtCodBarras.Text = leitura["codbarra"].ToString();
                         txtDescricaoProd.Text = leitura["descricao"].ToString();
                         txtPreco.Text = leitura["precovenda"].ToString();
-                    }
+                    }                 
                     else
                     {
                         MessageBox.Show("Produto não localizado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        txtCodProduto.Text = String.Empty;
                         txtCodProduto.Focus();
+                        txtCodProduto.Text = String.Empty;
+
                     }
                     c.FecharConexao();
                 }

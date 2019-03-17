@@ -1,12 +1,7 @@
-﻿using System;
+﻿using Sistema.Entidades.Enums;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using MySql.Data.MySqlClient;
-using Sistema.Entidades.Enums;
 
 namespace Sistema.Entidades
 {
@@ -16,8 +11,8 @@ namespace Sistema.Entidades
         public DateTime Data { get; set; }
         public StatusPedido Status { get; set; }
         public Cliente Cliente { get; set; }
-        public BindingList<PedidoItens> bindingList {get;set;} = new BindingList<PedidoItens>();
         public List<PedidoItens> Items { get; set; } = new List<PedidoItens>();
+        public BindingSource bindingSource1 = new BindingSource();
         public double TotalPedido { get; set; }
 
         public PedidoVenda()
@@ -33,8 +28,8 @@ namespace Sistema.Entidades
 
         public void AdicionarItem(PedidoItens item)
         {
-            Items.Add(item);  
-            
+            bindingSource1.List.Add(item);
+
         }
 
         public void RemoverItem(PedidoItens item)
@@ -84,6 +79,8 @@ namespace Sistema.Entidades
 
             }
         }
+
         
+
     }
 }
