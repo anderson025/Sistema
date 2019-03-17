@@ -70,7 +70,6 @@
             this.txtCodProduto = new System.Windows.Forms.TextBox();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pedidoVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodBarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +78,9 @@
             this.quantidadeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.produtoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pedidoVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtTotalPedido = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.GpbIdentificacao.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -353,6 +355,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.txtTotalPedido);
             this.groupBox2.Controls.Add(this.btnExcluir);
             this.groupBox2.Controls.Add(this.btnIncluir);
             this.groupBox2.Controls.Add(this.lblPreco);
@@ -374,7 +378,7 @@
             // 
             // btnExcluir
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(332, 82);
+            this.btnExcluir.Location = new System.Drawing.Point(669, 82);
             this.btnExcluir.Name = "btnExcluir";
             this.btnExcluir.Size = new System.Drawing.Size(75, 31);
             this.btnExcluir.TabIndex = 18;
@@ -384,7 +388,7 @@
             // 
             // btnIncluir
             // 
-            this.btnIncluir.Location = new System.Drawing.Point(251, 82);
+            this.btnIncluir.Location = new System.Drawing.Point(588, 82);
             this.btnIncluir.Name = "btnIncluir";
             this.btnIncluir.Size = new System.Drawing.Size(75, 31);
             this.btnIncluir.TabIndex = 17;
@@ -429,7 +433,7 @@
             // lblDescricao
             // 
             this.lblDescricao.AutoSize = true;
-            this.lblDescricao.Location = new System.Drawing.Point(338, 24);
+            this.lblDescricao.Location = new System.Drawing.Point(329, 24);
             this.lblDescricao.Name = "lblDescricao";
             this.lblDescricao.Size = new System.Drawing.Size(75, 17);
             this.lblDescricao.TabIndex = 12;
@@ -505,10 +509,6 @@
             this.itemsBindingSource.DataMember = "Items";
             this.itemsBindingSource.DataSource = this.pedidoVendaBindingSource;
             // 
-            // pedidoVendaBindingSource
-            // 
-            this.pedidoVendaBindingSource.DataSource = typeof(Sistema.Entidades.PedidoVenda);
-            // 
             // Codigo
             // 
             this.Codigo.DataPropertyName = "Produto.CodInterno";
@@ -560,6 +560,26 @@
             this.produtoDataGridViewTextBoxColumn.Name = "produtoDataGridViewTextBoxColumn";
             this.produtoDataGridViewTextBoxColumn.Visible = false;
             // 
+            // pedidoVendaBindingSource
+            // 
+            this.pedidoVendaBindingSource.DataSource = typeof(Sistema.Entidades.PedidoVenda);
+            // 
+            // txtTotalPedido
+            // 
+            this.txtTotalPedido.Location = new System.Drawing.Point(332, 91);
+            this.txtTotalPedido.Name = "txtTotalPedido";
+            this.txtTotalPedido.Size = new System.Drawing.Size(147, 22);
+            this.txtTotalPedido.TabIndex = 19;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(329, 71);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(92, 17);
+            this.label5.TabIndex = 20;
+            this.label5.Text = "Total Pedido:";
+            // 
             // FrmPedidoVenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -583,7 +603,7 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pedidoVendaBindingSource)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.pedidoVendaBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -640,5 +660,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn quantidadeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn produtoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtTotalPedido;
     }
 }

@@ -9,6 +9,12 @@ namespace Sistema
 {
     public partial class FrmPedidoVenda : Form
     {
+        //private string controle;
+        //private bool carregagrid;
+        //Produto prod = new Produto();
+        //PedidoVenda pedido = new PedidoVenda();
+        //PedidoItens itens = new PedidoItens();
+
         public FrmPedidoVenda()
         {
             InitializeComponent();
@@ -135,12 +141,54 @@ namespace Sistema
             cliente.Nome = txtDescricaoProd.Text;
             cliente.CodCliente = int.Parse(txtCodCliente.Text);
 
-            PedidoVenda pedido = new PedidoVenda();
 
-            if (true)
-            {
 
-            }
+            //pedido.CodPedido = int.Parse(txtNumPedido.Text);
+            //pedido.Data = dt;
+            //pedido.Cliente = cliente;
+            //pedido.TotalPedido = double.Parse(txtTotalPedido.Text);
+            
+
+            //try
+            //{
+            //    Conexao c = new Conexao();
+
+            //    c.AbrirConexao();
+            //    MySqlCommand INSERT = new MySqlCommand("INSERT INTO clientes ( dataemissao, totalpedido, id_cliente, id_vendedor) " +
+            //                                            "VALUES(@Dataemissao, @Totalpedido, @Id_cliente, @Id_vendedor)", c.conexao);
+            //    INSERT.Parameters.AddWithValue("@Dataemissao", pedido.Data);
+            //    INSERT.Parameters.AddWithValue("@Totalpedido",pedido.TotalPedido);
+            //    INSERT.Parameters.AddWithValue("@Id_cliente", pedido.Cliente.CodCliente);
+            //    INSERT.Parameters.AddWithValue("@Id_vendedor", pedido.Vendedor.CodVendedor);
+                
+            //    INSERT.ExecuteNonQuery();
+
+            //    MySqlCommand INSERTPROD = new MySqlCommand("INSERT INTO pedidoItens ( id_pedidovenda, id_produto, descricaoprod, quatidade, preco) " +
+            //                                           "VALUES(@Id_pedidovenda, @Id_produto, @Descricaoprod, @Quantidade, @Preco)", c.conexao);
+            //    INSERTPROD.Parameters.AddWithValue("@Id_pedidovenda", pedido.CodPedido);
+            //    INSERTPROD.Parameters.AddWithValue("@Id_produto", itens.Produto.CodInterno);
+            //    INSERTPROD.Parameters.AddWithValue("@Descricaoprod", itens.Produto.Descricao);
+            //    INSERTPROD.Parameters.AddWithValue("@Quantidade", itens.Quantidade);
+            //    INSERTPROD.Parameters.AddWithValue("@Preco",itens.Preco);
+
+            //    INSERTPROD.ExecuteNonQuery();
+
+            //    MessageBox.Show("Pedido criado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    c.FecharConexao();
+
+
+
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    MessageBox.Show("MySQL Não conectado!", "Erro na Conexão", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    Console.WriteLine("Erro", ex);
+
+            //}
+
+
+
         }
 
         private void TsbCancelar_Click(object sender, EventArgs e)
@@ -217,11 +265,19 @@ namespace Sistema
 
         private void btnIncluir_Click(object sender, EventArgs e)
         {
-
             Produto prod = new Produto(int.Parse(txtCodProduto.Text), txtDescricaoProd.Text, txtCodBarras.Text, double.Parse(txtPreco.Text));
 
-            PedidoVenda pedido = new PedidoVenda();
+            //prod.CodInterno = int.Parse(txtCodProduto.Text);
+            //prod.Descricao = txtDescricaoProd.Text;
+            //prod.CodBarra = txtCodBarras.Text;
+            //prod.PrecoVenda = double.Parse(txtPreco.Text);
+
             PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
+            //itens.Quantidade = int.Parse(txtQuantidade.Text);
+            //itens.Preco = double.Parse(txtPreco.Text);
+            //itens.Produto = prod;
+
+            //pedido.TotalPedido = itens.SubTotal();
 
 
             itemsBindingSource.Add(itens);
@@ -230,7 +286,7 @@ namespace Sistema
             LimparProdutos();
             txtCodProduto.Focus();
 
-            
+
             //dataGridView2.DataSource = pedido.bindingSource1;
             dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
@@ -327,7 +383,7 @@ namespace Sistema
 
         }
 
-        
+
 
         public void EnterDoMouse(object sender, KeyEventArgs e)
         {
@@ -422,7 +478,7 @@ namespace Sistema
                         txtDescricaoProd.Text = leitura["descricao"].ToString();
                         txtPreco.Text = leitura["precovenda"].ToString();
                         txtQuantidade.Focus();
-                    }                 
+                    }
                     else
                     {
                         MessageBox.Show("Produto não localizado!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -430,7 +486,7 @@ namespace Sistema
                         txtCodProduto.Text = String.Empty;
 
                     }
-                    
+
                     c.FecharConexao();
                 }
                 catch (Exception)

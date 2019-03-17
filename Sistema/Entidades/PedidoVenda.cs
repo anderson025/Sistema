@@ -13,6 +13,7 @@ namespace Sistema.Entidades
         public DateTime Data { get; set; }
         public StatusPedido Status { get; set; }
         public Cliente Cliente { get; set; }
+        public Vendedor Vendedor { get; set; }
         public List<PedidoItens> Items { get; set; } = new List<PedidoItens>();
         public BindingSource bindingSource1 = new BindingSource();
         public double TotalPedido { get; set; }
@@ -21,11 +22,13 @@ namespace Sistema.Entidades
         {
 
         }
-        public PedidoVenda(DateTime data, StatusPedido status, Cliente cliente)
+
+        public PedidoVenda(int codPedido, DateTime data, Cliente cliente, double totalPedido)
         {
+            CodPedido = codPedido;
             Data = data;
-            Status = status;
             Cliente = cliente;
+            TotalPedido = totalPedido;
         }
 
         public void AdicionarItem(PedidoItens item)
@@ -83,23 +86,6 @@ namespace Sistema.Entidades
             }
         }
 
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-          
-
-            foreach (var item in Items)
-            {
-                
-                sb.Append(item.Preco.ToString("F2", CultureInfo.InvariantCulture));
-                sb.Append("Quantidade: " + item.Quantidade);
-                
-
-
-            }
-           
-
-            return sb.ToString();
-        }
+        
     }
 }
