@@ -106,7 +106,7 @@ namespace Sistema
             //Desbloqueia campos referente a Itens
             txtCodProduto.Enabled = true;
             txtCodBarras.Enabled = true;
-            txtDescricaoProd.Enabled = true;
+            //txtDescricaoProd.Enabled = true;
             txtQuantidade.Enabled = true;
             txtPreco.Enabled = true;
             btnIncluir.Enabled = true;
@@ -223,13 +223,15 @@ namespace Sistema
             PedidoVenda pedido = new PedidoVenda();
             PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
 
-            
 
-            pedido.AdicionarItem(itens);
+            itemsBindingSource.Add(itens);
+
+            //pedido.AdicionarItem(itens);
             LimparProdutos();
             txtCodProduto.Focus();
 
-            dataGridView2.DataSource = pedido.bindingSource1;
+            
+            //dataGridView2.DataSource = pedido.bindingSource1;
             dataGridView2.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
 
 
@@ -325,10 +327,7 @@ namespace Sistema
 
         }
 
-        private void txtCodCliente_KeyDown(object sender, KeyEventArgs e)
-        {
-            EnterDoMouse(sender, e);
-        }
+        
 
         public void EnterDoMouse(object sender, KeyEventArgs e)
         {
@@ -337,6 +336,10 @@ namespace Sistema
                 SendKeys.Send("{TAB}");
                 e.SuppressKeyPress = true;
             }
+        }
+        private void txtCodCliente_KeyDown(object sender, KeyEventArgs e)
+        {
+            EnterDoMouse(sender, e);
         }
 
         private void txtCodVendedor_KeyDown(object sender, KeyEventArgs e)
@@ -418,6 +421,7 @@ namespace Sistema
                         txtCodBarras.Text = leitura["codbarra"].ToString();
                         txtDescricaoProd.Text = leitura["descricao"].ToString();
                         txtPreco.Text = leitura["precovenda"].ToString();
+                        txtQuantidade.Focus();
                     }                 
                     else
                     {
@@ -426,6 +430,7 @@ namespace Sistema
                         txtCodProduto.Text = String.Empty;
 
                     }
+                    
                     c.FecharConexao();
                 }
                 catch (Exception)

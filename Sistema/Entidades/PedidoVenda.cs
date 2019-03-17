@@ -1,6 +1,8 @@
 ﻿using Sistema.Entidades.Enums;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Sistema.Entidades
@@ -28,8 +30,9 @@ namespace Sistema.Entidades
 
         public void AdicionarItem(PedidoItens item)
         {
-            bindingSource1.List.Add(item);
-
+            bindingSource1.Add(new PedidoItens() { Quantidade = item.Quantidade, Preco = item.Preco, Produto = item.Produto });
+            //Items.Add(item);
+            
         }
 
         public void RemoverItem(PedidoItens item)
@@ -80,7 +83,23 @@ namespace Sistema.Entidades
             }
         }
 
-        
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+          
 
+            foreach (var item in Items)
+            {
+                
+                sb.Append(item.Preco.ToString("F2", CultureInfo.InvariantCulture));
+                sb.Append("Quantidade: " + item.Quantidade);
+                
+
+
+            }
+           
+
+            return sb.ToString();
+        }
     }
 }
