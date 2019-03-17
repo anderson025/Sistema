@@ -63,7 +63,7 @@ namespace Sistema
 
 
 
-            //Oculta a coluna Senha para não exibri no Grid
+            //Oculta a coluna  para não exibir no Grid
             dataGridView1.Columns["precocusto"].Visible = false;
 
             //Carrega os campos do datagrid nos textbox

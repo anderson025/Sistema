@@ -50,11 +50,18 @@ namespace Sistema
             //bloqueia a edição da celula no datagrid
             dataGridView1.ReadOnly = true;
 
+            
+            
+
             //Formatar o Grid
             FormataGrid();
 
             //Carregar o Grid de identificação do pedido
             CarregaGrid();
+
+            //Oculta a coluna Senha para não exibri no Grid
+            dataGridView1.Columns["id_vendedor"].Visible = false;
+            dataGridView1.Columns["nomevendedor"].Visible = false;
 
             //Carrega os campos do datagrid nos textbox
             txtNumPedido.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
@@ -62,6 +69,9 @@ namespace Sistema
 
             txtNomeCliente.Text = dataGridView1.Rows[0].Cells[2].Value.ToString();
             txtDataPedido.Text = dataGridView1.Rows[0].Cells[3].Value.ToString();
+
+            txtCodVendedor.Text = dataGridView1.Rows[0].Cells[6].Value.ToString();
+            txtNomeVendedor.Text = dataGridView1.Rows[0].Cells[7].Value.ToString();
 
             CarregaCombo();
 
@@ -78,7 +88,8 @@ namespace Sistema
 
             MySqlCommand SELECT = c.conexao.CreateCommand();
             SELECT.CommandType = CommandType.Text;
-            SELECT.CommandText = "SELECT p.id as Pedido, c.id as Codigo, c.nome as Cliente, p.dataemissao as Emissao , p.Status, p.totalpedido as Total FROM pedidovenda p INNER JOIN clientes c ON p.id_cliente = c.id";
+            SELECT.CommandText = "SELECT p.id AS Pedido, c.id AS Codigo, c.nome AS Cliente, p.dataemissao AS Emissao, p.Status, p.totalpedido AS Total, p.id_vendedor , v.nomeVendedor FROM pedidovenda p INNER JOIN clientes c ON p.id_cliente = c.id INNER JOIN vendedor v ON v.id = p.id_vendedor; ";
+
 
             try
             {
@@ -143,15 +154,17 @@ namespace Sistema
             cliente.Nome = txtDescricaoProd.Text;
             cliente.CodCliente = int.Parse(txtCodCliente.Text);
 
-            pedido.CodPedido = int.Parse(txtNumPedido.Text);
+            //pedido.CodPedido = int.Parse(txtNumPedido.Text);
             pedido.Data = dt;
             pedido.Cliente = cliente;
             pedido.TotalPedido = double.Parse(txtSubTotal.Text);
 
+            Vendedor vendedor = new Vendedor(int.Parse(txtCodVendedor.Text), txtNomeVendedor.Text);
 
+            Conexao c = new Conexao();
             try
             {
-                Conexao c = new Conexao();
+               
 
                 c.AbrirConexao();
                 MySqlCommand INSERT = new MySqlCommand("INSERT INTO pedidovenda ( dataemissao, totalpedido, id_cliente, id_vendedor) " +
@@ -159,7 +172,7 @@ namespace Sistema
                 INSERT.Parameters.AddWithValue("@Dataemissao", pedido.Data);
                 INSERT.Parameters.AddWithValue("@Totalpedido", pedido.TotalPedido);
                 INSERT.Parameters.AddWithValue("@Id_cliente", pedido.Cliente.CodCliente);
-                INSERT.Parameters.AddWithValue("@Id_vendedor", pedido.Vendedor.CodVendedor);
+                INSERT.Parameters.AddWithValue("@Id_vendedor", vendedor.CodVendedor);
 
                 INSERT.ExecuteNonQuery();
 
@@ -174,8 +187,8 @@ namespace Sistema
                 //INSERTPROD.ExecuteNonQuery();
 
                 MessageBox.Show("Pedido criado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                c.FecharConexao();
 
+                
 
 
             }
@@ -185,6 +198,11 @@ namespace Sistema
                 MessageBox.Show("MySQL Não conectado!", "Erro na Conexão", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 Console.WriteLine("Erro", ex);
 
+            }
+
+            finally
+            {
+                c.FecharConexao();
             }
 
 
@@ -605,6 +623,9 @@ namespace Sistema
 
                 txtNomeCliente.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
                 txtDataPedido.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+
+                txtCodVendedor.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
+                txtNomeVendedor.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
             }
         }
     }
