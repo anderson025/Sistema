@@ -15,6 +15,8 @@ namespace Sistema
         //Produto prod = new Produto();
         PedidoVenda pedido = new PedidoVenda();
         //PedidoItens itens = new PedidoItens();
+
+
         private double valor;
 
         public FrmPedidoVenda()
@@ -46,23 +48,18 @@ namespace Sistema
             btnIncluir.Enabled = false;
             btnExcluir.Enabled = false;
 
-
-            //bloqueia a edição da celula no datagrid
-            dataGridView1.ReadOnly = true;
-
-            
-            
-
-            //Formatar o Grid
-            FormataGrid();
-
             //Carregar o Grid de identificação do pedido
             CarregaGrid();
 
-            //Oculta a coluna Senha para não exibri no Grid
-            dataGridView1.Columns["id_vendedor"].Visible = false;
-            dataGridView1.Columns["nomevendedor"].Visible = false;
+            //Carrega os textbox com os dados do datagridview
+            CarregaTextBox();
 
+            CarregaCombo();
+
+        }
+
+        private void CarregaTextBox()
+        {   
             //Carrega os campos do datagrid nos textbox
             txtNumPedido.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
             txtCodCliente.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
@@ -72,12 +69,7 @@ namespace Sistema
 
             txtCodVendedor.Text = dataGridView1.Rows[0].Cells[6].Value.ToString();
             txtNomeVendedor.Text = dataGridView1.Rows[0].Cells[7].Value.ToString();
-
-            CarregaCombo();
-
         }
-
-
 
         public void CarregaGrid()
         {
@@ -98,11 +90,24 @@ namespace Sistema
                 leitura.Fill(dt);
                 dataGridView1.DataSource = dt;
 
-                c.FecharConexao();
+                //Ocultar as colunas para não exibir no grid
+                dataGridView1.Columns["id_vendedor"].Visible = false;
+                dataGridView1.Columns["nomevendedor"].Visible = false;
+                //bloqueia a edição da celula no datagrid
+                dataGridView1.ReadOnly = true;
+
+                //Formatar o Grid
+                FormataGrid();
+
+
             }
             catch (Exception)
             {
                 MessageBox.Show("Erro ao Carregar o Grid!");
+            }
+            finally
+            {
+                c.FecharConexao();
             }
 
         }
@@ -158,13 +163,13 @@ namespace Sistema
             pedido.TotalPedido = double.Parse(txtSubTotal.Text);
 
             Vendedor vendedor = new Vendedor(int.Parse(txtCodVendedor.Text), txtNomeVendedor.Text);
-            Produto prod = new Produto();
-            PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
+            //Produto prod = new Produto(int.Parse(txtCodProduto.Text), txtDescricaoProd.Text, txtCodBarras.Text, double.Parse(txtPreco.Text, CultureInfo.InvariantCulture));
+            //PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
 
             Conexao c = new Conexao();
             try
             {
-               
+
 
                 c.AbrirConexao();
                 MySqlCommand INSERT = new MySqlCommand("INSERT INTO pedidovenda ( dataemissao, totalpedido, id_cliente, id_vendedor) " +
@@ -178,20 +183,29 @@ namespace Sistema
 
                 MySqlCommand INSERTPROD = new MySqlCommand("INSERT INTO pedidoItens ( id_pedidovenda, id_produto, descricaoprod, quatidade, preco) " +
                                                        "VALUES(@Id_pedidovenda, @Id_produto, @Descricaoprod, @Quantidade, @Preco)", c.conexao);
-                INSERTPROD.Parameters.AddWithValue("@Id_pedidovenda", pedido.CodPedido);
-                INSERTPROD.Parameters.AddWithValue("@Id_produto", itens.Produto.CodInterno);
-                INSERTPROD.Parameters.AddWithValue("@Descricaoprod", itens.Produto.Descricao);
-                INSERTPROD.Parameters.AddWithValue("@Quantidade", itens.Quantidade);
-                INSERTPROD.Parameters.AddWithValue("@Preco", itens.Preco);
 
-                INSERTPROD.ExecuteNonQuery();
+
+                for (int i = 0; i < dataGridView2.RowCount; i++)
+                {
+                    //limpo os parâmetros
+                    //INSERTPROD.Parameters.Clear();                   
+                    //INSERTPROD.Parameters.AddWithValue("@Id_pedidovenda", pedido.CodPedido);
+                    //INSERTPROD.Parameters.AddWithValue("@Id_produto", itens.Produto.CodInterno);
+                    //INSERTPROD.Parameters.AddWithValue("@Descricaoprod", itens.Produto.Descricao);
+                    //INSERTPROD.Parameters.AddWithValue("@Quantidade", itens.Quantidade);
+                    //INSERTPROD.Parameters.AddWithValue("@Preco", itens.Preco);
+
+                    //INSERTPROD.ExecuteNonQuery();
+
+                }
+
 
                 MessageBox.Show("Pedido criado com sucesso", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 TsbCancelar_Click(TsbCancelar, new EventArgs());
 
                 CarregaGrid();
-                
+
 
             }
             catch (Exception ex)
@@ -287,10 +301,13 @@ namespace Sistema
         {
             Produto prod = new Produto(int.Parse(txtCodProduto.Text), txtDescricaoProd.Text, txtCodBarras.Text, double.Parse(txtPreco.Text, CultureInfo.InvariantCulture));
             //PedidoVenda pedido = new PedidoVenda();
-            PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
+            PedidoItens itens = new PedidoItens();
+            itens.Quantidade = int.Parse(txtQuantidade.Text);
+            itens.Preco = double.Parse(txtPreco.Text);
+            itens.Produto = prod;
 
             itens.Subtotal = itens.SubTotal();
-            
+
             valor += itens.SubTotal();
             //pedido.TotalPedido = pedido.TotalPedido + valor;
 

@@ -272,7 +272,6 @@
             // 
             // TsbNovo
             // 
-            this.TsbNovo.AutoSize = false;
             this.TsbNovo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.TsbNovo.Image = ((System.Drawing.Image)(resources.GetObject("TsbNovo.Image")));
             this.TsbNovo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
