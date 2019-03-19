@@ -59,7 +59,7 @@ namespace Sistema
         }
 
         private void CarregaTextBox()
-        {   
+        {
             //Carrega os campos do datagrid nos textbox
             txtNumPedido.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
             txtCodCliente.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
@@ -69,6 +69,8 @@ namespace Sistema
 
             txtCodVendedor.Text = dataGridView1.Rows[0].Cells[6].Value.ToString();
             txtNomeVendedor.Text = dataGridView1.Rows[0].Cells[7].Value.ToString();
+
+            
         }
 
         public void CarregaGrid()
@@ -93,6 +95,7 @@ namespace Sistema
                 //Ocultar as colunas para não exibir no grid
                 dataGridView1.Columns["id_vendedor"].Visible = false;
                 dataGridView1.Columns["nomevendedor"].Visible = false;
+                dataGridView1.Columns["Total"].DefaultCellStyle.Format = "C2";
                 //bloqueia a edição da celula no datagrid
                 dataGridView1.ReadOnly = true;
 
@@ -119,6 +122,7 @@ namespace Sistema
             TsbGravar.Enabled = true;
             TsbCancelar.Enabled = true;
             TsbExcluir.Enabled = false;
+            TsbSair.Enabled = false;
 
             //Desblqueia campos referente a clientes e vendedor
             txtCodCliente.Enabled = true;
@@ -147,6 +151,7 @@ namespace Sistema
 
         private void TsbSair_Click(object sender, EventArgs e)
         {
+            CarregaTextBox();
             this.Close();
         }
 
@@ -161,7 +166,7 @@ namespace Sistema
             pedido.Data = dt;
             pedido.Cliente = cliente;
             pedido.TotalPedido = double.Parse(txtSubTotal.Text);
-
+            
             Vendedor vendedor = new Vendedor(int.Parse(txtCodVendedor.Text), txtNomeVendedor.Text);
             //Produto prod = new Produto(int.Parse(txtCodProduto.Text), txtDescricaoProd.Text, txtCodBarras.Text, double.Parse(txtPreco.Text, CultureInfo.InvariantCulture));
             //PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
@@ -181,21 +186,23 @@ namespace Sistema
 
                 INSERT.ExecuteNonQuery();
 
-                MySqlCommand INSERTPROD = new MySqlCommand("INSERT INTO pedidoItens ( id_pedidovenda, id_produto, descricaoprod, quatidade, preco) " +
+
+                MySqlCommand INSERTPROD = new MySqlCommand("INSERT INTO pedidoItens ( id_pedidovenda, id_produto, descricaoprod, quantidade, preco) " +
                                                        "VALUES(@Id_pedidovenda, @Id_produto, @Descricaoprod, @Quantidade, @Preco)", c.conexao);
+
 
 
                 for (int i = 0; i < dataGridView2.RowCount; i++)
                 {
                     //limpo os parâmetros
-                    //INSERTPROD.Parameters.Clear();                   
-                    //INSERTPROD.Parameters.AddWithValue("@Id_pedidovenda", pedido.CodPedido);
-                    //INSERTPROD.Parameters.AddWithValue("@Id_produto", itens.Produto.CodInterno);
-                    //INSERTPROD.Parameters.AddWithValue("@Descricaoprod", itens.Produto.Descricao);
-                    //INSERTPROD.Parameters.AddWithValue("@Quantidade", itens.Quantidade);
-                    //INSERTPROD.Parameters.AddWithValue("@Preco", itens.Preco);
+                    INSERTPROD.Parameters.Clear();
+                    INSERTPROD.Parameters.AddWithValue("@Id_produto", dataGridView2.Rows[i].Cells[0].Value);
+                    INSERTPROD.Parameters.AddWithValue("@Id_pedidovenda", dataGridView2.Rows[i].Cells[2].Value);
+                    INSERTPROD.Parameters.AddWithValue("@Descricaoprod", dataGridView2.Rows[i].Cells[3].Value);
+                    INSERTPROD.Parameters.AddWithValue("@Quantidade", dataGridView2.Rows[i].Cells[4].Value);
+                    INSERTPROD.Parameters.AddWithValue("@Preco", dataGridView2.Rows[i].Cells[5].Value);
 
-                    //INSERTPROD.ExecuteNonQuery();
+                    INSERTPROD.ExecuteNonQuery();
 
                 }
 
@@ -227,11 +234,16 @@ namespace Sistema
 
         private void TsbCancelar_Click(object sender, EventArgs e)
         {
+
+
+            CarregaTextBox();
+
             TsbNovo.Enabled = true;
             TsbEditar.Enabled = true;
             TsbGravar.Enabled = false;
             TsbCancelar.Enabled = false;
             TsbExcluir.Enabled = true;
+            TsbSair.Enabled = true;
 
             txtCodCliente.Enabled = false;
             txtNomeCliente.Enabled = false;
@@ -279,6 +291,7 @@ namespace Sistema
             TsbGravar.Enabled = true;
             TsbCancelar.Enabled = true;
             TsbExcluir.Enabled = false;
+            TsbSair.Enabled = false;
 
             txtCodCliente.Enabled = true;
             //txtNomeCliente.Enabled = true;
@@ -304,15 +317,45 @@ namespace Sistema
             PedidoItens itens = new PedidoItens();
             itens.Quantidade = int.Parse(txtQuantidade.Text);
             itens.Preco = double.Parse(txtPreco.Text);
+            itens.CodProduto = int.Parse(txtCodProduto.Text);
+            itens.Descricao = txtDescricaoProd.Text;
             itens.Produto = prod;
 
-            itens.Subtotal = itens.SubTotal();
+            Conexao c = new Conexao();
+            try
+            {
+                
+                MySqlCommand SELECT = c.conexao.CreateCommand();
+                SELECT.CommandType = CommandType.Text;
+                SELECT.CommandText = "SELECT MAX(id +1) as id  FROM pedidovenda";
 
+                c.AbrirConexao();
+                MySqlDataReader leitura = SELECT.ExecuteReader();
+
+                if (leitura.Read())
+                {
+                    itens.CodPedido = int.Parse(leitura["id"].ToString());
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                c.FecharConexao();
+            }
+            dataGridView2.Columns["Preco"].DefaultCellStyle.Format = "C2";
+            dataGridView2.Columns["Total"].DefaultCellStyle.Format = "C2";
+            itens.Subtotal = itens.SubTotal();
+            
             valor += itens.SubTotal();
             //pedido.TotalPedido = pedido.TotalPedido + valor;
 
-            txtSubTotal.Text = valor.ToString("F2", CultureInfo.InvariantCulture);
-
+            txtSubTotal.Text = valor.ToString(/*"F2", CultureInfo.InvariantCulture*/);
+           
             itemsBindingSource.Add(itens);
 
             //pedido.AdicionarItem(itens);
@@ -488,9 +531,7 @@ namespace Sistema
             }
             else
             {
-                //Produto produto = new Produto(int.Parse(txtCodProduto.Text), txtDescricaoProd.Text, txtCodBarras.Text, double.Parse(txtPreco.Text));
-
-
+                
                 Conexao c = new Conexao();
 
                 MySqlCommand SELECT = c.conexao.CreateCommand();
@@ -645,8 +686,49 @@ namespace Sistema
 
                 txtCodVendedor.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
                 txtNomeVendedor.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
+
+
+                Conexao c = new Conexao();
+
+                MySqlCommand SELECT = c.conexao.CreateCommand();
+                SELECT.CommandType = CommandType.Text;
+                SELECT.CommandText = "SELECT id_pedidovenda, id_produto, descricaoprod, quantidade, preco FROM pedidoitens WHERE id_pedidovenda = @Id_pedido ";
+                SELECT.Parameters.AddWithValue("@Id_pedido", txtNumPedido.Text);               
+
+
+                try
+                {
+                    c.AbrirConexao();
+                    MySqlDataAdapter leitura = new MySqlDataAdapter(SELECT);
+                    DataTable dt = new DataTable();
+
+                    leitura.Fill(dt);
+                    dataGridView2.DataSource = dt;
+
+                    ////Ocultar as colunas para não exibir no grid
+                    //dataGridView1.Columns["id_vendedor"].Visible = false;
+                    //dataGridView1.Columns["nomevendedor"].Visible = false;
+                    ////bloqueia a edição da celula no datagrid
+                    dataGridView1.ReadOnly = true;
+
+                    //Formatar o Grid
+                    FormataGrid();
+
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Erro ao Carregar o Grid!");
+                }
+                finally
+                {
+                    c.FecharConexao();
+                }
             }
         }
+
+
+
     }
 
 }

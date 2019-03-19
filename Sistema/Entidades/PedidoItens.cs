@@ -2,6 +2,9 @@
 {
     class PedidoItens
     {
+        public int CodPedido { get; set; }
+        public string Descricao { get; set; }
+        public int CodProduto{ get; set; }
         public int Quantidade { get; set; }
         public double Preco { get; set; }
         public double Subtotal { get; set; }
