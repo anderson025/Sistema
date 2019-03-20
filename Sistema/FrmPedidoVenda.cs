@@ -692,7 +692,7 @@ namespace Sistema
 
                 MySqlCommand SELECT = c.conexao.CreateCommand();
                 SELECT.CommandType = CommandType.Text;
-                SELECT.CommandText = "SELECT id_pedidovenda, id_produto, descricaoprod, quantidade, preco FROM pedidoitens WHERE id_pedidovenda = @Id_pedido ";
+                SELECT.CommandText = "SELECT pi.id_produto AS Codigo, p.codbarra AS codBarras, pi.descricaoprod AS Descricao, pi.quantidade as Quantidade, pi.preco AS Preco , PV.TOTALPEDIDO AS Total FROM  pedidoitens pi inner join produto  p on pi.id_produto = p.id  inner join pedidovenda pv on pi.id_pedidovenda = pv.id WHERE pi.id_pedidovenda = @Id_pedido ";
                 SELECT.Parameters.AddWithValue("@Id_pedido", txtNumPedido.Text);               
 
 
@@ -704,7 +704,9 @@ namespace Sistema
 
                     leitura.Fill(dt);
                     dataGridView2.DataSource = dt;
+                    //itemsBindingSource.Add(dt);
 
+                    
                     ////Ocultar as colunas para não exibir no grid
                     //dataGridView1.Columns["id_vendedor"].Visible = false;
                     //dataGridView1.Columns["nomevendedor"].Visible = false;
@@ -716,9 +718,10 @@ namespace Sistema
 
 
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Erro ao Carregar o Grid!");
+                    throw ex;
                 }
                 finally
                 {
