@@ -70,7 +70,7 @@ namespace Sistema
             txtCodVendedor.Text = dataGridView1.Rows[0].Cells[6].Value.ToString();
             txtNomeVendedor.Text = dataGridView1.Rows[0].Cells[7].Value.ToString();
 
-            
+
         }
 
         public void CarregaGrid()
@@ -166,7 +166,7 @@ namespace Sistema
             pedido.Data = dt;
             pedido.Cliente = cliente;
             pedido.TotalPedido = double.Parse(txtSubTotal.Text);
-            
+
             Vendedor vendedor = new Vendedor(int.Parse(txtCodVendedor.Text), txtNomeVendedor.Text);
             //Produto prod = new Produto(int.Parse(txtCodProduto.Text), txtDescricaoProd.Text, txtCodBarras.Text, double.Parse(txtPreco.Text, CultureInfo.InvariantCulture));
             //PedidoItens itens = new PedidoItens(int.Parse(txtQuantidade.Text), double.Parse(txtPreco.Text), prod);
@@ -324,7 +324,7 @@ namespace Sistema
             Conexao c = new Conexao();
             try
             {
-                
+
                 MySqlCommand SELECT = c.conexao.CreateCommand();
                 SELECT.CommandType = CommandType.Text;
                 SELECT.CommandText = "SELECT MAX(id +1) as id  FROM pedidovenda";
@@ -350,12 +350,12 @@ namespace Sistema
             dataGridView2.Columns["Preco"].DefaultCellStyle.Format = "C2";
             dataGridView2.Columns["Total"].DefaultCellStyle.Format = "C2";
             itens.Subtotal = itens.SubTotal();
-            
+
             valor += itens.SubTotal();
             //pedido.TotalPedido = pedido.TotalPedido + valor;
 
             txtSubTotal.Text = valor.ToString(/*"F2", CultureInfo.InvariantCulture*/);
-           
+
             itemsBindingSource.Add(itens);
 
             //pedido.AdicionarItem(itens);
@@ -531,7 +531,7 @@ namespace Sistema
             }
             else
             {
-                
+
                 Conexao c = new Conexao();
 
                 MySqlCommand SELECT = c.conexao.CreateCommand();
@@ -692,8 +692,8 @@ namespace Sistema
 
                 MySqlCommand SELECT = c.conexao.CreateCommand();
                 SELECT.CommandType = CommandType.Text;
-                SELECT.CommandText = "SELECT pi.id_produto AS Codigo, p.codbarra AS codBarras, pi.descricaoprod AS Descricao, pi.quantidade as Quantidade, pi.preco AS Preco , PV.TOTALPEDIDO AS Total FROM  pedidoitens pi inner join produto  p on pi.id_produto = p.id  inner join pedidovenda pv on pi.id_pedidovenda = pv.id WHERE pi.id_pedidovenda = @Id_pedido ";
-                SELECT.Parameters.AddWithValue("@Id_pedido", txtNumPedido.Text);               
+                SELECT.CommandText = "SELECT p.id AS Codigo, p.codbarra AS codBarras, pi.descricaoprod AS Descricao, pi.quantidade as Quantidade, pi.preco AS Preco , PV.TOTALPEDIDO AS Total FROM  pedidoitens pi inner join produto  p on pi.id_produto = p.id  inner join pedidovenda pv on pi.id_pedidovenda = pv.id WHERE pi.id_pedidovenda = @Id_pedido ";
+                SELECT.Parameters.AddWithValue("@Id_pedido", txtNumPedido.Text);
 
 
                 try
@@ -702,11 +702,13 @@ namespace Sistema
                     MySqlDataAdapter leitura = new MySqlDataAdapter(SELECT);
                     DataTable dt = new DataTable();
 
+
+
                     leitura.Fill(dt);
                     dataGridView2.DataSource = dt;
                     //itemsBindingSource.Add(dt);
 
-                    
+
                     ////Ocultar as colunas para não exibir no grid
                     //dataGridView1.Columns["id_vendedor"].Visible = false;
                     //dataGridView1.Columns["nomevendedor"].Visible = false;

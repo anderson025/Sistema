@@ -145,6 +145,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\Sistema.Entidades.PedidoItens.datasource" />
     <None Include="Properties\DataSources\Sistema.Entidades.PedidoVenda.datasource" />
+    <None Include="Properties\DataSources\Sistema.Entidades.Produto.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

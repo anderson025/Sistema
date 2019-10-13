@@ -74,17 +74,17 @@
             this.itemsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.arquivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pedidoVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.Codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodBarras = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CodPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descricao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantidade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Preco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantidade2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.precoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.produtoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pedidoVendaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.codPedidoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.produtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.itemsBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.GpbIdentificacao.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -93,6 +93,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource)).BeginInit();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pedidoVendaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblCliente
@@ -512,12 +514,10 @@
             this.Descricao,
             this.Quantidade,
             this.Preco,
-            this.Quantidade2,
-            this.precoDataGridViewTextBoxColumn,
-            this.produtoDataGridViewTextBoxColumn,
-            this.Total});
-            this.dataGridView2.DataSource = this.itemsBindingSource;
-            this.dataGridView2.Location = new System.Drawing.Point(14, 585);
+            this.Total,
+            this.codPedidoDataGridViewTextBoxColumn});
+            this.dataGridView2.DataSource = this.itemsBindingSource1;
+            this.dataGridView2.Location = new System.Drawing.Point(12, 582);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
             this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -547,13 +547,9 @@
             this.arquivoToolStripMenuItem.Size = new System.Drawing.Size(73, 24);
             this.arquivoToolStripMenuItem.Text = "Arquivo";
             // 
-            // pedidoVendaBindingSource
-            // 
-            this.pedidoVendaBindingSource.DataSource = typeof(Sistema.Entidades.PedidoVenda);
-            // 
             // Codigo
             // 
-            this.Codigo.DataPropertyName = "CodProduto";
+            this.Codigo.DataPropertyName = "Produto.CodProduto";
             this.Codigo.HeaderText = "Codigo";
             this.Codigo.Name = "Codigo";
             // 
@@ -588,32 +584,30 @@
             this.Preco.HeaderText = "Preco";
             this.Preco.Name = "Preco";
             // 
-            // Quantidade2
-            // 
-            this.Quantidade2.DataPropertyName = "Quantidade";
-            this.Quantidade2.HeaderText = "Quantidade";
-            this.Quantidade2.Name = "Quantidade2";
-            this.Quantidade2.Visible = false;
-            // 
-            // precoDataGridViewTextBoxColumn
-            // 
-            this.precoDataGridViewTextBoxColumn.DataPropertyName = "Preco";
-            this.precoDataGridViewTextBoxColumn.HeaderText = "Preco";
-            this.precoDataGridViewTextBoxColumn.Name = "precoDataGridViewTextBoxColumn";
-            this.precoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // produtoDataGridViewTextBoxColumn
-            // 
-            this.produtoDataGridViewTextBoxColumn.DataPropertyName = "Produto";
-            this.produtoDataGridViewTextBoxColumn.HeaderText = "Produto";
-            this.produtoDataGridViewTextBoxColumn.Name = "produtoDataGridViewTextBoxColumn";
-            this.produtoDataGridViewTextBoxColumn.Visible = false;
-            // 
             // Total
             // 
             this.Total.DataPropertyName = "SubTotal";
             this.Total.HeaderText = "Total";
             this.Total.Name = "Total";
+            // 
+            // pedidoVendaBindingSource
+            // 
+            this.pedidoVendaBindingSource.DataSource = typeof(Sistema.Entidades.PedidoVenda);
+            // 
+            // codPedidoDataGridViewTextBoxColumn
+            // 
+            this.codPedidoDataGridViewTextBoxColumn.DataPropertyName = "CodPedido";
+            this.codPedidoDataGridViewTextBoxColumn.HeaderText = "CodPedido";
+            this.codPedidoDataGridViewTextBoxColumn.Name = "codPedidoDataGridViewTextBoxColumn";
+            // 
+            // produtoBindingSource
+            // 
+            this.produtoBindingSource.DataSource = typeof(Sistema.Entidades.Produto);
+            // 
+            // itemsBindingSource1
+            // 
+            this.itemsBindingSource1.DataMember = "Items";
+            this.itemsBindingSource1.DataSource = this.pedidoVendaBindingSource;
             // 
             // FrmPedidoVenda
             // 
@@ -645,6 +639,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pedidoVendaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.produtoBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.itemsBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -697,15 +693,15 @@
         private System.Windows.Forms.TextBox txtSubTotal;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem arquivoToolStripMenuItem;
+        private System.Windows.Forms.BindingSource produtoBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn Codigo;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodBarras;
         private System.Windows.Forms.DataGridViewTextBoxColumn CodPedido;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descricao;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade;
         private System.Windows.Forms.DataGridViewTextBoxColumn Preco;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantidade2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn produtoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codPedidoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.BindingSource itemsBindingSource1;
     }
 }
