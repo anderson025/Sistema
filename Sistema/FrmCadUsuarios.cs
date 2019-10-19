@@ -16,7 +16,7 @@ namespace Sistema
             InitializeComponent();
         }
 
-        private string controle;
+        private string controle = null;
 
         private void FrmCadUsuarios_Load(object sender, EventArgs e)
         {
@@ -106,9 +106,7 @@ namespace Sistema
 
                     CarregaGrid();
 
-                    txtCodigo.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
-                    txtUsuario.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
-                    txtSenha.Text = dataGridView1.Rows[0].Cells[2].Value.ToString();
+                    PosicionaDataGrid();
 
                 }
                 catch (Exception)
@@ -137,6 +135,8 @@ namespace Sistema
 
                     CarregaGrid();
 
+                    PosicionaDataGrid();
+
                 }
                 catch (Exception)
                 {
@@ -146,6 +146,13 @@ namespace Sistema
             }
 
 
+        }
+
+        public void PosicionaDataGrid()
+        {
+            txtCodigo.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
+            txtUsuario.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
+            txtSenha.Text = dataGridView1.Rows[0].Cells[2].Value.ToString();
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
