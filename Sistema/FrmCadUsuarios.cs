@@ -27,6 +27,7 @@ namespace Sistema
             txtSenha.Enabled = false;
             CarregaGrid();
 
+            
             txtCodigo.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
             txtUsuario.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
             txtSenha.Text = dataGridView1.Rows[0].Cells[2].Value.ToString();
@@ -35,6 +36,23 @@ namespace Sistema
             dataGridView1.Columns["Senha"].Visible = false;
             dataGridView1.ReadOnly = true;
 
+
+        }
+
+        private void FormataGrid()
+        {
+            /*********Grid Dados******/
+            //removendo o indicador do Datagrid do lado esquerdo da tela.
+            dataGridView1.RowHeadersVisible = false;
+
+            //Fundo do datagrid cinza claro
+            dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+
+            //Configura o grid para preencher a tela toda
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            //Remover a ultima linha do Datagrid
+            dataGridView1.AllowUserToAddRows = false;
 
         }
 
@@ -57,8 +75,8 @@ namespace Sistema
             btnSair.Enabled = false;
             btnGravar.Enabled = true;
             btnCancelar.Enabled = true;
-            
 
+            txtUsuario.Focus();
 
         }
 
@@ -80,13 +98,17 @@ namespace Sistema
                     UPDATE.ExecuteNonQuery();
                     MessageBox.Show("Alterador com Sucesso", "Alteração", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     c.FecharConexao();
-                    txtCodigo.Text = String.Empty;
-                    txtSenha.Text = String.Empty;
-                    txtUsuario.Text = String.Empty;
+                    //txtCodigo.Text = String.Empty;
+                    //txtSenha.Text = String.Empty;
+                    //txtUsuario.Text = String.Empty;
 
                     btnCancelar_Click(btnCancelar, new EventArgs());
 
                     CarregaGrid();
+
+                    txtCodigo.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
+                    txtUsuario.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
+                    txtSenha.Text = dataGridView1.Rows[0].Cells[2].Value.ToString();
 
                 }
                 catch (Exception)
@@ -155,6 +177,10 @@ namespace Sistema
 
                 leitura.Fill(dt);
                 dataGridView1.DataSource = dt;
+
+                FormataGrid();
+
+
                 c.FecharConexao();
             }
             catch (Exception)
