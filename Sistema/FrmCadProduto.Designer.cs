@@ -55,6 +55,20 @@
             this.TsbCancelar = new System.Windows.Forms.ToolStripButton();
             this.TsbExcluir = new System.Windows.Forms.ToolStripButton();
             this.TsbSair = new System.Windows.Forms.ToolStripButton();
+            this.cboFamilia = new System.Windows.Forms.ComboBox();
+            this.cboSecao = new System.Windows.Forms.ComboBox();
+            this.cboDepartamento = new System.Windows.Forms.ComboBox();
+            this.lblFamilia = new System.Windows.Forms.Label();
+            this.lblDepartamento = new System.Windows.Forms.Label();
+            this.lblSecao = new System.Windows.Forms.Label();
+            this.cboUnidadeEntrada = new System.Windows.Forms.ComboBox();
+            this.cboUnidadeSaida = new System.Windows.Forms.ComboBox();
+            this.lblEntrada = new System.Windows.Forms.Label();
+            this.lblSaida = new System.Windows.Forms.Label();
+            this.txtQuantidadeEntrada = new System.Windows.Forms.TextBox();
+            this.txtQuantidadeSaida = new System.Windows.Forms.TextBox();
+            this.lblQuantidade = new System.Windows.Forms.Label();
+            this.lblQuantidadeSaida = new System.Windows.Forms.Label();
             this.TabGeral.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gpbPreco.SuspendLayout();
@@ -68,10 +82,10 @@
             this.TabGeral.Controls.Add(this.tabPage1);
             this.TabGeral.Controls.Add(this.tabPage2);
             this.TabGeral.Controls.Add(this.tabPage3);
-            this.TabGeral.Location = new System.Drawing.Point(12, 254);
+            this.TabGeral.Location = new System.Drawing.Point(16, 229);
             this.TabGeral.Name = "TabGeral";
             this.TabGeral.SelectedIndex = 0;
-            this.TabGeral.Size = new System.Drawing.Size(754, 293);
+            this.TabGeral.Size = new System.Drawing.Size(762, 439);
             this.TabGeral.TabIndex = 1;
             // 
             // tabPage1
@@ -81,7 +95,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(746, 264);
+            this.tabPage1.Size = new System.Drawing.Size(754, 410);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Geral";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -94,7 +108,7 @@
             this.gpbPreco.Controls.Add(this.lblCompra);
             this.gpbPreco.Controls.Add(this.lblPrecoVenda);
             this.gpbPreco.Controls.Add(this.txtPrecoCompra);
-            this.gpbPreco.Location = new System.Drawing.Point(9, 135);
+            this.gpbPreco.Location = new System.Drawing.Point(5, 285);
             this.gpbPreco.Name = "gpbPreco";
             this.gpbPreco.Size = new System.Drawing.Size(734, 119);
             this.gpbPreco.TabIndex = 1;
@@ -154,6 +168,20 @@
             // 
             // grbProduto
             // 
+            this.grbProduto.Controls.Add(this.lblQuantidadeSaida);
+            this.grbProduto.Controls.Add(this.lblQuantidade);
+            this.grbProduto.Controls.Add(this.txtQuantidadeSaida);
+            this.grbProduto.Controls.Add(this.txtQuantidadeEntrada);
+            this.grbProduto.Controls.Add(this.lblSaida);
+            this.grbProduto.Controls.Add(this.lblEntrada);
+            this.grbProduto.Controls.Add(this.cboUnidadeSaida);
+            this.grbProduto.Controls.Add(this.cboUnidadeEntrada);
+            this.grbProduto.Controls.Add(this.lblSecao);
+            this.grbProduto.Controls.Add(this.lblDepartamento);
+            this.grbProduto.Controls.Add(this.lblFamilia);
+            this.grbProduto.Controls.Add(this.cboDepartamento);
+            this.grbProduto.Controls.Add(this.cboSecao);
+            this.grbProduto.Controls.Add(this.cboFamilia);
             this.grbProduto.Controls.Add(this.lblDescricao);
             this.grbProduto.Controls.Add(this.lblCodBarra);
             this.grbProduto.Controls.Add(this.lblCodigo);
@@ -162,7 +190,7 @@
             this.grbProduto.Controls.Add(this.txtId);
             this.grbProduto.Location = new System.Drawing.Point(8, 6);
             this.grbProduto.Name = "grbProduto";
-            this.grbProduto.Size = new System.Drawing.Size(732, 123);
+            this.grbProduto.Size = new System.Drawing.Size(732, 273);
             this.grbProduto.TabIndex = 0;
             this.grbProduto.TabStop = false;
             this.grbProduto.Text = "Geral";
@@ -239,9 +267,10 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 98);
+            this.dataGridView1.Location = new System.Drawing.Point(24, 73);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(750, 150);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -328,11 +357,138 @@
             this.TsbSair.Text = "tsbSair";
             this.TsbSair.Click += new System.EventHandler(this.TsbSair_Click);
             // 
+            // cboFamilia
+            // 
+            this.cboFamilia.BackColor = System.Drawing.SystemColors.Info;
+            this.cboFamilia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFamilia.FormattingEnabled = true;
+            this.cboFamilia.Location = new System.Drawing.Point(16, 116);
+            this.cboFamilia.Name = "cboFamilia";
+            this.cboFamilia.Size = new System.Drawing.Size(265, 24);
+            this.cboFamilia.TabIndex = 8;
+            // 
+            // cboSecao
+            // 
+            this.cboSecao.BackColor = System.Drawing.SystemColors.Info;
+            this.cboSecao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSecao.FormattingEnabled = true;
+            this.cboSecao.Location = new System.Drawing.Point(16, 210);
+            this.cboSecao.Name = "cboSecao";
+            this.cboSecao.Size = new System.Drawing.Size(265, 24);
+            this.cboSecao.TabIndex = 9;
+            // 
+            // cboDepartamento
+            // 
+            this.cboDepartamento.BackColor = System.Drawing.SystemColors.Info;
+            this.cboDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDepartamento.FormattingEnabled = true;
+            this.cboDepartamento.Location = new System.Drawing.Point(16, 163);
+            this.cboDepartamento.Name = "cboDepartamento";
+            this.cboDepartamento.Size = new System.Drawing.Size(265, 24);
+            this.cboDepartamento.TabIndex = 10;
+            // 
+            // lblFamilia
+            // 
+            this.lblFamilia.AutoSize = true;
+            this.lblFamilia.Location = new System.Drawing.Point(13, 96);
+            this.lblFamilia.Name = "lblFamilia";
+            this.lblFamilia.Size = new System.Drawing.Size(56, 17);
+            this.lblFamilia.TabIndex = 11;
+            this.lblFamilia.Text = "Familia:";
+            // 
+            // lblDepartamento
+            // 
+            this.lblDepartamento.AutoSize = true;
+            this.lblDepartamento.Location = new System.Drawing.Point(13, 143);
+            this.lblDepartamento.Name = "lblDepartamento";
+            this.lblDepartamento.Size = new System.Drawing.Size(102, 17);
+            this.lblDepartamento.TabIndex = 12;
+            this.lblDepartamento.Text = "Departamento:";
+            // 
+            // lblSecao
+            // 
+            this.lblSecao.AutoSize = true;
+            this.lblSecao.Location = new System.Drawing.Point(13, 190);
+            this.lblSecao.Name = "lblSecao";
+            this.lblSecao.Size = new System.Drawing.Size(52, 17);
+            this.lblSecao.TabIndex = 13;
+            this.lblSecao.Text = "Seção:";
+            // 
+            // cboUnidadeEntrada
+            // 
+            this.cboUnidadeEntrada.BackColor = System.Drawing.SystemColors.Info;
+            this.cboUnidadeEntrada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUnidadeEntrada.FormattingEnabled = true;
+            this.cboUnidadeEntrada.Location = new System.Drawing.Point(447, 116);
+            this.cboUnidadeEntrada.Name = "cboUnidadeEntrada";
+            this.cboUnidadeEntrada.Size = new System.Drawing.Size(265, 24);
+            this.cboUnidadeEntrada.TabIndex = 14;
+            // 
+            // cboUnidadeSaida
+            // 
+            this.cboUnidadeSaida.BackColor = System.Drawing.SystemColors.Info;
+            this.cboUnidadeSaida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUnidadeSaida.FormattingEnabled = true;
+            this.cboUnidadeSaida.Location = new System.Drawing.Point(447, 200);
+            this.cboUnidadeSaida.Name = "cboUnidadeSaida";
+            this.cboUnidadeSaida.Size = new System.Drawing.Size(265, 24);
+            this.cboUnidadeSaida.TabIndex = 15;
+            // 
+            // lblEntrada
+            // 
+            this.lblEntrada.AutoSize = true;
+            this.lblEntrada.Location = new System.Drawing.Point(444, 96);
+            this.lblEntrada.Name = "lblEntrada";
+            this.lblEntrada.Size = new System.Drawing.Size(124, 17);
+            this.lblEntrada.TabIndex = 16;
+            this.lblEntrada.Text = "Unidade -Entrada:";
+            // 
+            // lblSaida
+            // 
+            this.lblSaida.AutoSize = true;
+            this.lblSaida.Location = new System.Drawing.Point(444, 180);
+            this.lblSaida.Name = "lblSaida";
+            this.lblSaida.Size = new System.Drawing.Size(114, 17);
+            this.lblSaida.TabIndex = 17;
+            this.lblSaida.Text = "Unidade - Saída:";
+            // 
+            // txtQuantidadeEntrada
+            // 
+            this.txtQuantidadeEntrada.Location = new System.Drawing.Point(536, 151);
+            this.txtQuantidadeEntrada.Name = "txtQuantidadeEntrada";
+            this.txtQuantidadeEntrada.Size = new System.Drawing.Size(70, 22);
+            this.txtQuantidadeEntrada.TabIndex = 18;
+            // 
+            // txtQuantidadeSaida
+            // 
+            this.txtQuantidadeSaida.Location = new System.Drawing.Point(536, 235);
+            this.txtQuantidadeSaida.Name = "txtQuantidadeSaida";
+            this.txtQuantidadeSaida.Size = new System.Drawing.Size(70, 22);
+            this.txtQuantidadeSaida.TabIndex = 19;
+            // 
+            // lblQuantidade
+            // 
+            this.lblQuantidade.AutoSize = true;
+            this.lblQuantidade.Location = new System.Drawing.Point(444, 151);
+            this.lblQuantidade.Name = "lblQuantidade";
+            this.lblQuantidade.Size = new System.Drawing.Size(86, 17);
+            this.lblQuantidade.TabIndex = 20;
+            this.lblQuantidade.Text = "Quantidade:";
+            // 
+            // lblQuantidadeSaida
+            // 
+            this.lblQuantidadeSaida.AutoSize = true;
+            this.lblQuantidadeSaida.Location = new System.Drawing.Point(444, 235);
+            this.lblQuantidadeSaida.Name = "lblQuantidadeSaida";
+            this.lblQuantidadeSaida.Size = new System.Drawing.Size(86, 17);
+            this.lblQuantidadeSaida.TabIndex = 21;
+            this.lblQuantidadeSaida.Text = "Quantidade:";
+            // 
             // FrmCadProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(778, 552);
+            this.ClientSize = new System.Drawing.Size(778, 680);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.TabGeral);
@@ -383,5 +539,19 @@
         private System.Windows.Forms.ToolStripButton TsbCancelar;
         private System.Windows.Forms.ToolStripButton TsbExcluir;
         private System.Windows.Forms.ToolStripButton TsbSair;
+        private System.Windows.Forms.Label lblSecao;
+        private System.Windows.Forms.Label lblDepartamento;
+        private System.Windows.Forms.Label lblFamilia;
+        private System.Windows.Forms.ComboBox cboDepartamento;
+        private System.Windows.Forms.ComboBox cboSecao;
+        private System.Windows.Forms.ComboBox cboFamilia;
+        private System.Windows.Forms.Label lblQuantidadeSaida;
+        private System.Windows.Forms.Label lblQuantidade;
+        private System.Windows.Forms.TextBox txtQuantidadeSaida;
+        private System.Windows.Forms.TextBox txtQuantidadeEntrada;
+        private System.Windows.Forms.Label lblSaida;
+        private System.Windows.Forms.Label lblEntrada;
+        private System.Windows.Forms.ComboBox cboUnidadeSaida;
+        private System.Windows.Forms.ComboBox cboUnidadeEntrada;
     }
 }

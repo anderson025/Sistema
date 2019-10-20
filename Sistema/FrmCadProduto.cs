@@ -98,6 +98,7 @@ namespace Sistema
 
                 leitura.Fill(dt);
                 dataGridView1.DataSource = dt;
+                FormataGrid();
                 c.FecharConexao();
             }
             catch (Exception)
@@ -357,6 +358,23 @@ namespace Sistema
         private void TsbSair_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void FormataGrid()
+        {
+            /*********Grid Dados******/
+            //removendo o indicador do Datagrid do lado esquerdo da tela.
+            dataGridView1.RowHeadersVisible = false;
+
+            //Fundo do datagrid cinza claro
+            dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+
+            //Configura o grid para preencher a tela toda
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            //Remover a ultima linha do Datagrid
+            dataGridView1.AllowUserToAddRows = false;
+
         }
     }
 }
