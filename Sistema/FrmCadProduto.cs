@@ -1,9 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
+using Sistema.Entidades;
 using System;
 using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
-using Sistema.Entidades;
 
 
 namespace Sistema
@@ -34,8 +34,10 @@ namespace Sistema
         private void FrmCadProduto_Load(object sender, EventArgs e)
         {
 
-            btnGravar.Enabled = false;
-            btnCancelar.Enabled = false;
+            //btnGravar.Enabled = false;
+            //btnCancelar.Enabled = false;
+            TsbSalvar.Enabled = false;
+            TsbCancelar.Enabled = false;
             txtId.Enabled = false;
             txtCodBarra.Enabled = false;
             txtDescricao.Enabled = false;
@@ -140,124 +142,6 @@ namespace Sistema
 
         }
 
-        private void btnNovo_Click(object sender, EventArgs e)
-        {
-
-            //Limpa os campos
-            txtId.Text = String.Empty;
-            txtCodBarra.Text = String.Empty;
-            txtDescricao.Text = String.Empty;
-            txtPrecoVenda.Text = String.Empty;
-            txtPrecoCompra.Text = String.Empty;
-            txtPrecoCusto.Text = String.Empty;
-
-            //Habilita os textbox
-            txtCodBarra.Enabled = true;
-            txtDescricao.Enabled = true;
-            txtPrecoCompra.Enabled = true;
-            txtPrecoCusto.Enabled = true;
-            txtPrecoVenda.Enabled = true;
-
-            //Habilita e desabilita botoes
-            btnNovo.Enabled = false;
-            btnEditar.Enabled = false;
-            btnExcluir.Enabled = false;
-            btnSair.Enabled = false;
-            btnGravar.Enabled = true;
-            btnCancelar.Enabled = true;
-
-            txtCodBarra.Focus();
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            //Habilita os textbox
-            txtCodBarra.Enabled = true;
-            txtDescricao.Enabled = true;
-            txtPrecoCompra.Enabled = true;
-            txtPrecoCusto.Enabled = true;
-            txtPrecoVenda.Enabled = true;
-
-            //Habilita e desabilita botoes
-            btnNovo.Enabled = false;
-            btnEditar.Enabled = false;
-            btnExcluir.Enabled = false;
-            btnSair.Enabled = false;
-            btnGravar.Enabled = true;
-            btnCancelar.Enabled = true;
-
-            controle = "Editar";
-
-            txtCodBarra.Focus();
-        }
-
-        private void btnGravar_Click(object sender, EventArgs e)
-        {
-            prod.CodInterno = int.Parse(txtId.Text);
-            prod.CodBarra = txtCodBarra.Text;
-            prod.Descricao = txtDescricao.Text;
-            prod.PrecoVenda = double.Parse(txtPrecoVenda.Text, NumberStyles.Currency);
-            prod.PrecoCusto = double.Parse(txtPrecoCusto.Text, NumberStyles.Currency);
-            prod.PrecoCompra = double.Parse(txtPrecoCompra.Text, NumberStyles.Currency);
-
-            if (controle == "Editar")
-            {
-                prod.EditarProduto();
-
-                txtId.Text = String.Empty;
-                txtCodBarra.Text = String.Empty;
-                txtDescricao.Text = String.Empty;
-                txtPrecoVenda.Text = String.Empty;
-                txtPrecoCompra.Text = String.Empty;
-                txtPrecoCusto.Text = String.Empty;
-
-                btnCancelar_Click(btnCancelar, new EventArgs());
-
-                CarregaGrid();
-
-            }
-            else
-            {
-                prod.InserirProduto();
-
-                txtId.Text = String.Empty;
-                txtCodBarra.Text = String.Empty;
-                txtDescricao.Text = String.Empty;
-                txtPrecoVenda.Text = String.Empty;
-                txtPrecoCompra.Text = String.Empty;
-                txtPrecoCusto.Text = String.Empty;
-
-                btnCancelar_Click(btnCancelar, new EventArgs());
-
-                CarregaGrid();
-
-            }
-
-        }
-
-        private void btnExcluir_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("Deseja realmente Excluir?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                prod.CodInterno = int.Parse(txtId.Text);
-                prod.ExcluirProduto();
-
-                txtId.Text = String.Empty;
-                txtCodBarra.Text = String.Empty;
-                txtDescricao.Text = String.Empty;
-                txtPrecoVenda.Text = String.Empty;
-                txtPrecoCompra.Text = String.Empty;
-                txtPrecoCusto.Text = String.Empty;
-
-                //btnCancelar_Click(btnCancelar, new EventArgs());
-
-                CarregaGrid();
-            }
-        }
-
-
-
-
         private void btnSair_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -277,25 +161,7 @@ namespace Sistema
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            //Habilita os textbox
-            txtCodBarra.Enabled = false;
-            txtDescricao.Enabled = false;
-            txtPrecoCompra.Enabled = false;
-            txtPrecoCusto.Enabled = false;
-            txtPrecoVenda.Enabled = false;
 
-            //Habilita e desabilita botoes
-            btnNovo.Enabled = true;
-            btnEditar.Enabled = true;
-            btnExcluir.Enabled = true;
-            btnSair.Enabled = true;
-            btnGravar.Enabled = false;
-            btnCancelar.Enabled = false;
-
-
-        }
 
         private void FrmCadProduto_KeyDown(object sender, KeyEventArgs e)
         {
@@ -354,6 +220,143 @@ namespace Sistema
             }
         }
 
-        
+        private void TsbIncluir_Click(object sender, EventArgs e)
+        {
+            //Limpa os campos
+            txtId.Text = String.Empty;
+            txtCodBarra.Text = String.Empty;
+            txtDescricao.Text = String.Empty;
+            txtPrecoVenda.Text = String.Empty;
+            txtPrecoCompra.Text = String.Empty;
+            txtPrecoCusto.Text = String.Empty;
+
+            //Habilita os textbox
+            txtCodBarra.Enabled = true;
+            txtDescricao.Enabled = true;
+            txtPrecoCompra.Enabled = true;
+            txtPrecoCusto.Enabled = true;
+            txtPrecoVenda.Enabled = true;
+
+            //Habilita e desabilita botoes
+            TsbIncluir.Enabled = false;
+            TsbEditar.Enabled = false;
+            TsbExcluir.Enabled = false;
+            TsbSair.Enabled = false;
+            TsbSalvar.Enabled = true;
+            TsbCancelar.Enabled = true;
+
+            txtCodBarra.Focus();
+
+        }
+
+        private void TsbEditar_Click(object sender, EventArgs e)
+        {
+            //Habilita os textbox
+            txtCodBarra.Enabled = true;
+            txtDescricao.Enabled = true;
+            txtPrecoCompra.Enabled = true;
+            txtPrecoCusto.Enabled = true;
+            txtPrecoVenda.Enabled = true;
+
+            //Habilita e desabilita botoes
+            TsbIncluir.Enabled = false;
+            TsbEditar.Enabled = false;
+            TsbExcluir.Enabled = false;
+            TsbSair.Enabled = false;
+            TsbSalvar.Enabled = true;
+            TsbCancelar.Enabled = true;
+
+            controle = "Editar";
+
+            txtCodBarra.Focus();
+
+        }
+
+        private void TsbSalvar_Click(object sender, EventArgs e)
+        {
+            prod.CodInterno = int.Parse(txtId.Text);
+            prod.CodBarra = txtCodBarra.Text;
+            prod.Descricao = txtDescricao.Text;
+            prod.PrecoVenda = double.Parse(txtPrecoVenda.Text, NumberStyles.Currency);
+            prod.PrecoCusto = double.Parse(txtPrecoCusto.Text, NumberStyles.Currency);
+            prod.PrecoCompra = double.Parse(txtPrecoCompra.Text, NumberStyles.Currency);
+
+            if (controle == "Editar")
+            {
+                prod.EditarProduto();
+
+                txtId.Text = String.Empty;
+                txtCodBarra.Text = String.Empty;
+                txtDescricao.Text = String.Empty;
+                txtPrecoVenda.Text = String.Empty;
+                txtPrecoCompra.Text = String.Empty;
+                txtPrecoCusto.Text = String.Empty;
+
+                TsbCancelar_Click(TsbCancelar, new EventArgs());
+
+                CarregaGrid();
+
+            }
+            else
+            {
+                prod.InserirProduto();
+
+                txtId.Text = String.Empty;
+                txtCodBarra.Text = String.Empty;
+                txtDescricao.Text = String.Empty;
+                txtPrecoVenda.Text = String.Empty;
+                txtPrecoCompra.Text = String.Empty;
+                txtPrecoCusto.Text = String.Empty;
+
+                TsbCancelar_Click(TsbCancelar, new EventArgs());
+
+                CarregaGrid();
+
+            }
+        }
+
+        private void TsbCancelar_Click(object sender, EventArgs e)
+        {
+            //Habilita os textbox
+            txtCodBarra.Enabled = false;
+            txtDescricao.Enabled = false;
+            txtPrecoCompra.Enabled = false;
+            txtPrecoCusto.Enabled = false;
+            txtPrecoVenda.Enabled = false;
+
+            //Habilita e desabilita botoes
+            TsbIncluir.Enabled = true;
+            TsbEditar.Enabled = true;
+            TsbExcluir.Enabled = true;
+            TsbSair.Enabled = true;
+            TsbSalvar.Enabled = false;
+            TsbCancelar.Enabled = false;
+        }
+
+        private void TsbExcluir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Deseja realmente Excluir?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                prod.CodInterno = int.Parse(txtId.Text);
+                prod.ExcluirProduto();
+
+                txtId.Text = String.Empty;
+                txtCodBarra.Text = String.Empty;
+                txtDescricao.Text = String.Empty;
+                txtPrecoVenda.Text = String.Empty;
+                txtPrecoCompra.Text = String.Empty;
+                txtPrecoCusto.Text = String.Empty;
+
+                //btnCancelar_Click(btnCancelar, new EventArgs());
+
+                CarregaGrid();
+            }
+
+        }
+
+        private void TsbSair_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

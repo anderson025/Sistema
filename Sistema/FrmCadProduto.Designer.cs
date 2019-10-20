@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCadProduto));
             this.TabGeral = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.gpbPreco = new System.Windows.Forms.GroupBox();
@@ -46,18 +47,20 @@
             this.txtId = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.btnNovo = new System.Windows.Forms.Button();
-            this.btnEditar = new System.Windows.Forms.Button();
-            this.btnGravar = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnSair = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnExcluir = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.TsbIncluir = new System.Windows.Forms.ToolStripButton();
+            this.TsbEditar = new System.Windows.Forms.ToolStripButton();
+            this.TsbSalvar = new System.Windows.Forms.ToolStripButton();
+            this.TsbCancelar = new System.Windows.Forms.ToolStripButton();
+            this.TsbExcluir = new System.Windows.Forms.ToolStripButton();
+            this.TsbSair = new System.Windows.Forms.ToolStripButton();
             this.TabGeral.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gpbPreco.SuspendLayout();
             this.grbProduto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // TabGeral
@@ -233,56 +236,6 @@
             this.tabPage3.Text = "Alter. Preços";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // btnNovo
-            // 
-            this.btnNovo.Location = new System.Drawing.Point(16, 12);
-            this.btnNovo.Name = "btnNovo";
-            this.btnNovo.Size = new System.Drawing.Size(120, 68);
-            this.btnNovo.TabIndex = 2;
-            this.btnNovo.Text = "Novo";
-            this.btnNovo.UseVisualStyleBackColor = true;
-            this.btnNovo.Click += new System.EventHandler(this.btnNovo_Click);
-            // 
-            // btnEditar
-            // 
-            this.btnEditar.Location = new System.Drawing.Point(142, 12);
-            this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(120, 68);
-            this.btnEditar.TabIndex = 3;
-            this.btnEditar.Text = "Editar";
-            this.btnEditar.UseVisualStyleBackColor = true;
-            this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // btnGravar
-            // 
-            this.btnGravar.Location = new System.Drawing.Point(268, 12);
-            this.btnGravar.Name = "btnGravar";
-            this.btnGravar.Size = new System.Drawing.Size(120, 68);
-            this.btnGravar.TabIndex = 4;
-            this.btnGravar.Text = "Gravar";
-            this.btnGravar.UseVisualStyleBackColor = true;
-            this.btnGravar.Click += new System.EventHandler(this.btnGravar_Click);
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(394, 12);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(120, 68);
-            this.btnCancelar.TabIndex = 5;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnSair
-            // 
-            this.btnSair.Location = new System.Drawing.Point(646, 12);
-            this.btnSair.Name = "btnSair";
-            this.btnSair.Size = new System.Drawing.Size(120, 68);
-            this.btnSair.TabIndex = 6;
-            this.btnSair.Text = "Sair";
-            this.btnSair.UseVisualStyleBackColor = true;
-            this.btnSair.Click += new System.EventHandler(this.btnSair_Click);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -292,30 +245,96 @@
             this.dataGridView1.Size = new System.Drawing.Size(750, 150);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-
             // 
-            // btnExcluir
+            // toolStrip1
             // 
-            this.btnExcluir.Location = new System.Drawing.Point(520, 12);
-            this.btnExcluir.Name = "btnExcluir";
-            this.btnExcluir.Size = new System.Drawing.Size(120, 68);
-            this.btnExcluir.TabIndex = 8;
-            this.btnExcluir.Text = "Excluir";
-            this.btnExcluir.UseVisualStyleBackColor = true;
-            this.btnExcluir.Click += new System.EventHandler(this.btnExcluir_Click);
+            this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.TsbIncluir,
+            this.TsbEditar,
+            this.TsbSalvar,
+            this.TsbCancelar,
+            this.TsbExcluir,
+            this.TsbSair});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(778, 57);
+            this.toolStrip1.TabIndex = 9;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // TsbIncluir
+            // 
+            this.TsbIncluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TsbIncluir.Image = ((System.Drawing.Image)(resources.GetObject("TsbIncluir.Image")));
+            this.TsbIncluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TsbIncluir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbIncluir.Name = "TsbIncluir";
+            this.TsbIncluir.Size = new System.Drawing.Size(54, 54);
+            this.TsbIncluir.Text = "tsbIncluir";
+            this.TsbIncluir.Click += new System.EventHandler(this.TsbIncluir_Click);
+            // 
+            // TsbEditar
+            // 
+            this.TsbEditar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TsbEditar.Image = ((System.Drawing.Image)(resources.GetObject("TsbEditar.Image")));
+            this.TsbEditar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbEditar.Name = "TsbEditar";
+            this.TsbEditar.Size = new System.Drawing.Size(54, 54);
+            this.TsbEditar.Text = "tsbEditar";
+            this.TsbEditar.Click += new System.EventHandler(this.TsbEditar_Click);
+            // 
+            // TsbSalvar
+            // 
+            this.TsbSalvar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TsbSalvar.Image = ((System.Drawing.Image)(resources.GetObject("TsbSalvar.Image")));
+            this.TsbSalvar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TsbSalvar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbSalvar.Name = "TsbSalvar";
+            this.TsbSalvar.Size = new System.Drawing.Size(54, 54);
+            this.TsbSalvar.Text = "tsbGravar";
+            this.TsbSalvar.Click += new System.EventHandler(this.TsbSalvar_Click);
+            // 
+            // TsbCancelar
+            // 
+            this.TsbCancelar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TsbCancelar.Image = ((System.Drawing.Image)(resources.GetObject("TsbCancelar.Image")));
+            this.TsbCancelar.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TsbCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbCancelar.Name = "TsbCancelar";
+            this.TsbCancelar.Size = new System.Drawing.Size(54, 54);
+            this.TsbCancelar.Text = "tsbCancelar";
+            this.TsbCancelar.Click += new System.EventHandler(this.TsbCancelar_Click);
+            // 
+            // TsbExcluir
+            // 
+            this.TsbExcluir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TsbExcluir.Image = ((System.Drawing.Image)(resources.GetObject("TsbExcluir.Image")));
+            this.TsbExcluir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TsbExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbExcluir.Name = "TsbExcluir";
+            this.TsbExcluir.Size = new System.Drawing.Size(54, 54);
+            this.TsbExcluir.Text = "tsbExcluir";
+            this.TsbExcluir.Click += new System.EventHandler(this.TsbExcluir_Click);
+            // 
+            // TsbSair
+            // 
+            this.TsbSair.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.TsbSair.Image = ((System.Drawing.Image)(resources.GetObject("TsbSair.Image")));
+            this.TsbSair.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.TsbSair.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.TsbSair.Name = "TsbSair";
+            this.TsbSair.Size = new System.Drawing.Size(54, 54);
+            this.TsbSair.Text = "tsbSair";
+            this.TsbSair.Click += new System.EventHandler(this.TsbSair_Click);
             // 
             // FrmCadProduto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(778, 552);
-            this.Controls.Add(this.btnExcluir);
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.dataGridView1);
-            this.Controls.Add(this.btnSair);
-            this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.btnGravar);
-            this.Controls.Add(this.btnEditar);
-            this.Controls.Add(this.btnNovo);
             this.Controls.Add(this.TabGeral);
             this.KeyPreview = true;
             this.Name = "FrmCadProduto";
@@ -330,7 +349,10 @@
             this.grbProduto.ResumeLayout(false);
             this.grbProduto.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -338,14 +360,8 @@
         private System.Windows.Forms.TabControl TabGeral;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button btnNovo;
-        private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button btnGravar;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnExcluir;
         private System.Windows.Forms.GroupBox gpbPreco;
         private System.Windows.Forms.Label lblPrecoCusto;
         private System.Windows.Forms.TextBox txtPrecoCusto;
@@ -360,5 +376,12 @@
         private System.Windows.Forms.TextBox txtDescricao;
         private System.Windows.Forms.TextBox txtCodBarra;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton TsbIncluir;
+        private System.Windows.Forms.ToolStripButton TsbEditar;
+        private System.Windows.Forms.ToolStripButton TsbSalvar;
+        private System.Windows.Forms.ToolStripButton TsbCancelar;
+        private System.Windows.Forms.ToolStripButton TsbExcluir;
+        private System.Windows.Forms.ToolStripButton TsbSair;
     }
 }
