@@ -166,6 +166,10 @@ namespace Sistema
             txtUsuario.Enabled = false;
             txtSenha.Enabled = false;
 
+            CarregaGrid();
+            PosicionaDataGrid();
+            
+
         }
 
         public void CarregaGrid()
