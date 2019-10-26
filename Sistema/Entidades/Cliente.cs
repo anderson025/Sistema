@@ -12,20 +12,23 @@ namespace Sistema.Entidades
         public string Nome { get; set; }
         public string Email { get; set; }
         public DateTime DataNascimento { get; set; }
-        public string CPF_CNPJ { get; set; }
+        public int Telefone { get; set; }
+        public Endereco Endereco { get; set; }
+
+        
+
 
         public Cliente()
         {
         }
 
-        public Cliente(string nome, string email, DateTime dataNascimento, string cPF_CNPJ)
+        public Cliente(int codCliente, string nome, string email, DateTime dataNascimento)
         {
+            CodCliente = codCliente;
             Nome = nome;
             Email = email;
             DataNascimento = dataNascimento;
-            CPF_CNPJ = cPF_CNPJ;
+            Endereco = new Endereco();
         }
-
-        
     }
 }

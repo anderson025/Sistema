@@ -68,6 +68,14 @@ namespace Sistema
             //Oculta a coluna  para não exibir no Grid
             dataGridView1.Columns["precocusto"].Visible = false;
 
+            CarregaCampos();
+
+            //bloqueia a edição da celula no datagrid
+            dataGridView1.ReadOnly = true;
+
+        }
+        public void CarregaCampos()
+        {
             //Carrega os campos do datagrid nos textbox
             txtId.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
             txtCodBarra.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
@@ -75,12 +83,7 @@ namespace Sistema
             txtPrecoVenda.Text = dataGridView1.Rows[0].Cells[3].Value.ToString();
             txtPrecoCompra.Text = dataGridView1.Rows[0].Cells[4].Value.ToString();
             txtPrecoCusto.Text = dataGridView1.Rows[0].Cells[5].Value.ToString();
-
-            //bloqueia a edição da celula no datagrid
-            dataGridView1.ReadOnly = true;
-
         }
-
         public void CarregaGrid()
         {
             Conexao c = new Conexao();
@@ -296,6 +299,7 @@ namespace Sistema
                 TsbCancelar_Click(TsbCancelar, new EventArgs());
 
                 CarregaGrid();
+                CarregaCampos();
 
             }
             else
