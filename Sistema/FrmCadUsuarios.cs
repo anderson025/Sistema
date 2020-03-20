@@ -1,10 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
+using Sistema.Entidades;
 using System;
 using System.Data;
 using System.Windows.Forms;
-using System.Security.Cryptography;
-using System.Text;
-using Sistema.Entidades;
 
 
 namespace Sistema
@@ -27,7 +25,7 @@ namespace Sistema
             txtSenha.Enabled = false;
             CarregaGrid();
 
-            
+
             txtCodigo.Text = dataGridView1.Rows[0].Cells[0].Value.ToString();
             txtUsuario.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
             txtSenha.Text = dataGridView1.Rows[0].Cells[2].Value.ToString();
@@ -83,14 +81,14 @@ namespace Sistema
         private void btnGravar_Click(object sender, EventArgs e)
         {
             Conexao c = new Conexao();
-
-            
+            CriptografaSenha s = new CriptografaSenha();
 
             if (controle == "Editar")
             {
+
                 try
                 {
-                    CriptografaSenha s = new CriptografaSenha();
+
                     var senha = s.criptografaSHA512(txtSenha.Text);
 
                     MySqlCommand UPDATE = new MySqlCommand("UPDATE usuario SET Usuario = @User, Senha = @Pass WHERE id = @Id", c.conexao);
@@ -123,7 +121,7 @@ namespace Sistema
                 try
                 {
                     var usuario = txtUsuario.Text;
-                    var senha = criptografaSHA512(txtSenha.Text);
+                    var senha = s.criptografaSHA512(txtSenha.Text);
                     c.AbrirConexao();
                     MySqlCommand INSERT = new MySqlCommand("INSERT INTO usuario (Usuario, Senha) VALUES(@User, @Pass)", c.conexao);
                     INSERT.Parameters.AddWithValue("@User", usuario.ToUpper());
@@ -171,7 +169,7 @@ namespace Sistema
 
             CarregaGrid();
             PosicionaDataGrid();
-            
+
 
         }
 
@@ -258,43 +256,14 @@ namespace Sistema
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Erro ao excluir usuário!","Atenção",MessageBoxButtons.OK,MessageBoxIcon.Error);;
-                }    
+                    MessageBox.Show("Erro ao excluir usuário!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Error); ;
+                }
 
-                
+
 
             }
 
         }
-
-        //public String criptografaSHA512(string valor)
-        //{
-        //    var _stringHash = "";
-
-        //    try
-        //    {
-        //        UnicodeEncoding _encode = new UnicodeEncoding();
-        //        byte[] _hasBytes, _messageBytes = _encode.GetBytes(valor);
-
-        //        SHA512Managed _sha512Managed = new SHA512Managed();
-
-        //        _hasBytes = _sha512Managed.ComputeHash(_messageBytes);
-
-        //        foreach (byte item in _hasBytes)
-        //        {
-        //            _stringHash += String.Format("{0:x2}", item );
-        //        }
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        throw ex;
-        //    }
-        //    return _stringHash;
-
-        //}
-
-        
+                  
     }
 }
