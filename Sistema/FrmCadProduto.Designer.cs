@@ -39,6 +39,20 @@
             this.lblPrecoVenda = new System.Windows.Forms.Label();
             this.txtPrecoCompra = new System.Windows.Forms.TextBox();
             this.grbProduto = new System.Windows.Forms.GroupBox();
+            this.lblQuantidadeSaida = new System.Windows.Forms.Label();
+            this.lblQuantidade = new System.Windows.Forms.Label();
+            this.txtQuantidadeSaida = new System.Windows.Forms.TextBox();
+            this.txtQuantidadeEntrada = new System.Windows.Forms.TextBox();
+            this.lblSaida = new System.Windows.Forms.Label();
+            this.lblEntrada = new System.Windows.Forms.Label();
+            this.cboUnidadeSaida = new System.Windows.Forms.ComboBox();
+            this.cboUnidadeEntrada = new System.Windows.Forms.ComboBox();
+            this.lblSecao = new System.Windows.Forms.Label();
+            this.lblDepartamento = new System.Windows.Forms.Label();
+            this.lblFamilia = new System.Windows.Forms.Label();
+            this.cboDepartamento = new System.Windows.Forms.ComboBox();
+            this.cboSecao = new System.Windows.Forms.ComboBox();
+            this.cboFamilia = new System.Windows.Forms.ComboBox();
             this.lblDescricao = new System.Windows.Forms.Label();
             this.lblCodBarra = new System.Windows.Forms.Label();
             this.lblCodigo = new System.Windows.Forms.Label();
@@ -55,20 +69,6 @@
             this.TsbCancelar = new System.Windows.Forms.ToolStripButton();
             this.TsbExcluir = new System.Windows.Forms.ToolStripButton();
             this.TsbSair = new System.Windows.Forms.ToolStripButton();
-            this.cboFamilia = new System.Windows.Forms.ComboBox();
-            this.cboSecao = new System.Windows.Forms.ComboBox();
-            this.cboDepartamento = new System.Windows.Forms.ComboBox();
-            this.lblFamilia = new System.Windows.Forms.Label();
-            this.lblDepartamento = new System.Windows.Forms.Label();
-            this.lblSecao = new System.Windows.Forms.Label();
-            this.cboUnidadeEntrada = new System.Windows.Forms.ComboBox();
-            this.cboUnidadeSaida = new System.Windows.Forms.ComboBox();
-            this.lblEntrada = new System.Windows.Forms.Label();
-            this.lblSaida = new System.Windows.Forms.Label();
-            this.txtQuantidadeEntrada = new System.Windows.Forms.TextBox();
-            this.txtQuantidadeSaida = new System.Windows.Forms.TextBox();
-            this.lblQuantidade = new System.Windows.Forms.Label();
-            this.lblQuantidadeSaida = new System.Windows.Forms.Label();
             this.TabGeral.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.gpbPreco.SuspendLayout();
@@ -195,6 +195,133 @@
             this.grbProduto.TabStop = false;
             this.grbProduto.Text = "Geral";
             // 
+            // lblQuantidadeSaida
+            // 
+            this.lblQuantidadeSaida.AutoSize = true;
+            this.lblQuantidadeSaida.Location = new System.Drawing.Point(444, 235);
+            this.lblQuantidadeSaida.Name = "lblQuantidadeSaida";
+            this.lblQuantidadeSaida.Size = new System.Drawing.Size(86, 17);
+            this.lblQuantidadeSaida.TabIndex = 21;
+            this.lblQuantidadeSaida.Text = "Quantidade:";
+            // 
+            // lblQuantidade
+            // 
+            this.lblQuantidade.AutoSize = true;
+            this.lblQuantidade.Location = new System.Drawing.Point(444, 151);
+            this.lblQuantidade.Name = "lblQuantidade";
+            this.lblQuantidade.Size = new System.Drawing.Size(86, 17);
+            this.lblQuantidade.TabIndex = 20;
+            this.lblQuantidade.Text = "Quantidade:";
+            // 
+            // txtQuantidadeSaida
+            // 
+            this.txtQuantidadeSaida.Location = new System.Drawing.Point(536, 235);
+            this.txtQuantidadeSaida.Name = "txtQuantidadeSaida";
+            this.txtQuantidadeSaida.Size = new System.Drawing.Size(70, 22);
+            this.txtQuantidadeSaida.TabIndex = 19;
+            // 
+            // txtQuantidadeEntrada
+            // 
+            this.txtQuantidadeEntrada.Location = new System.Drawing.Point(536, 151);
+            this.txtQuantidadeEntrada.Name = "txtQuantidadeEntrada";
+            this.txtQuantidadeEntrada.Size = new System.Drawing.Size(70, 22);
+            this.txtQuantidadeEntrada.TabIndex = 18;
+            // 
+            // lblSaida
+            // 
+            this.lblSaida.AutoSize = true;
+            this.lblSaida.Location = new System.Drawing.Point(444, 180);
+            this.lblSaida.Name = "lblSaida";
+            this.lblSaida.Size = new System.Drawing.Size(114, 17);
+            this.lblSaida.TabIndex = 17;
+            this.lblSaida.Text = "Unidade - Saída:";
+            // 
+            // lblEntrada
+            // 
+            this.lblEntrada.AutoSize = true;
+            this.lblEntrada.Location = new System.Drawing.Point(444, 96);
+            this.lblEntrada.Name = "lblEntrada";
+            this.lblEntrada.Size = new System.Drawing.Size(124, 17);
+            this.lblEntrada.TabIndex = 16;
+            this.lblEntrada.Text = "Unidade -Entrada:";
+            // 
+            // cboUnidadeSaida
+            // 
+            this.cboUnidadeSaida.BackColor = System.Drawing.SystemColors.Info;
+            this.cboUnidadeSaida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUnidadeSaida.FormattingEnabled = true;
+            this.cboUnidadeSaida.Location = new System.Drawing.Point(447, 200);
+            this.cboUnidadeSaida.Name = "cboUnidadeSaida";
+            this.cboUnidadeSaida.Size = new System.Drawing.Size(265, 24);
+            this.cboUnidadeSaida.TabIndex = 15;
+            // 
+            // cboUnidadeEntrada
+            // 
+            this.cboUnidadeEntrada.BackColor = System.Drawing.SystemColors.Info;
+            this.cboUnidadeEntrada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboUnidadeEntrada.FormattingEnabled = true;
+            this.cboUnidadeEntrada.Location = new System.Drawing.Point(447, 116);
+            this.cboUnidadeEntrada.Name = "cboUnidadeEntrada";
+            this.cboUnidadeEntrada.Size = new System.Drawing.Size(265, 24);
+            this.cboUnidadeEntrada.TabIndex = 14;
+            // 
+            // lblSecao
+            // 
+            this.lblSecao.AutoSize = true;
+            this.lblSecao.Location = new System.Drawing.Point(13, 190);
+            this.lblSecao.Name = "lblSecao";
+            this.lblSecao.Size = new System.Drawing.Size(52, 17);
+            this.lblSecao.TabIndex = 13;
+            this.lblSecao.Text = "Seção:";
+            // 
+            // lblDepartamento
+            // 
+            this.lblDepartamento.AutoSize = true;
+            this.lblDepartamento.Location = new System.Drawing.Point(13, 143);
+            this.lblDepartamento.Name = "lblDepartamento";
+            this.lblDepartamento.Size = new System.Drawing.Size(102, 17);
+            this.lblDepartamento.TabIndex = 12;
+            this.lblDepartamento.Text = "Departamento:";
+            // 
+            // lblFamilia
+            // 
+            this.lblFamilia.AutoSize = true;
+            this.lblFamilia.Location = new System.Drawing.Point(13, 96);
+            this.lblFamilia.Name = "lblFamilia";
+            this.lblFamilia.Size = new System.Drawing.Size(56, 17);
+            this.lblFamilia.TabIndex = 11;
+            this.lblFamilia.Text = "Familia:";
+            // 
+            // cboDepartamento
+            // 
+            this.cboDepartamento.BackColor = System.Drawing.SystemColors.Info;
+            this.cboDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboDepartamento.FormattingEnabled = true;
+            this.cboDepartamento.Location = new System.Drawing.Point(16, 163);
+            this.cboDepartamento.Name = "cboDepartamento";
+            this.cboDepartamento.Size = new System.Drawing.Size(265, 24);
+            this.cboDepartamento.TabIndex = 10;
+            // 
+            // cboSecao
+            // 
+            this.cboSecao.BackColor = System.Drawing.SystemColors.Info;
+            this.cboSecao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboSecao.FormattingEnabled = true;
+            this.cboSecao.Location = new System.Drawing.Point(16, 210);
+            this.cboSecao.Name = "cboSecao";
+            this.cboSecao.Size = new System.Drawing.Size(265, 24);
+            this.cboSecao.TabIndex = 9;
+            // 
+            // cboFamilia
+            // 
+            this.cboFamilia.BackColor = System.Drawing.SystemColors.Info;
+            this.cboFamilia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboFamilia.FormattingEnabled = true;
+            this.cboFamilia.Location = new System.Drawing.Point(16, 116);
+            this.cboFamilia.Name = "cboFamilia";
+            this.cboFamilia.Size = new System.Drawing.Size(265, 24);
+            this.cboFamilia.TabIndex = 8;
+            // 
             // lblDescricao
             // 
             this.lblDescricao.AutoSize = true;
@@ -250,7 +377,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(746, 264);
+            this.tabPage2.Size = new System.Drawing.Size(754, 410);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Fiscal";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -259,7 +386,7 @@
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(746, 264);
+            this.tabPage3.Size = new System.Drawing.Size(754, 410);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Alter. Preços";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -356,133 +483,6 @@
             this.TsbSair.Size = new System.Drawing.Size(54, 54);
             this.TsbSair.Text = "tsbSair";
             this.TsbSair.Click += new System.EventHandler(this.TsbSair_Click);
-            // 
-            // cboFamilia
-            // 
-            this.cboFamilia.BackColor = System.Drawing.SystemColors.Info;
-            this.cboFamilia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboFamilia.FormattingEnabled = true;
-            this.cboFamilia.Location = new System.Drawing.Point(16, 116);
-            this.cboFamilia.Name = "cboFamilia";
-            this.cboFamilia.Size = new System.Drawing.Size(265, 24);
-            this.cboFamilia.TabIndex = 8;
-            // 
-            // cboSecao
-            // 
-            this.cboSecao.BackColor = System.Drawing.SystemColors.Info;
-            this.cboSecao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboSecao.FormattingEnabled = true;
-            this.cboSecao.Location = new System.Drawing.Point(16, 210);
-            this.cboSecao.Name = "cboSecao";
-            this.cboSecao.Size = new System.Drawing.Size(265, 24);
-            this.cboSecao.TabIndex = 9;
-            // 
-            // cboDepartamento
-            // 
-            this.cboDepartamento.BackColor = System.Drawing.SystemColors.Info;
-            this.cboDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDepartamento.FormattingEnabled = true;
-            this.cboDepartamento.Location = new System.Drawing.Point(16, 163);
-            this.cboDepartamento.Name = "cboDepartamento";
-            this.cboDepartamento.Size = new System.Drawing.Size(265, 24);
-            this.cboDepartamento.TabIndex = 10;
-            // 
-            // lblFamilia
-            // 
-            this.lblFamilia.AutoSize = true;
-            this.lblFamilia.Location = new System.Drawing.Point(13, 96);
-            this.lblFamilia.Name = "lblFamilia";
-            this.lblFamilia.Size = new System.Drawing.Size(56, 17);
-            this.lblFamilia.TabIndex = 11;
-            this.lblFamilia.Text = "Familia:";
-            // 
-            // lblDepartamento
-            // 
-            this.lblDepartamento.AutoSize = true;
-            this.lblDepartamento.Location = new System.Drawing.Point(13, 143);
-            this.lblDepartamento.Name = "lblDepartamento";
-            this.lblDepartamento.Size = new System.Drawing.Size(102, 17);
-            this.lblDepartamento.TabIndex = 12;
-            this.lblDepartamento.Text = "Departamento:";
-            // 
-            // lblSecao
-            // 
-            this.lblSecao.AutoSize = true;
-            this.lblSecao.Location = new System.Drawing.Point(13, 190);
-            this.lblSecao.Name = "lblSecao";
-            this.lblSecao.Size = new System.Drawing.Size(52, 17);
-            this.lblSecao.TabIndex = 13;
-            this.lblSecao.Text = "Seção:";
-            // 
-            // cboUnidadeEntrada
-            // 
-            this.cboUnidadeEntrada.BackColor = System.Drawing.SystemColors.Info;
-            this.cboUnidadeEntrada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboUnidadeEntrada.FormattingEnabled = true;
-            this.cboUnidadeEntrada.Location = new System.Drawing.Point(447, 116);
-            this.cboUnidadeEntrada.Name = "cboUnidadeEntrada";
-            this.cboUnidadeEntrada.Size = new System.Drawing.Size(265, 24);
-            this.cboUnidadeEntrada.TabIndex = 14;
-            // 
-            // cboUnidadeSaida
-            // 
-            this.cboUnidadeSaida.BackColor = System.Drawing.SystemColors.Info;
-            this.cboUnidadeSaida.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboUnidadeSaida.FormattingEnabled = true;
-            this.cboUnidadeSaida.Location = new System.Drawing.Point(447, 200);
-            this.cboUnidadeSaida.Name = "cboUnidadeSaida";
-            this.cboUnidadeSaida.Size = new System.Drawing.Size(265, 24);
-            this.cboUnidadeSaida.TabIndex = 15;
-            // 
-            // lblEntrada
-            // 
-            this.lblEntrada.AutoSize = true;
-            this.lblEntrada.Location = new System.Drawing.Point(444, 96);
-            this.lblEntrada.Name = "lblEntrada";
-            this.lblEntrada.Size = new System.Drawing.Size(124, 17);
-            this.lblEntrada.TabIndex = 16;
-            this.lblEntrada.Text = "Unidade -Entrada:";
-            // 
-            // lblSaida
-            // 
-            this.lblSaida.AutoSize = true;
-            this.lblSaida.Location = new System.Drawing.Point(444, 180);
-            this.lblSaida.Name = "lblSaida";
-            this.lblSaida.Size = new System.Drawing.Size(114, 17);
-            this.lblSaida.TabIndex = 17;
-            this.lblSaida.Text = "Unidade - Saída:";
-            // 
-            // txtQuantidadeEntrada
-            // 
-            this.txtQuantidadeEntrada.Location = new System.Drawing.Point(536, 151);
-            this.txtQuantidadeEntrada.Name = "txtQuantidadeEntrada";
-            this.txtQuantidadeEntrada.Size = new System.Drawing.Size(70, 22);
-            this.txtQuantidadeEntrada.TabIndex = 18;
-            // 
-            // txtQuantidadeSaida
-            // 
-            this.txtQuantidadeSaida.Location = new System.Drawing.Point(536, 235);
-            this.txtQuantidadeSaida.Name = "txtQuantidadeSaida";
-            this.txtQuantidadeSaida.Size = new System.Drawing.Size(70, 22);
-            this.txtQuantidadeSaida.TabIndex = 19;
-            // 
-            // lblQuantidade
-            // 
-            this.lblQuantidade.AutoSize = true;
-            this.lblQuantidade.Location = new System.Drawing.Point(444, 151);
-            this.lblQuantidade.Name = "lblQuantidade";
-            this.lblQuantidade.Size = new System.Drawing.Size(86, 17);
-            this.lblQuantidade.TabIndex = 20;
-            this.lblQuantidade.Text = "Quantidade:";
-            // 
-            // lblQuantidadeSaida
-            // 
-            this.lblQuantidadeSaida.AutoSize = true;
-            this.lblQuantidadeSaida.Location = new System.Drawing.Point(444, 235);
-            this.lblQuantidadeSaida.Name = "lblQuantidadeSaida";
-            this.lblQuantidadeSaida.Size = new System.Drawing.Size(86, 17);
-            this.lblQuantidadeSaida.TabIndex = 21;
-            this.lblQuantidadeSaida.Text = "Quantidade:";
             // 
             // FrmCadProduto
             // 

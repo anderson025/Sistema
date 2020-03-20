@@ -4,7 +4,7 @@ using System.Data;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using System.Text;
-
+using Sistema.Entidades;
 
 
 namespace Sistema
@@ -32,7 +32,7 @@ namespace Sistema
             txtUsuario.Text = dataGridView1.Rows[0].Cells[1].Value.ToString();
             txtSenha.Text = dataGridView1.Rows[0].Cells[2].Value.ToString();
 
-            //Oculta a coluna Senha para não exibri no Grid
+            //Oculta a coluna Senha para não exibir no Grid
             dataGridView1.Columns["Senha"].Visible = false;
             dataGridView1.ReadOnly = true;
 
@@ -84,11 +84,14 @@ namespace Sistema
         {
             Conexao c = new Conexao();
 
+            
+
             if (controle == "Editar")
             {
                 try
                 {
-                    var senha = criptografaSHA512(txtSenha.Text);
+                    CriptografaSenha s = new CriptografaSenha();
+                    var senha = s.criptografaSHA512(txtSenha.Text);
 
                     MySqlCommand UPDATE = new MySqlCommand("UPDATE usuario SET Usuario = @User, Senha = @Pass WHERE id = @Id", c.conexao);
                     UPDATE.Parameters.AddWithValue("@User", txtUsuario.Text);
@@ -264,33 +267,33 @@ namespace Sistema
 
         }
 
-        public String criptografaSHA512(string valor)
-        {
-            var _stringHash = "";
+        //public String criptografaSHA512(string valor)
+        //{
+        //    var _stringHash = "";
 
-            try
-            {
-                UnicodeEncoding _encode = new UnicodeEncoding();
-                byte[] _hasBytes, _messageBytes = _encode.GetBytes(valor);
+        //    try
+        //    {
+        //        UnicodeEncoding _encode = new UnicodeEncoding();
+        //        byte[] _hasBytes, _messageBytes = _encode.GetBytes(valor);
 
-                SHA512Managed _sha512Managed = new SHA512Managed();
+        //        SHA512Managed _sha512Managed = new SHA512Managed();
 
-                _hasBytes = _sha512Managed.ComputeHash(_messageBytes);
+        //        _hasBytes = _sha512Managed.ComputeHash(_messageBytes);
 
-                foreach (byte item in _hasBytes)
-                {
-                    _stringHash += String.Format("{0:x2}", item );
-                }
+        //        foreach (byte item in _hasBytes)
+        //        {
+        //            _stringHash += String.Format("{0:x2}", item );
+        //        }
 
-            }
-            catch (Exception ex)
-            {
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw ex;
-            }
-            return _stringHash;
+        //        throw ex;
+        //    }
+        //    return _stringHash;
 
-        }
+        //}
 
         
     }

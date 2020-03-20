@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 using Sistema.Entidades;
+using System.Security.Cryptography;
 
 namespace Sistema
 {
@@ -61,7 +62,7 @@ namespace Sistema
             frmPrincipal principal = new frmPrincipal();
             FrmCadUsuarios cad = new FrmCadUsuarios();
 
-
+            
             var senha = cad.criptografaSHA512(txtSenha.Text);
 
             //string usuario;
