@@ -60,14 +60,10 @@ namespace Sistema
             Conexao c = new Conexao();
             Usuarios usuarios = new Usuarios();
             frmPrincipal principal = new frmPrincipal();
-            FrmCadUsuarios cad = new FrmCadUsuarios();
+            CriptografaSenha s = new CriptografaSenha();
 
             
-            var senha = cad.criptografaSHA512(txtSenha.Text);
-
-            //string usuario;
-            //string senha;
-            //MySqlConnection conexao = new MySqlConnection("Server= localhost; Database=sasistema; Uid=root; pwd =12345;");
+            var senha = s.criptografaSHA512(txtSenha.Text);            
 
             MySqlCommand SELECT = c.conexao.CreateCommand();
             SELECT.CommandType = CommandType.Text;
@@ -75,50 +71,61 @@ namespace Sistema
             SELECT.Parameters.AddWithValue("@User", usuario);
             SELECT.Parameters.AddWithValue("@Pass", senha);
 
-
-
-            try
+            if (cboUsuario)
             {
-                c.AbrirConexao();
-                MySqlDataReader leitura = SELECT.ExecuteReader();
+                MessageBox.Show("Selecione um usuário!");
+                cboUsuario.Focus();
+            }
+            else if (txtSenha.Text == "")
+            {
+                MessageBox.Show("Senha inválida, verifique!");
+                txtSenha.Focus();
+            }
 
-
-                if (leitura.Read())
+            else
+            {
+                try
                 {
-                    usuarios.Usuario = leitura[0].ToString();
-                    usuarios.Senha = leitura[1].ToString();
+                    c.AbrirConexao();
+                    MySqlDataReader leitura = SELECT.ExecuteReader();
 
 
-
-                    if (usuario == usuarios.Usuario && senha == usuarios.Senha)
+                    if (leitura.Read())
                     {
-                        MessageBox.Show("Bem vindo ao Sistema", "Bem Vindo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        
-                        principal.Show();
-                        this.Hide();
+                        usuarios.Usuario = leitura[0].ToString();
+                        usuarios.Senha = leitura[1].ToString();
 
 
+
+                        if (usuario == usuarios.Usuario && senha == usuarios.Senha)
+                        {
+                            MessageBox.Show("Bem vindo ao Sistema", "Bem Vindo!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            principal.Show();
+                            this.Hide();
+
+
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("Usuario e senha não conferem!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
 
                     }
                     else
                     {
                         MessageBox.Show("Usuario e senha não conferem!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    
+
                 }
-                else
+                catch (Exception)
                 {
-                    MessageBox.Show("Usuario e senha não conferem!", "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    MessageBox.Show("Erro"); ;
                 }
 
             }
-            catch (Exception)
-            {
-
-                MessageBox.Show("Erro"); ;
-            }
-                
-
         }
 
         private void btnSair_Click(object sender, EventArgs e)
@@ -182,5 +189,7 @@ namespace Sistema
                 e.SuppressKeyPress = true;
             }
         }
+
+      
     }
 }

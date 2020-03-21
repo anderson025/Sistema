@@ -68,6 +68,7 @@
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Conexao.cs" />
     <Compile Include="Entidades\ClientePessoaFisica.cs" />
+    <Compile Include="Entidades\CriptografaSenha.cs" />
     <Compile Include="Entidades\Endereco.cs" />
     <Compile Include="Entidades\Enums\StatusPedido.cs" />
     <Compile Include="Entidades\PedidoItens.cs" />
