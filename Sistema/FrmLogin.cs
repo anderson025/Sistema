@@ -18,8 +18,7 @@ namespace Sistema
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            CarregaCombo();
-            cboUsuario.Text = "";
+            CarregaCombo();            
 
             //Recebe a data do dia mais o horário
             DateTime data = DateTime.Now;
@@ -33,7 +32,7 @@ namespace Sistema
 
             MySqlCommand SELECT = c.conexao.CreateCommand();
             SELECT.CommandType = CommandType.Text;
-            SELECT.CommandText = "SELECT usuario FROM usuario";
+            SELECT.CommandText = "SELECT usuario FROM usuario ORDER BY usuario";
 
             try
             {
@@ -51,7 +50,7 @@ namespace Sistema
             catch (Exception)
             {
 
-                MessageBox.Show("Erro");
+                MessageBox.Show("Erro no carregamento do componenente combobox! Verifique com suporte!");
             }
         }
 
@@ -71,12 +70,7 @@ namespace Sistema
             SELECT.Parameters.AddWithValue("@User", usuario);
             SELECT.Parameters.AddWithValue("@Pass", senha);
 
-            if (cboUsuario.SelectedIndex == 0)
-            {
-                MessageBox.Show("Selecione um usuário!");
-                cboUsuario.Focus();
-            }
-            else if (txtSenha.Text == "")
+            if (txtSenha.Text == "")
             {
                 MessageBox.Show("Senha inválida, verifique!");
                 txtSenha.Focus();
@@ -122,7 +116,7 @@ namespace Sistema
                 catch (Exception)
                 {
 
-                    MessageBox.Show("Erro"); ;
+                    MessageBox.Show("Erro ao verificar usuário e senha."); ;
                 }
 
             }
@@ -156,19 +150,13 @@ namespace Sistema
                     usuario = leitura[0].ToString();
 
                 }
-                
-                //DataTable dt = new DataTable();
-                //dt.Load(leitura);
-                //cboUsuario.DisplayMember = "usuario";
-                //cboUsuario.DataSource = dt;
-                
                 c.FecharConexao();
 
             }
             catch (Exception)
             {
 
-                MessageBox.Show("Erro"); ;
+                MessageBox.Show("Erro ao selecionar usuário!"); ;
             }
         }
 

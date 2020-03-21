@@ -71,7 +71,9 @@
             // 
             // cboUsuario
             // 
+            this.cboUsuario.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboUsuario.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(18)))), ((int)(((byte)(30)))));
+            this.cboUsuario.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cboUsuario.ForeColor = System.Drawing.SystemColors.MenuBar;
             this.cboUsuario.FormattingEnabled = true;
