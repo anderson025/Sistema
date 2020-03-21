@@ -71,7 +71,7 @@ namespace Sistema
             SELECT.Parameters.AddWithValue("@User", usuario);
             SELECT.Parameters.AddWithValue("@Pass", senha);
 
-            if (cboUsuario)
+            if (cboUsuario.SelectedIndex == 0)
             {
                 MessageBox.Show("Selecione um usuário!");
                 cboUsuario.Focus();
