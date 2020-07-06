@@ -481,7 +481,7 @@
             this.TsbSair.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbSair.Name = "TsbSair";
             this.TsbSair.Size = new System.Drawing.Size(54, 54);
-            this.TsbSair.Text = "tsbSair";
+            this.TsbSair.Text = "Sair";
             this.TsbSair.Click += new System.EventHandler(this.TsbSair_Click);
             // 
             // FrmCadProduto

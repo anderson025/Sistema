@@ -132,7 +132,7 @@ namespace Sistema
 
         private void cboUsuario_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Conexao c = new Conexao();
+           Conexao c = new Conexao();
 
 
             MySqlCommand SELECT = c.conexao.CreateCommand();
