@@ -10,7 +10,9 @@ namespace Sistema
 {
     public partial class FrmCadProduto : Form
     {
-
+        private string controle;
+        private bool carregagrid;
+        Produto prod = new Produto();
 
         public FrmCadProduto()
         {
@@ -18,9 +20,6 @@ namespace Sistema
 
         }
 
-        private string controle;
-        private bool carregagrid;
-        Produto prod = new Produto();
 
         public FrmCadProduto(string descricao)
         {
@@ -278,7 +277,7 @@ namespace Sistema
 
         private void TsbSalvar_Click(object sender, EventArgs e)
         {
-            prod.CodInterno = int.Parse(txtId.Text);
+            //prod.CodInterno = int.Parse(txtId.Text);
             prod.CodBarra = txtCodBarra.Text;
             prod.Descricao = txtDescricao.Text;
             prod.PrecoVenda = double.Parse(txtPrecoVenda.Text, NumberStyles.Currency);

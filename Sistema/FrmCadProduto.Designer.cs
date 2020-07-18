@@ -426,7 +426,7 @@
             this.TsbIncluir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbIncluir.Name = "TsbIncluir";
             this.TsbIncluir.Size = new System.Drawing.Size(54, 54);
-            this.TsbIncluir.Text = "tsbIncluir";
+            this.TsbIncluir.Text = "s";
             this.TsbIncluir.Click += new System.EventHandler(this.TsbIncluir_Click);
             // 
             // TsbEditar
@@ -437,7 +437,7 @@
             this.TsbEditar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbEditar.Name = "TsbEditar";
             this.TsbEditar.Size = new System.Drawing.Size(54, 54);
-            this.TsbEditar.Text = "tsbEditar";
+            this.TsbEditar.Text = "Editar";
             this.TsbEditar.Click += new System.EventHandler(this.TsbEditar_Click);
             // 
             // TsbSalvar
@@ -448,7 +448,7 @@
             this.TsbSalvar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbSalvar.Name = "TsbSalvar";
             this.TsbSalvar.Size = new System.Drawing.Size(54, 54);
-            this.TsbSalvar.Text = "tsbGravar";
+            this.TsbSalvar.Text = "Gravar";
             this.TsbSalvar.Click += new System.EventHandler(this.TsbSalvar_Click);
             // 
             // TsbCancelar
@@ -459,7 +459,7 @@
             this.TsbCancelar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbCancelar.Name = "TsbCancelar";
             this.TsbCancelar.Size = new System.Drawing.Size(54, 54);
-            this.TsbCancelar.Text = "tsbCancelar";
+            this.TsbCancelar.Text = "Cancelar";
             this.TsbCancelar.Click += new System.EventHandler(this.TsbCancelar_Click);
             // 
             // TsbExcluir
@@ -470,7 +470,7 @@
             this.TsbExcluir.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.TsbExcluir.Name = "TsbExcluir";
             this.TsbExcluir.Size = new System.Drawing.Size(54, 54);
-            this.TsbExcluir.Text = "tsbExcluir";
+            this.TsbExcluir.Text = "Excluir";
             this.TsbExcluir.Click += new System.EventHandler(this.TsbExcluir_Click);
             // 
             // TsbSair
