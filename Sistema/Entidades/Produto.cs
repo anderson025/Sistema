@@ -66,6 +66,7 @@ namespace Sistema.Entidades
             try
             {
                 Conexao c = new Conexao();
+                c.AbrirConexao();
                 MySqlCommand UPDATE = new MySqlCommand("UPDATE produto SET codbarra = @Codbarra, descricao = @Descricao, precovenda = @Precovenda, precocompra = @Precocompra, precocusto = @Precocusto WHERE id = @Id", c.conexao);
                 UPDATE.Parameters.AddWithValue("@Codbarra", CodBarra);
                 UPDATE.Parameters.AddWithValue("@Descricao", Descricao.ToUpper());
@@ -74,7 +75,7 @@ namespace Sistema.Entidades
                 UPDATE.Parameters.AddWithValue("@Precocusto", PrecoCusto);
                 UPDATE.Parameters.AddWithValue("@Id", CodInterno);
 
-                c.AbrirConexao();
+                
 
                 UPDATE.ExecuteNonQuery();
                 MessageBox.Show("Alterador com Sucesso", "Alteração", MessageBoxButtons.OK, MessageBoxIcon.Information);

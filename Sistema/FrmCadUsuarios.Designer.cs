@@ -30,7 +30,7 @@
         {
             this.txtUsuario = new System.Windows.Forms.TextBox();
             this.gbUsuarios = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblCodigo = new System.Windows.Forms.Label();
             this.txtCodigo = new System.Windows.Forms.TextBox();
             this.lblSenha = new System.Windows.Forms.Label();
             this.txtSenha = new System.Windows.Forms.TextBox();
@@ -42,6 +42,8 @@
             this.btnGravar = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.lblNivel = new System.Windows.Forms.Label();
             this.gbUsuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -55,7 +57,9 @@
             // 
             // gbUsuarios
             // 
-            this.gbUsuarios.Controls.Add(this.label1);
+            this.gbUsuarios.Controls.Add(this.lblNivel);
+            this.gbUsuarios.Controls.Add(this.comboBox1);
+            this.gbUsuarios.Controls.Add(this.lblCodigo);
             this.gbUsuarios.Controls.Add(this.txtCodigo);
             this.gbUsuarios.Controls.Add(this.lblSenha);
             this.gbUsuarios.Controls.Add(this.txtSenha);
@@ -68,14 +72,14 @@
             this.gbUsuarios.TabStop = false;
             this.gbUsuarios.Text = "Usuários";
             // 
-            // label1
+            // lblCodigo
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 17);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Código:";
+            this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Location = new System.Drawing.Point(6, 28);
+            this.lblCodigo.Name = "lblCodigo";
+            this.lblCodigo.Size = new System.Drawing.Size(56, 17);
+            this.lblCodigo.TabIndex = 5;
+            this.lblCodigo.Text = "Código:";
             // 
             // txtCodigo
             // 
@@ -183,6 +187,23 @@
             this.dataGridView1.TabIndex = 6;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(9, 95);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(177, 24);
+            this.comboBox1.TabIndex = 6;
+            // 
+            // lblNivel
+            // 
+            this.lblNivel.AutoSize = true;
+            this.lblNivel.Location = new System.Drawing.Point(6, 75);
+            this.lblNivel.Name = "lblNivel";
+            this.lblNivel.Size = new System.Drawing.Size(43, 17);
+            this.lblNivel.TabIndex = 7;
+            this.lblNivel.Text = "Nível:";
+            // 
             // FrmCadUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -220,8 +241,10 @@
         private System.Windows.Forms.Button btnSair;
         private System.Windows.Forms.Button btnGravar;
         private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label lblNivel;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

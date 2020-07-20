@@ -277,7 +277,7 @@ namespace Sistema
 
         private void TsbSalvar_Click(object sender, EventArgs e)
         {
-            //prod.CodInterno = int.Parse(txtId.Text);
+            
             prod.CodBarra = txtCodBarra.Text;
             prod.Descricao = txtDescricao.Text;
             prod.PrecoVenda = double.Parse(txtPrecoVenda.Text, NumberStyles.Currency);
@@ -286,6 +286,7 @@ namespace Sistema
 
             if (controle == "Editar")
             {
+                prod.CodInterno = int.Parse(txtId.Text);
                 prod.EditarProduto();
 
                 txtId.Text = String.Empty;
@@ -299,7 +300,7 @@ namespace Sistema
 
                 CarregaGrid();
                 CarregaCampos();
-
+                controle = String.Empty;
             }
             else
             {
